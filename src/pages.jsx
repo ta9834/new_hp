@@ -1,0 +1,1369 @@
+// Inner pages for PAS企画
+
+function AboutPage() {
+  React.useEffect(() => {
+    const id = window.__pendingScroll;
+    if (id) {
+      window.__pendingScroll = null;
+      setTimeout(() => {
+        const el = document.getElementById(id);
+        if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 80);
+    }
+  }, []);
+  return (
+    <>
+      <PageHeader en="ABOUT US" ja="PAS企画について" lead="茨城・つくばを拠点に、お金にまつわる課題を総合的に解決するプロフェッショナル・アドバイザー集団。" />
+      <section id="section-message" style={{ padding: "80px 0 100px" }}>
+        <div className="wrap ab-grid" style={{ display: "grid", gridTemplateColumns: "1fr 2fr", gap: 64 }}>
+          <img src="assets/message.jpg" alt="代表メッセージ" className="msg-img" style={{ width: "100%", aspectRatio: "3/4", objectFit: "cover", objectPosition: "center center", display: "block" }} />
+          <div>
+            <div className="en" style={{ fontSize: 11, letterSpacing: "0.28em", color: "var(--pur-3)", marginBottom: 12 }}>MESSAGE</div>
+            <h2 style={{ fontSize: 32, fontWeight: 700, marginBottom: 24 }}>代表メッセージ</h2>
+            <p style={{ fontSize: 18, fontWeight: 600, lineHeight: 1.9, marginBottom: 24 }}>「お金のことは、信頼できる相談相手と一緒に考える」——その当たり前を、地域から。</p>
+            <p style={{ fontSize: 14, color: "var(--ink-2)", lineHeight: 2.05, marginBottom: 20 }}>
+              お金に関する情報は、かつてないほど氾濫しています。NISA・iDeCo・新しい保険商品・相続税制の改正——正しい情報を選び、ご自身の人生に当てはめる作業は、どなたにとっても容易ではありません。
+            </p>
+            <p style={{ fontSize: 14, color: "var(--ink-2)", lineHeight: 2.05, marginBottom: 20 }}>
+              株式会社PAS企画は2021年、茨城・つくばの地で生まれました。金融機関でも、保険会社でもない——独立した立場で、お客様の側に立ってアドバイスを行う専門家集団として。「特定商品を売ること」を目的にするのではなく、お客様一人ひとりの人生設計に寄り添うことを業務の中心に据えてまいりました。
+            </p>
+            <p style={{ fontSize: 14, color: "var(--ink-2)", lineHeight: 2.05, marginBottom: 32 }}>
+              資産形成から相続、経営者様の事業承継まで——お金を取り巻くあらゆるご相談を、一つの窓口で。これからも、「ベストパートナー」と呼んでいただける存在であり続けられるよう、誠実にご対応してまいります。
+            </p>
+            <div style={{ fontSize: 16, fontWeight: 700 }}>代表取締役　小島 拓也</div>
+          </div>
+        </div>
+        <style>{`
+          @media(max-width:820px){ .ab-grid{ grid-template-columns:1fr !important;} }
+          @media(max-width:820px){ .msg-img{ aspect-ratio:4/3 !important; object-position:center 20% !important; } }
+        `}</style>
+      </section>
+
+      <section id="section-company" style={{ padding: "100px 0", background: "var(--bg-2)" }}>
+        <div className="wrap">
+          <div className="section-eyebrow" style={{ marginBottom: 60 }}>
+            <span className="ja">会社概要</span><span className="en">COMPANY PROFILE</span>
+          </div>
+          <div style={{ maxWidth: 880, margin: "0 auto", borderTop: "1px solid var(--line)" }}>
+            {[
+              ["会社名",   "株式会社PAS企画（PAS Planning Co., Ltd.）"],
+              ["所在地",   "〒300-3261 茨城県つくば市花畑3丁目13番地10 ヤマグチビル3階\nTEL：029-877-6322"],
+              ["創業",     "2018年10月"],
+              ["設立",     "2021年8月"],
+              ["役員",     "代表取締役　小島 拓也\n取締役　　　阿部 龍一"],
+              ["事業内容", "資産形成・資産運用、税務対策支援、不動産総合活用、経営サポート、AI導入支援"],
+              ["関連会社", "合同会社PASパートナーズ（旧：合同会社グラン・ジュテ）"],
+              ["営業時間", "9:30〜18:30（日祝祭日を除く）"],
+              ["適格請求書発行事業者登録番号", "T8050001049710"],
+            ].map(([k, v], i) => (
+              <div key={i} className="company-row" style={{ display: "grid", gridTemplateColumns: "210px 1fr", gap: 24, padding: "20px 0", borderBottom: "1px solid var(--line)" }}>
+                <div style={{ fontSize: 13, fontWeight: 700, color: "var(--ink-2)" }}>{k}</div>
+                <div style={{ fontSize: 14, color: "var(--ink)", lineHeight: 1.8, whiteSpace: "pre-line" }}>{v}</div>
+              </div>
+            ))}
+            <style>{`
+              @media(max-width:640px){
+                .company-row{ grid-template-columns:1fr !important; gap:6px !important; }
+              }
+            `}</style>
+          </div>
+        </div>
+      </section>
+
+      <ValuesSection />
+      <AccessSection />
+      <ContactBand />
+    </>
+  );
+}
+
+function ValuesSection() {
+  const cards = [
+    {
+      label: "経営理念", en: "Philosophy",
+      body: "お客様の幸せ創造を通じて\n社会に貢献し、\n社員の幸福向上を図る",
+      bodyStyle: { fontSize: "clamp(16px,1.8vw,20px)", fontWeight: 700, lineHeight: 1.9, whiteSpace: "pre-line" },
+    },
+    {
+      label: "ミッション", en: "Mission",
+      body: "お金と事業の悩みを、\nすべて",
+      highlight: "最適解",
+      bodyAfter: "へ導く",
+      bodyStyle: { fontSize: "clamp(16px,1.8vw,20px)", fontWeight: 700, lineHeight: 1.9 },
+    },
+    {
+      label: "ビジョン", en: "Vision",
+      body: "世代を超えて選ばれる、\n総合金融・事業パートナーへ",
+      bodyStyle: { fontSize: "clamp(16px,1.8vw,20px)", fontWeight: 700, lineHeight: 1.9, whiteSpace: "pre-line" },
+    },
+    {
+      label: "指針", en: "Policy",
+      list: [
+        "誠意誠実をもってお客様と共に歩む",
+        "専門家として誇り得る知識と品質を常に保持する",
+        "共存共栄で明るい企業を目指す",
+        "創意工夫で明日を拓く",
+        "いかなる変化や困難にも挑戦し即応する",
+      ],
+    },
+  ];
+  return (
+    <section id="section-values" style={{ padding: "100px 0", background: "#fff" }}>
+      <div className="wrap">
+        <div className="section-eyebrow" style={{ marginBottom: 64 }}>
+          <Reveal><span className="ja">私たちの価値観</span></Reveal>
+          <Reveal delay={1}><span className="en">OUR VALUES</span></Reveal>
+        </div>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24, gridAutoRows: "1fr" }} className="values-grid">
+          {cards.map((c, i) => (
+            <Reveal key={i} delay={i} style={{ height: "100%" }}>
+              <div style={{
+                padding: "44px 48px",
+                borderRadius: 16,
+                border: "1px solid var(--line)",
+                background: "var(--bg-2)",
+                height: "100%",
+                boxSizing: "border-box",
+                display: "flex",
+                flexDirection: "column",
+                gap: 24,
+              }}>
+                <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+                  <span style={{ fontSize: 18, fontWeight: 700, color: "var(--pur-3)" }}>{c.label}</span>
+                  <span className="en" style={{ fontSize: 11, letterSpacing: "0.2em", color: "var(--ink-3)" }}>{c.en}</span>
+                </div>
+                {c.list ? (
+                  <ol style={{ margin: 0, padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: 12 }}>
+                    {c.list.map((item, j) => (
+                      <li key={j} style={{ display: "flex", gap: 10, fontSize: 13.5, color: "var(--ink)", lineHeight: 1.75 }}>
+                        <span style={{ color: "var(--pur-3)", fontWeight: 700, minWidth: 22 }}>{j + 1}.</span>
+                        {item}
+                      </li>
+                    ))}
+                  </ol>
+                ) : c.highlight ? (
+                  <div style={c.bodyStyle}>
+                    {c.body}
+                    <span style={{ color: "var(--pur-3)" }}>{c.highlight}</span>
+                    {c.bodyAfter}
+                  </div>
+                ) : (
+                  <div style={c.bodyStyle}>{c.body}</div>
+                )}
+              </div>
+            </Reveal>
+          ))}
+        </div>
+        <style>{`@media(max-width:640px){.values-grid{grid-template-columns:1fr !important; grid-auto-rows:auto !important;}}`}</style>
+      </div>
+    </section>
+  );
+}
+
+function AccessSection() {
+  return (
+    <section style={{ padding: "100px 0 120px" }}>
+      <div className="wrap">
+        <div className="section-eyebrow" style={{ marginBottom: 56 }}>
+          <span className="ja">アクセス</span><span className="en">ACCESS</span>
+        </div>
+        <div style={{
+          background: "#fff", borderRadius: 16, border: "1px solid var(--line)",
+          padding: 40, display: "grid", gridTemplateColumns: "1fr 1.3fr", gap: 48,
+          boxShadow: "0 10px 28px -20px rgba(60,40,120,0.2)",
+        }} className="ac-grid">
+          <div>
+            <div style={{ fontSize: 22, fontWeight: 700, marginBottom: 24, letterSpacing: "0.04em" }}>本社・つくばオフィス</div>
+            {[
+              ["住所", "〒300-3261\n茨城県つくば市花畑3丁目13番地10\nヤマグチビル3階"],
+              ["最寄駅", "つくばエクスプレス「つくば駅」\nより車で約15分"],
+              ["電話", "029-877-6322"],
+              ["営業時間", "9:30〜18:30（日祝祭日を除く）"],
+            ].map(([k, v], i) => (
+              <div key={i} style={{ padding: "14px 0", borderBottom: i < 3 ? "1px solid var(--line)" : "none" }}>
+                <div style={{ fontSize: 11, letterSpacing: "0.18em", color: "var(--pur-3)", fontWeight: 700, marginBottom: 6 }}>{k}</div>
+                <div style={{ fontSize: 13.5, color: "var(--ink)", lineHeight: 1.8, whiteSpace: "pre-line" }}>{v}</div>
+              </div>
+            ))}
+          </div>
+          <div style={{ borderRadius: 12, overflow: "hidden", background: "#f0eef6", position: "relative", minHeight: 340 }}>
+            <iframe
+              title="株式会社PAS企画 本社地図"
+              src="https://www.google.com/maps?q=%E8%8C%A8%E5%9F%8E%E7%9C%8C%E3%81%A4%E3%81%8F%E3%81%B0%E5%B8%82%E8%8A%B1%E7%95%913%E4%B8%81%E7%9B%AE13-10&output=embed"
+              width="100%"
+              height="100%"
+              style={{ border: 0, minHeight: 340, display: "block" }}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              allowFullScreen
+            />
+            <a
+              href="https://www.google.com/maps?q=%E8%8C%A8%E5%9F%8E%E7%9C%8C%E3%81%A4%E3%81%8F%E3%81%B0%E5%B8%82%E8%8A%B1%E7%95%913%E4%B8%81%E7%9B%AE13-10"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                position: "absolute", right: 14, bottom: 14,
+                padding: "8px 14px", borderRadius: 999, background: "#fff",
+                border: "1px solid var(--line)", fontSize: 11, fontWeight: 600,
+                color: "var(--ink)", boxShadow: "0 6px 16px -8px rgba(0,0,0,0.2)",
+                display: "inline-flex", gap: 6, alignItems: "center",
+              }}>
+              Google Mapsで開く <span style={{ color: "var(--pur-3)" }}>↗</span>
+            </a>
+          </div>
+        </div>
+        <style>{`@media(max-width:820px){.ac-grid{grid-template-columns:1fr !important;padding:24px !important;}}`}</style>
+      </div>
+    </section>
+  );
+}
+
+function StrengthsBand() {
+  return (
+    <section style={{ position: "relative", padding: "100px 0 140px", overflow: "hidden" }}>
+      <WaveField height={420} density={11} position="bottom"/>
+      <div className="wrap" style={{ position: "relative" }}>
+        <div className="section-eyebrow" style={{ marginBottom: 64 }}>
+          <span className="ja">私たちの強み</span><span className="en">OUR STRENGTHS</span>
+        </div>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 28 }} className="st-grid">
+          {STRENGTHS.map((s, i) => (
+            <div key={i} style={{
+              padding: "40px 28px", borderRadius: 12, background: "rgba(255,255,255,0.8)",
+              border: "1px solid var(--line)", textAlign: "center", minHeight: 240,
+              display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "flex-start",
+            }}>
+              <div className="en prismatic" style={{ fontSize: 34, fontWeight: 800, marginBottom: 4 }}>0{i + 1}</div>
+              <div style={{ fontSize: 20, fontWeight: 700, marginBottom: 16 }}>{s.n}<span style={{ color: "var(--pur-3)" }}>・</span>{s.ja}</div>
+              <p style={{ fontSize: 12.5, color: "var(--ink-2)", lineHeight: 1.9 }}>{s.body}</p>
+            </div>
+          ))}
+        </div>
+        <style>{`@media(max-width:820px){ .st-grid{ grid-template-columns:1fr 1fr !important;}}`}</style>
+      </div>
+    </section>
+  );
+}
+
+function ServicesPage() {
+  React.useEffect(() => {
+    const id = window.__pendingScroll;
+    if (id) {
+      window.__pendingScroll = null;
+      setTimeout(() => {
+        const el = document.getElementById(id);
+        if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 80);
+    }
+  }, []);
+  return (
+    <>
+      <PageHeader en="OUR SERVICES" ja="事業内容" lead="資産形成・税務・不動産・経営サポートまで、お金に関わる領域を中立的な立場から総合的にご提案します。" />
+
+      <section style={{ padding: "80px 0 40px" }}>
+        <div className="wrap">
+          <div className="section-eyebrow" style={{ marginBottom: 40 }}>
+            <span className="ja">こんなお悩みはありませんか</span>
+            <span className="en">YOUR CONCERNS</span>
+          </div>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 20 }} className="cn-grid">
+            {CONCERNS.map((c) => (
+              <div key={c.no} style={{ padding: 28, border: "1px solid var(--line)", borderRadius: 12 }}>
+                <div className="en" style={{ fontSize: 11, letterSpacing: "0.2em", color: "var(--pur-3)", marginBottom: 10 }}>CASE {c.no}</div>
+                <div style={{ fontSize: 17, fontWeight: 700, marginBottom: 12 }}>{c.t}</div>
+                <p style={{ fontSize: 12.5, color: "var(--ink-2)", lineHeight: 1.9 }}>{c.body}</p>
+              </div>
+            ))}
+          </div>
+          <style>{`@media(max-width:820px){ .cn-grid{ grid-template-columns:1fr 1fr !important;}}`}</style>
+        </div>
+      </section>
+
+      <section style={{ padding: "80px 0 120px" }}>
+        <div className="wrap">
+          {SERVICES.map((s, i) => (
+            <div key={s.no} id={`section-service-${s.no}`} style={{
+              display: "grid", gridTemplateColumns: i % 2 ? "1fr 1.3fr" : "1.3fr 1fr",
+              gap: 48, padding: "60px 0", borderTop: "1px solid var(--line)",
+              alignItems: "center",
+            }} className="sv-row">
+              {i % 2 === 0 ? (
+                <>
+                  <TextBlock s={s}/>
+                  <CirclePanel s={s}/>
+                </>
+              ) : (
+                <>
+                  <CirclePanel s={s}/>
+                  <TextBlock s={s}/>
+                </>
+              )}
+            </div>
+          ))}
+        </div>
+        <style>{`@media(max-width:820px){ .sv-row{ grid-template-columns:1fr !important;}}`}</style>
+      </section>
+
+      <ContactBand />
+    </>
+  );
+}
+
+function TextBlock({ s }) {
+  return (
+    <div>
+      <div className="en prismatic" style={{ fontSize: 60, fontWeight: 800, marginBottom: 12 }}>{s.no}</div>
+      <div className="en" style={{ fontSize: 11, letterSpacing: "0.28em", color: "var(--pur-3)", marginBottom: 10 }}>{s.en.toUpperCase()}</div>
+      <h3 style={{ fontSize: 32, fontWeight: 700, marginBottom: 16, letterSpacing: "0.04em" }}>{s.ja}</h3>
+      <p style={{ fontSize: 18, fontWeight: 600, lineHeight: 1.8, marginBottom: 16 }}>{s.lead}</p>
+      <p style={{ fontSize: 14, color: "var(--ink-2)", lineHeight: 2.05, marginBottom: 24 }}>{s.body}</p>
+      <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
+        {s.items.map((it) => (
+          <span key={it} style={{ fontSize: 12, padding: "6px 12px", background: "var(--bg-2)", borderRadius: 999, color: "var(--ink-2)" }}>{it}</span>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function CirclePanel({ s }) {
+  return (
+    <div style={{ display: "flex", justifyContent: "center" }}>
+      <div style={{
+        width: 360, height: 360, borderRadius: 999,
+        border: "1px solid var(--pur-2)",
+        display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
+        background: "radial-gradient(circle at 30% 30%, rgba(197,184,232,0.25), transparent 70%)",
+        textAlign: "center",
+      }}>
+        <div className="en prismatic" style={{ fontSize: 80, fontWeight: 800 }}>0{parseInt(s.no, 10)}</div>
+        <div style={{ fontSize: 20, fontWeight: 700, marginTop: 8, letterSpacing: "0.04em" }}>{s.ja}</div>
+        <div className="en" style={{ fontSize: 10, letterSpacing: "0.24em", color: "var(--ink-3)", marginTop: 6 }}>{s.en.toUpperCase()}</div>
+      </div>
+    </div>
+  );
+}
+
+function ConsultantPage() {
+  return (
+    <>
+      <PageHeader en="CONSULTANT" ja="コンサルタント紹介" lead="資産運用・税務・不動産・経営、それぞれの領域で実務経験を重ねた専門家が、一つのチームとしてお客様をご支援します。" />
+      <section style={{ padding: "80px 0 120px" }}>
+        <div className="wrap">
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 40 }} className="cs-grid">
+            {CONSULTANTS.map((c, i) => (
+              <div key={i} style={{ display: "grid", gridTemplateColumns: "160px 1fr", gap: 24 }}>
+                <div style={{ aspectRatio: "1", borderRadius: 999, background: `linear-gradient(135deg, oklch(0.68 0.08 ${60 + i * 70}) 0%, oklch(0.82 0.06 ${90 + i * 60}) 100%)` }}/>
+                <div style={{ display: "flex", flexDirection: "column", justifyContent: "center" }}>
+                  <div className="en" style={{ fontSize: 10, letterSpacing: "0.2em", color: "var(--pur-3)", marginBottom: 6 }}>{c.role.toUpperCase()}</div>
+                  <div style={{ fontSize: 22, fontWeight: 700, marginBottom: 4 }}>{c.name}</div>
+                  <div style={{ fontSize: 13, color: "var(--ink-2)", marginBottom: 10 }}>{c.role}</div>
+                  <div style={{ fontSize: 13, color: "var(--ink)" }}>{c.spec}</div>
+                  <div className="en" style={{ fontSize: 11, letterSpacing: "0.1em", color: "var(--ink-3)", marginTop: 6 }}>{c.years}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+          <style>{`@media(max-width:820px){ .cs-grid{ grid-template-columns:1fr !important;}}`}</style>
+        </div>
+      </section>
+      <FaqBlock />
+      <ContactBand />
+    </>
+  );
+}
+
+function FaqBlock() {
+  const [open, setOpen] = React.useState(0);
+  return (
+    <section style={{ padding: "80px 0 120px", background: "var(--bg-2)" }}>
+      <div className="wrap" style={{ maxWidth: 880 }}>
+        <div className="section-eyebrow" style={{ marginBottom: 48 }}>
+          <span className="ja">よくあるご質問</span><span className="en">FAQ</span>
+        </div>
+        {FAQS.map((f, i) => (
+          <div key={i} style={{ borderBottom: "1px solid var(--line)" }}>
+            <button onClick={() => setOpen(open === i ? -1 : i)} style={{
+              width: "100%", textAlign: "left", padding: "22px 0",
+              display: "flex", justifyContent: "space-between", alignItems: "center", gap: 16,
+            }}>
+              <span style={{ display: "flex", gap: 16, alignItems: "center" }}>
+                <span className="en prismatic" style={{ fontSize: 22, fontWeight: 800 }}>Q</span>
+                <span style={{ fontSize: 15, fontWeight: 600 }}>{f.q}</span>
+              </span>
+              <span style={{ color: "var(--pur-3)", transform: open === i ? "rotate(45deg)" : "none", transition: "transform .2s", fontSize: 20 }}>+</span>
+            </button>
+            {open === i && (
+              <div style={{ padding: "0 0 22px 40px", fontSize: 13.5, color: "var(--ink-2)", lineHeight: 2 }}>{f.a}</div>
+            )}
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function NewsPage() {
+  return (
+    <>
+      <PageHeader en="NEWS" ja="お知らせ" lead="PAS企画からのお知らせ、セミナー開催情報、メディア掲載などをお届けします。" />
+      <section style={{ padding: "60px 0 100px" }}>
+        <div className="wrap" style={{ maxWidth: 960 }}>
+          <ul style={{ listStyle: "none", borderTop: "1px solid var(--line)" }}>
+            {NEWS.map((n, i) => (
+              <li key={i}>
+                <a href={`#news/${n.id}`}
+                   onClick={(e) => { e.preventDefault(); window.__setRoute?.(`news/${n.id}`); }}
+                   className="news-page-item"
+                   style={{
+                     display: "grid", gridTemplateColumns: "150px 100px 1fr 30px", gap: 24,
+                     alignItems: "center", padding: "24px 0", borderBottom: "1px solid var(--line)",
+                     transition: "background .3s, padding .3s",
+                   }}
+                   onMouseEnter={(e) => { e.currentTarget.style.background = "var(--bg-2)"; e.currentTarget.style.paddingLeft = "18px"; e.currentTarget.style.paddingRight = "18px"; }}
+                   onMouseLeave={(e) => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.paddingLeft = "0"; e.currentTarget.style.paddingRight = "0"; }}>
+                  <span className="en" style={{ fontSize: 13, fontWeight: 600 }}>{n.date}</span>
+                  <span style={{ fontSize: 11, padding: "4px 14px", background: "var(--bg-2)", borderRadius: 999, justifySelf: "start", color: "var(--ink-2)" }}>{n.cat}</span>
+                  <span style={{ fontSize: 15 }}>{n.title}</span>
+                  <span style={{ color: "var(--pur-3)", textAlign: "right" }}>→</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+          <style>{`
+            @media(max-width:640px){
+              .news-page-item{grid-template-columns:110px 1fr !important;grid-template-rows:auto auto !important;align-items:start !important;column-gap:16px !important;}
+              .news-page-item span:nth-child(1){grid-column:1;grid-row:1;}
+              .news-page-item span:nth-child(2){grid-column:1;grid-row:2;margin-top:6px;}
+              .news-page-item span:nth-child(3){grid-column:2;grid-row:1/3;align-self:center;}
+              .news-page-item span:nth-child(4){display:none;}
+            }
+          `}</style>
+        </div>
+      </section>
+      <ContactBand />
+    </>
+  );
+}
+
+function NewsDetailPage({ id }) {
+  const idx = NEWS.findIndex((n) => n.id === id);
+  const n = NEWS[idx];
+  if (!n) {
+    return (
+      <>
+        <PageHeader en="NOT FOUND" ja="お知らせが見つかりません" lead="指定されたお知らせは存在しないか、既に削除された可能性があります。" />
+        <section style={{ padding: "40px 0 120px", textAlign: "center" }}>
+          <a href="#news" onClick={(e) => { e.preventDefault(); window.__setRoute?.("news"); }}
+             style={{ display: "inline-block", padding: "16px 36px", borderRadius: 999, border: "1px solid var(--line)", fontSize: 14 }}>
+            お知らせ一覧に戻る
+          </a>
+        </section>
+      </>
+    );
+  }
+  const prev = NEWS[idx + 1]; // older (NEWS is newest-first)
+  const next = NEWS[idx - 1]; // newer
+  return (
+    <>
+      {/* compact page header */}
+      <section style={{ paddingTop: 140, paddingBottom: 40, position: "relative" }}>
+        <div className="wrap" style={{ maxWidth: 880 }}>
+          <div className="en" style={{ fontSize: 11, letterSpacing: "0.3em", color: "var(--ink-3)", marginBottom: 18 }}>
+            <a href="#top" onClick={(e) => { e.preventDefault(); window.__setRoute?.("top"); }}>HOME</a>
+            <span style={{ margin: "0 10px", opacity: 0.5 }}>/</span>
+            <a href="#news" onClick={(e) => { e.preventDefault(); window.__setRoute?.("news"); }}>NEWS</a>
+            <span style={{ margin: "0 10px", opacity: 0.5 }}>/</span>
+            <span style={{ color: "var(--pur-3)" }}>{n.date}</span>
+          </div>
+          <div style={{ display: "flex", gap: 14, alignItems: "center", marginBottom: 20 }}>
+            <span className="en" style={{ fontSize: 13, fontWeight: 700, letterSpacing: "0.05em" }}>{n.date}</span>
+            <span style={{ fontSize: 11, padding: "5px 14px", background: "var(--bg-2)", borderRadius: 999, color: "var(--ink-2)" }}>{n.cat}</span>
+          </div>
+          <h1 style={{ fontSize: "clamp(26px, 3.4vw, 38px)", fontWeight: 700, lineHeight: 1.55, letterSpacing: "0.01em" }}>{n.title}</h1>
+        </div>
+      </section>
+
+      {/* eyecatch */}
+      <section style={{ padding: "0 0 60px" }}>
+        <div className="wrap" style={{ maxWidth: 880 }}>
+          <div style={{ aspectRatio: "16/7", background: `linear-gradient(135deg, ${n.tone[0]} 0%, ${n.tone[1]} 100%)`, borderRadius: 14, position: "relative", overflow: "hidden" }}>
+            <svg width="100%" height="100%" viewBox="0 0 880 400" preserveAspectRatio="xMidYMid slice" style={{ position: "absolute", inset: 0, opacity: 0.5 }}>
+              <g fill="none" stroke="#fff" strokeWidth="1.2" opacity="0.7">
+                {[0, 1, 2, 3, 4, 5].map((i) => (
+                  <path key={i} d={`M-20 ${100 + i * 40} Q220 ${70 + i * 40} 440 ${110 + i * 40} T900 ${100 + i * 40}`}/>
+                ))}
+              </g>
+              <circle cx="700" cy="140" r="80" fill="#fff" opacity="0.25"/>
+              <circle cx="700" cy="140" r="50" fill="#fff" opacity="0.35"/>
+            </svg>
+            <div style={{ position: "absolute", top: 24, left: 28, fontSize: 10, letterSpacing: "0.3em", color: "#fff", background: "rgba(0,0,0,0.25)", padding: "6px 14px", borderRadius: 999, backdropFilter: "blur(6px)" }}>
+              NEWS / {n.id}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* body */}
+      <section style={{ padding: "0 0 80px" }}>
+        <div className="wrap" style={{ maxWidth: 760 }}>
+          <p style={{ fontSize: 16, lineHeight: 2.1, color: "var(--ink)", marginBottom: 48, fontWeight: 500 }}>{n.lead}</p>
+
+          {n.sections.map((s, i) => (
+            <div key={i} style={{ marginBottom: 44 }}>
+              <h2 style={{ fontSize: 22, fontWeight: 700, marginBottom: 20, paddingBottom: 14, borderBottom: "2px solid var(--ink)", position: "relative" }}>
+                <span style={{ display: "inline-block", width: 6, height: 6, background: "var(--pur-3)", borderRadius: 999, marginRight: 12, verticalAlign: "middle" }}/>
+                {s.h}
+              </h2>
+              {s.type === "info" && (
+                <dl style={{ display: "grid", gridTemplateColumns: "140px 1fr", gap: "14px 24px", fontSize: 14, lineHeight: 1.8 }}>
+                  {s.items.map(([k, v], j) => (
+                    <React.Fragment key={j}>
+                      <dt style={{ color: "var(--ink-3)", fontWeight: 600, paddingTop: 2 }}>{k}</dt>
+                      <dd style={{ color: "var(--ink)", margin: 0 }}>{v}</dd>
+                    </React.Fragment>
+                  ))}
+                </dl>
+              )}
+              {s.type === "list" && (
+                <ul style={{ paddingLeft: 4, listStyle: "none" }}>
+                  {s.items.map((it, j) => (
+                    <li key={j} style={{ fontSize: 14, lineHeight: 1.9, color: "var(--ink-2)", paddingLeft: 22, position: "relative", marginBottom: 10 }}>
+                      <span style={{ position: "absolute", left: 0, top: 10, width: 10, height: 2, background: "var(--pur-3)" }}/>
+                      {it}
+                    </li>
+                  ))}
+                </ul>
+              )}
+              {s.type === "para" && (
+                <p style={{ fontSize: 14, lineHeight: 2.05, color: "var(--ink-2)" }}>{s.body}</p>
+              )}
+            </div>
+          ))}
+
+          {/* share + cta */}
+          <div style={{ padding: "32px 0", borderTop: "1px solid var(--line)", borderBottom: "1px solid var(--line)", marginTop: 60, display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 20 }}>
+            <div>
+              <div className="en" style={{ fontSize: 11, letterSpacing: "0.25em", color: "var(--ink-3)", marginBottom: 4 }}>SHARE</div>
+              <div style={{ display: "flex", gap: 10 }}>
+                {["X", "Facebook", "LINE", "URL"].map((s) => (
+                  <button key={s} onClick={(e) => e.preventDefault()}
+                    style={{ padding: "8px 14px", fontSize: 11, borderRadius: 999, border: "1px solid var(--line)", background: "#fff", cursor: "pointer", letterSpacing: "0.1em" }}>
+                    {s}
+                  </button>
+                ))}
+              </div>
+            </div>
+            <a href="#contact" onClick={(e) => { e.preventDefault(); window.__setRoute?.("contact"); }}
+               style={{ display: "inline-flex", alignItems: "center", gap: 10, padding: "14px 28px", borderRadius: 999, background: "var(--ink)", color: "#fff", fontSize: 13, fontWeight: 600 }}>
+              このお知らせについて問い合わせる <span>→</span>
+            </a>
+          </div>
+
+          {/* prev/next */}
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20, marginTop: 40 }} className="news-nav">
+            {[
+              { label: "前の記事", item: prev, align: "left" },
+              { label: "次の記事", item: next, align: "right" },
+            ].map((nav, i) => (
+              <div key={i} style={{ textAlign: nav.align }}>
+                {nav.item ? (
+                  <a href={`#news/${nav.item.id}`}
+                     onClick={(e) => { e.preventDefault(); window.__setRoute?.(`news/${nav.item.id}`); }}
+                     style={{ display: "block", padding: 20, border: "1px solid var(--line)", borderRadius: 12, background: "#fff", transition: "transform .3s, background .3s" }}
+                     onMouseEnter={(e) => { e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.background = "var(--bg-2)"; }}
+                     onMouseLeave={(e) => { e.currentTarget.style.transform = "none"; e.currentTarget.style.background = "#fff"; }}>
+                    <div className="en" style={{ fontSize: 10, letterSpacing: "0.25em", color: "var(--pur-3)", marginBottom: 6 }}>
+                      {nav.align === "left" ? "← " : ""}{nav.label.toUpperCase()}{nav.align === "right" ? " →" : ""}
+                    </div>
+                    <div style={{ fontSize: 12, color: "var(--ink-3)", marginBottom: 4 }}>{nav.item.date} ・ {nav.item.cat}</div>
+                    <div style={{ fontSize: 13, fontWeight: 600, lineHeight: 1.5, color: "var(--ink)" }}>{nav.item.title}</div>
+                  </a>
+                ) : (
+                  <div style={{ padding: 20, border: "1px dashed var(--line)", borderRadius: 12, color: "var(--ink-3)", fontSize: 12 }}>
+                    {nav.align === "left" ? "← " : ""}{nav.label}はありません{nav.align === "right" ? " →" : ""}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+
+          <div style={{ textAlign: "center", marginTop: 48 }}>
+            <a href="#news" onClick={(e) => { e.preventDefault(); window.__setRoute?.("news"); }}
+               style={{ display: "inline-flex", alignItems: "center", gap: 10, padding: "14px 36px", borderRadius: 999, border: "1px solid var(--line)", background: "#fff", fontSize: 13, fontWeight: 600 }}>
+              <span>一覧に戻る</span>
+            </a>
+          </div>
+          <style>{`@media(max-width:720px){.news-nav{grid-template-columns:1fr !important;}}`}</style>
+        </div>
+      </section>
+
+      <ContactBand />
+    </>
+  );
+}
+
+function ContactPage() {
+  const [form, setForm] = React.useState({ type: "personal", name: "", email: "", tel: "", message: "" });
+  const [sent, setSent] = React.useState(false);
+  const up = (k, v) => setForm((f) => ({ ...f, [k]: v }));
+  return (
+    <>
+      <PageHeader en="CONTACT" ja="お問い合わせ" lead="初回のご相談は無料です。ご入力いただいた内容をもとに、担当者より2営業日以内にご連絡いたします。" />
+      <section style={{ padding: "60px 0 120px" }}>
+        <div className="wrap" style={{ display: "grid", gridTemplateColumns: "1fr 2fr", gap: 64 }} className="ct-grid">
+          <aside>
+            <div style={{ padding: 28, borderRadius: 12, background: "var(--bg-2)" }}>
+              <div className="en" style={{ fontSize: 11, letterSpacing: "0.2em", color: "var(--pur-3)", marginBottom: 8 }}>BY PHONE</div>
+              <div style={{ fontSize: 28, fontWeight: 800, letterSpacing: "0.02em" }}>029-877-6322</div>
+              <div style={{ fontSize: 11, color: "var(--ink-3)", marginTop: 8 }}>9:30〜18:30（日祝祭日を除く）</div>
+              <div style={{ fontSize: 11, color: "var(--ink-3)", marginTop: 4 }}>FAX: 029-877-6323</div>
+            </div>
+            <div style={{ padding: 28, borderRadius: 12, background: "var(--bg-2)", marginTop: 16 }}>
+              <div className="en" style={{ fontSize: 11, letterSpacing: "0.2em", color: "var(--pur-3)", marginBottom: 8 }}>BY LINE</div>
+              <div style={{ fontSize: 16, fontWeight: 700 }}>LINE相談</div>
+              <div style={{ fontSize: 11, color: "var(--ink-3)", marginTop: 6 }}>応答時間 10:00〜18:00（日祝祭日を除く）</div>
+            </div>
+            <div style={{ padding: 28, borderRadius: 12, background: "var(--bg-2)", marginTop: 16 }}>
+              <div className="en" style={{ fontSize: 11, letterSpacing: "0.2em", color: "var(--pur-3)", marginBottom: 8 }}>ADDRESS</div>
+              <div style={{ fontSize: 13, lineHeight: 1.8 }}>〒300-3261<br/>茨城県つくば市花畑3丁目13番地10<br/>ヤマグチビル3階</div>
+            </div>
+          </aside>
+          <form onSubmit={(e) => { e.preventDefault(); setSent(true); }} style={{ display: "flex", flexDirection: "column", gap: 24 }}>
+            {sent ? (
+              <div style={{ padding: 48, background: "var(--bg-2)", borderRadius: 12, textAlign: "center" }}>
+                <div className="en prismatic" style={{ fontSize: 48, fontWeight: 800 }}>THANK YOU</div>
+                <div style={{ fontSize: 18, fontWeight: 700, marginTop: 8 }}>お問い合わせありがとうございます</div>
+                <p style={{ fontSize: 13, color: "var(--ink-2)", marginTop: 16, lineHeight: 1.9 }}>
+                  担当者より2営業日以内にご連絡いたします。<br/>お急ぎの場合はお電話にてお問い合わせください。
+                </p>
+              </div>
+            ) : (
+              <>
+                <Field label="お問い合わせ種別">
+                  <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+                    {[["personal", "個人のご相談"], ["corporate", "法人のご相談"], ["seminar", "セミナーについて"], ["other", "その他"]].map(([v, l]) => (
+                      <button key={v} type="button" onClick={() => up("type", v)} style={{
+                        padding: "10px 18px", borderRadius: 999, fontSize: 13,
+                        border: "1px solid " + (form.type === v ? "var(--ink)" : "var(--line)"),
+                        background: form.type === v ? "var(--ink)" : "#fff",
+                        color: form.type === v ? "#fff" : "var(--ink-2)",
+                      }}>{l}</button>
+                    ))}
+                  </div>
+                </Field>
+                <Field label="お名前"><Input v={form.name} oc={(v) => up("name", v)} ph="山田 太郎"/></Field>
+                <Field label="メールアドレス"><Input v={form.email} oc={(v) => up("email", v)} ph="name@example.com" t="email"/></Field>
+                <Field label="電話番号（任意）"><Input v={form.tel} oc={(v) => up("tel", v)} ph="029-000-0000"/></Field>
+                <Field label="お問い合わせ内容">
+                  <textarea value={form.message} onChange={(e) => up("message", e.target.value)} rows={6} style={{
+                    width: "100%", padding: 16, border: "1px solid var(--line)", borderRadius: 8,
+                    fontFamily: "var(--font-jp)", fontSize: 14, resize: "vertical", lineHeight: 1.8,
+                  }} placeholder="ご相談内容をご記入ください。"/>
+                </Field>
+                <button type="submit" style={{
+                  alignSelf: "flex-start", padding: "18px 40px", borderRadius: 999,
+                  background: "var(--ink)", color: "#fff", fontSize: 14, fontWeight: 600, letterSpacing: "0.04em",
+                  display: "inline-flex", alignItems: "center", gap: 12,
+                }}>
+                  送信する <span style={{ color: "var(--c6)" }}>→</span>
+                </button>
+              </>
+            )}
+          </form>
+        </div>
+        <style>{`@media(max-width:820px){ .ct-grid{ grid-template-columns:1fr !important;}}`}</style>
+      </section>
+    </>
+  );
+}
+
+function Field({ label, children }) {
+  return (
+    <div>
+      <div style={{ fontSize: 13, fontWeight: 700, marginBottom: 10 }}>{label}</div>
+      {children}
+    </div>
+  );
+}
+
+function Input({ v, oc, ph, t = "text" }) {
+  return (
+    <input type={t} value={v} onChange={(e) => oc(e.target.value)} placeholder={ph} style={{
+      width: "100%", padding: "14px 16px", border: "1px solid var(--line)", borderRadius: 8,
+      fontFamily: "var(--font-jp)", fontSize: 14,
+    }}/>
+  );
+}
+
+// ── Best Partner Page ──────────────────────────────────
+function BestPartnerPage() {
+  return (
+    <>
+      <PageHeader en="BEST PARTNER" ja="選ばれる理由" lead="「数ある金融アドバイザーの中で、なぜPAS企画なのか？」——4つの理由で、私たちの価値をお伝えします。" />
+      <section style={{ padding: "60px 0 40px" }}>
+        <div className="wrap" style={{ textAlign: "center", maxWidth: 820 }}>
+          <Reveal>
+            <div style={{ position: "relative", display: "inline-block" }}>
+              <span className="en" style={{ position: "absolute", top: -18, left: "50%", transform: "translateX(-50%)", fontSize: 11, letterSpacing: "0.4em", color: "var(--pur-3)" }}>ベストパートナー</span>
+              <PrismaticTitle tag="h2" text="BEST PARTNER" style={{ fontSize: "clamp(40px, 6vw, 80px)", fontWeight: 800, letterSpacing: "0.01em", lineHeight: 1 }} />
+            </div>
+          </Reveal>
+          <Reveal delay={1}>
+            <p style={{ fontSize: 14, color: "var(--ink-2)", lineHeight: 2.1, marginTop: 48 }}>
+              お客様の人生と向き合うアドバイザーとして、私たちが大切にしている4つの約束。<br/>
+              それは、日々の業務のすべての土台になっています。
+            </p>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Our Strengths — 4 cards */}
+      <section style={{ padding: "40px 0 80px" }}>
+        <div className="wrap">
+          <div className="section-eyebrow" style={{ marginBottom: 56 }}>
+            <span className="ja">私たちの強み</span><span className="en">OUR STRENGTHS</span>
+          </div>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 20 }} className="st-cards">
+            {STRENGTHS.map((s, i) => {
+              const [ref, shown] = useReveal();
+              return (
+                <div key={i} ref={ref} style={{
+                  padding: "40px 26px 32px", borderRadius: 14, background: "#fff",
+                  border: "1px solid var(--line)", textAlign: "center", minHeight: 240,
+                  display: "flex", flexDirection: "column", alignItems: "center",
+                  boxShadow: "0 10px 28px -22px rgba(60,40,120,0.25)",
+                  opacity: shown ? 1 : 0, transform: shown ? "translateY(0)" : "translateY(20px)",
+                  transition: `opacity .7s ${i * 120}ms, transform .7s ${i * 120}ms`,
+                }}>
+                  <div className="en prismatic prismatic-animated" style={{ fontSize: 36, fontWeight: 800, marginBottom: 6, letterSpacing: "0.02em" }}>0{i + 1}</div>
+                  <div style={{ fontSize: 18, fontWeight: 700, marginBottom: 16 }}>{s.n}<span style={{ color: "var(--pur-3)" }}>・</span>{s.ja}</div>
+                  <p style={{ fontSize: 12.5, color: "var(--ink-2)", lineHeight: 1.9 }}>{s.body}</p>
+                </div>
+              );
+            })}
+          </div>
+          <style>{`@media(max-width:900px){.st-cards{grid-template-columns:1fr 1fr !important;}}@media(max-width:560px){.st-cards{grid-template-columns:1fr !important;}}`}</style>
+        </div>
+      </section>
+
+      <section style={{ padding: "40px 0 60px" }}>
+        <div className="wrap">
+          {REASONS.map((r, i) => (
+            <div key={r.no} style={{
+              display: "grid", gridTemplateColumns: i % 2 ? "1.3fr 1fr" : "1fr 1.3fr",
+              gap: 64, padding: "70px 0", borderTop: "1px solid var(--line)", alignItems: "center",
+            }} className="bp-row">
+              {i % 2 === 0 ? <><ReasonVisual r={r}/><ReasonText r={r}/></> : <><ReasonText r={r}/><ReasonVisual r={r}/></>}
+            </div>
+          ))}
+        </div>
+        <style>{`@media(max-width:820px){ .bp-row{ grid-template-columns:1fr !important;}}`}</style>
+      </section>
+      <ContactBand />
+    </>
+  );
+}
+
+function ReasonVisual({ r }) {
+  return (
+    <div style={{ display: "flex", justifyContent: "center" }}>
+      <div style={{
+        width: 400, height: 400, borderRadius: 999, border: "1px solid var(--pur-2)",
+        display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
+        background: "radial-gradient(circle at 30% 30%, rgba(197,184,232,0.3), transparent 70%)",
+      }}>
+        <div className="en prismatic" style={{ fontSize: 108, fontWeight: 800, lineHeight: 1 }}>{r.no}</div>
+        <div className="en" style={{ fontSize: 11, letterSpacing: "0.28em", color: "var(--ink-3)", marginTop: 12 }}>REASON</div>
+      </div>
+    </div>
+  );
+}
+
+function ReasonText({ r }) {
+  return (
+    <div>
+      <div className="en" style={{ fontSize: 11, letterSpacing: "0.28em", color: "var(--pur-3)", marginBottom: 12 }}>{r.en}</div>
+      <h3 style={{ fontSize: 28, fontWeight: 700, lineHeight: 1.5, marginBottom: 20 }}>{r.ja}</h3>
+      <p style={{ fontSize: 14, color: "var(--ink-2)", lineHeight: 2.05, marginBottom: 24 }}>{r.body}</p>
+      <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 10 }}>
+        {r.points.map((p) => (
+          <li key={p} style={{ fontSize: 13.5, display: "flex", gap: 12, alignItems: "flex-start" }}>
+            <span style={{ color: "var(--pur-3)", marginTop: 2 }}>▸</span>{p}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+// ── Contact Page (Services/Products inquiry) ───────────
+function ContactPageRecruit() { return <RecruitInquiryPage/>; }
+
+// ── Recruit / Careers Inquiry Page ─────────────────────
+function RecruitInquiryPage() {
+  const [form, setForm] = React.useState({
+    dept: "", name: "", kana: "", email: "", tel: "", address: "",
+    inquiry: "", agree: false,
+  });
+  const [sent, setSent] = React.useState(false);
+  const up = (k, v) => setForm((f) => ({ ...f, [k]: v }));
+  return (
+    <>
+      <PageHeader en="CONTACT - RECRUIT" ja="採用・その他のお問い合わせ"
+        lead="採用に関するご相談、取材・セミナーのご依頼、その他のご質問はこちらからお送りください。" />
+      <FormLayout phoneNote="※採用・その他のご質問もお気軽にご連絡ください。"
+        form={form} setForm={setForm} up={up} sent={sent} setSent={setSent}
+        deptOptions={[
+          ["recruit-new", "新卒採用について"],
+          ["recruit-mid", "中途採用について"],
+          ["recruit-part", "パート・アルバイトについて"],
+          ["media", "取材・メディアのご依頼"],
+          ["seminar", "セミナー・講演のご依頼"],
+          ["other", "その他のお問い合わせ"],
+        ]}
+        inquiryPH="ご希望職種、ご経験内容、取材のご依頼内容などをご記入ください。"
+        heading="採用・その他のお問い合わせフォーム" kind="recruit"/>
+      <RelatedLinks current="recruit"/>
+    </>
+  );
+}
+
+// ── General Contact page (rebuilt to match HIROKEI pattern) ────
+function ContactPageV2() {
+  const [form, setForm] = React.useState({
+    dept: "", name: "", kana: "", email: "", tel: "", address: "",
+    inquiry: "", meeting: "", agree: false,
+  });
+  const [sent, setSent] = React.useState(false);
+  const up = (k, v) => setForm((f) => ({ ...f, [k]: v }));
+  return (
+    <>
+      <PageHeader en="CONTACT" ja="サービス・製品のお問い合わせ"
+        lead="資産運用・税務・不動産・経営サポートに関するご相談、パッケージサービスのお見積り等はこちらから。" />
+      <FormLayout phoneNote="※初回のご相談は無料です。2営業日以内にご連絡いたします。"
+        form={form} setForm={setForm} up={up} sent={sent} setSent={setSent}
+        deptOptions={[
+          ["asset", "資産形成・資産運用について"],
+          ["tax",   "税務対策支援について"],
+          ["realestate", "不動産総合活用について"],
+          ["business", "経営サポートについて"],
+          ["seminar", "セミナー参加について"],
+          ["other", "その他"],
+        ]}
+        inquiryPH="ご相談内容・ご質問を具体的にご記入ください。"
+        heading="サービス・製品のお問い合わせフォーム" kind="service"/>
+      <RelatedLinks current="service"/>
+    </>
+  );
+}
+
+function FormLayout({ form, up, sent, setSent, deptOptions, inquiryPH, heading, phoneNote, kind }) {
+  const [errors, setErrors] = React.useState({});
+  const validate = () => {
+    const e = {};
+    if (!form.dept) e.dept = "選択してください";
+    if (!form.name) e.name = "ご入力ください";
+    if (!form.email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(form.email)) e.email = "正しいメールアドレスをご入力ください";
+    if (!form.inquiry) e.inquiry = "ご入力ください";
+    if (!form.agree) e.agree = "ご同意ください";
+    setErrors(e);
+    return Object.keys(e).length === 0;
+  };
+  return (
+    <section style={{ padding: "40px 0 100px" }}>
+      <div className="wrap" style={{ maxWidth: 1100 }}>
+        {/* phone CTA pre-form */}
+        <Reveal>
+          <div style={{
+            display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 0,
+            border: "1px solid var(--line)", borderRadius: 16, overflow: "hidden",
+            background: "#fff", marginBottom: 56,
+          }} className="ct-phone-grid">
+            <div style={{ padding: "28px 32px", borderRight: "1px solid var(--line)" }}>
+              <div className="en" style={{ fontSize: 10, letterSpacing: "0.24em", color: "var(--pur-3)", marginBottom: 8 }}>BY PHONE</div>
+              <div style={{ fontSize: 26, fontWeight: 800, letterSpacing: "0.01em", fontFamily: "var(--font-en)" }}>029-877-6322</div>
+              <div style={{ fontSize: 11, color: "var(--ink-3)", marginTop: 8 }}>9:30〜18:30（日祝祭日を除く）</div>
+            </div>
+            <div style={{ padding: "28px 32px", borderRight: "1px solid var(--line)" }}>
+              <div className="en" style={{ fontSize: 10, letterSpacing: "0.24em", color: "var(--pur-3)", marginBottom: 8 }}>BY FAX</div>
+              <div style={{ fontSize: 22, fontWeight: 700, fontFamily: "var(--font-en)" }}>029-877-6323</div>
+              <div style={{ fontSize: 11, color: "var(--ink-3)", marginTop: 8 }}>24時間受付</div>
+            </div>
+            <div style={{ padding: "28px 32px" }}>
+              <div className="en" style={{ fontSize: 10, letterSpacing: "0.24em", color: "var(--pur-3)", marginBottom: 8 }}>BY LINE / ONLINE</div>
+              <div style={{ fontSize: 14, fontWeight: 700, marginTop: 2 }}>Zoom / LINE 相談</div>
+              <div style={{ fontSize: 11, color: "var(--ink-3)", marginTop: 8 }}>全国対応・要予約</div>
+            </div>
+          </div>
+          <style>{`@media(max-width:820px){.ct-phone-grid{grid-template-columns:1fr !important;}.ct-phone-grid > div{border-right:0 !important;border-bottom:1px solid var(--line);}}`}</style>
+        </Reveal>
+
+        {sent ? (
+          <Reveal>
+            <div style={{ padding: "80px 48px", background: "var(--bg-2)", borderRadius: 16, textAlign: "center" }}>
+              <div className="en prismatic" style={{ fontSize: 56, fontWeight: 800, letterSpacing: "0.02em" }}>THANK YOU</div>
+              <div style={{ fontSize: 22, fontWeight: 700, marginTop: 12 }}>お問い合わせありがとうございます</div>
+              <p style={{ fontSize: 14, color: "var(--ink-2)", marginTop: 20, lineHeight: 2 }}>
+                自動返信メールを送付いたしました。担当者より2営業日以内にご連絡いたします。<br/>
+                万一、自動返信メールが届かない場合はお電話にてご確認ください。
+              </p>
+              <button onClick={() => { window.scrollTo({ top: 0, behavior: "smooth" }); setSent(false); }}
+                      className="pill-btn" style={{ marginTop: 32 }}>トップへ戻る</button>
+            </div>
+          </Reveal>
+        ) : (
+          <>
+            <Reveal>
+              <div style={{ display: "flex", alignItems: "baseline", gap: 16, marginBottom: 8 }}>
+                <h2 style={{ fontSize: 26, fontWeight: 700, letterSpacing: "0.04em" }}>{heading}</h2>
+              </div>
+              <p style={{ fontSize: 12.5, color: "var(--ink-3)", marginBottom: 36, lineHeight: 1.9 }}>
+                {phoneNote}　<span style={{ color: "var(--pur-3)" }}>*</span> は入力必須項目です。
+              </p>
+            </Reveal>
+
+            <form onSubmit={(e) => { e.preventDefault(); if (validate()) { setSent(true); window.scrollTo({ top: 0, behavior: "smooth" }); } }}>
+              <FormRow label="お問い合わせ種別" req>
+                <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+                  {deptOptions.map(([v, l]) => (
+                    <button key={v} type="button" onClick={() => up("dept", v)} style={{
+                      padding: "10px 18px", borderRadius: 999, fontSize: 12.5,
+                      border: "1px solid " + (form.dept === v ? "var(--ink)" : "var(--line)"),
+                      background: form.dept === v ? "var(--ink)" : "#fff",
+                      color: form.dept === v ? "#fff" : "var(--ink-2)",
+                    }}>{l}</button>
+                  ))}
+                </div>
+                {errors.dept && <ErrMsg>{errors.dept}</ErrMsg>}
+              </FormRow>
+
+              <FormRow label="お名前" req>
+                <TextInput v={form.name} oc={(v) => up("name", v)} ph="山田 太郎"/>
+                {errors.name && <ErrMsg>{errors.name}</ErrMsg>}
+              </FormRow>
+              <FormRow label="フリガナ">
+                <TextInput v={form.kana} oc={(v) => up("kana", v)} ph="ヤマダ タロウ"/>
+              </FormRow>
+              <FormRow label="メールアドレス" req>
+                <TextInput v={form.email} oc={(v) => up("email", v)} ph="name@example.com" t="email"/>
+                {errors.email && <ErrMsg>{errors.email}</ErrMsg>}
+              </FormRow>
+              <FormRow label="電話番号">
+                <TextInput v={form.tel} oc={(v) => up("tel", v)} ph="029-000-0000"/>
+              </FormRow>
+              <FormRow label="ご住所（都道府県）">
+                <TextInput v={form.address} oc={(v) => up("address", v)} ph="茨城県つくば市"/>
+              </FormRow>
+              <FormRow label="お問い合わせ内容" req>
+                <textarea value={form.inquiry} onChange={(e) => up("inquiry", e.target.value)} rows={8}
+                  placeholder={inquiryPH} style={inputStyle({ resize: "vertical", minHeight: 180 })}/>
+                {errors.inquiry && <ErrMsg>{errors.inquiry}</ErrMsg>}
+              </FormRow>
+
+              {kind === "service" && (
+                <FormRow label="Web会議もしくは対面（ご来社）での相談を希望する">
+                  <select
+                    value={form.meeting || ""}
+                    onChange={(e) => up("meeting", e.target.value)}
+                    style={inputStyle({ appearance: "auto", cursor: "pointer" })}
+                  >
+                    <option value="">—以下から選択してください—</option>
+                    <option value="none">希望しない</option>
+                    <option value="web">Web会議</option>
+                    <option value="inperson">対面（ご来社）</option>
+                    <option value="either">対面・Web会議どちらでも可</option>
+                  </select>
+                  <p style={{ fontSize: 12, color: "var(--ink-3)", marginTop: 10, lineHeight: 1.8 }}>
+                    ※ご希望いただいた場合、改めて担当者より日程候補をご連絡いたします。Web会議はZoomを使用いたします。
+                  </p>
+                </FormRow>
+              )}
+
+              <div style={{
+                background: "var(--bg-2)", borderRadius: 12, padding: 24, fontSize: 12,
+                color: "var(--ink-2)", lineHeight: 1.95, marginTop: 32,
+              }}>
+                <div style={{ fontSize: 13, fontWeight: 700, marginBottom: 10, color: "var(--ink)" }}>個人情報の取り扱いについて</div>
+                <p>
+                  ご提供いただく個人情報は、お問い合わせへの回答および必要なご連絡のために利用し、法令に基づく場合を除き、ご本人の同意なく第三者へ提供することはいたしません。詳細は<a href="#" onClick={(e) => e.preventDefault()} style={{ textDecoration: "underline", color: "var(--pur-3)" }}>プライバシーポリシー</a>をご確認ください。
+                </p>
+              </div>
+
+              <label style={{ display: "flex", gap: 10, alignItems: "flex-start", marginTop: 24, cursor: "pointer" }}>
+                <input type="checkbox" checked={form.agree} onChange={(e) => up("agree", e.target.checked)} style={{ marginTop: 4 }}/>
+                <span style={{ fontSize: 13, color: "var(--ink)" }}>
+                  個人情報の取り扱いに同意します。<span style={{ color: "var(--pur-3)" }}>*</span>
+                </span>
+              </label>
+              {errors.agree && <ErrMsg>{errors.agree}</ErrMsg>}
+
+              <div style={{ marginTop: 40, display: "flex", gap: 16, flexWrap: "wrap" }}>
+                <button type="submit" style={{
+                  padding: "18px 44px", borderRadius: 999, background: "var(--ink)", color: "#fff",
+                  fontSize: 14, fontWeight: 600, letterSpacing: "0.06em",
+                  display: "inline-flex", alignItems: "center", gap: 12,
+                }}>
+                  <span>上記内容で送信する</span>
+                  <span className="en" style={{ color: "var(--c6)", fontSize: 13 }}>→</span>
+                </button>
+                <button type="reset" onClick={() => { up("dept", ""); up("name", ""); up("kana", ""); up("email", ""); up("tel", ""); up("address", ""); up("inquiry", ""); up("meeting", ""); up("agree", false); setErrors({}); }}
+                        className="pill-btn">入力内容をリセット</button>
+              </div>
+            </form>
+          </>
+        )}
+      </div>
+    </section>
+  );
+}
+
+function FormRow({ label, req, children }) {
+  return (
+    <div style={{ display: "grid", gridTemplateColumns: "200px 1fr", gap: 32, padding: "20px 0", borderBottom: "1px solid var(--line)", alignItems: "flex-start" }} className="fr">
+      <div style={{ fontSize: 13, fontWeight: 700, paddingTop: 14, display: "flex", alignItems: "center", gap: 8 }}>
+        {label}{req && <span style={{ fontSize: 10, padding: "2px 8px", background: "var(--pur-3)", color: "#fff", borderRadius: 3, letterSpacing: "0.08em" }}>必須</span>}
+      </div>
+      <div style={{ paddingTop: 6 }}>{children}</div>
+      <style>{`@media(max-width:820px){.fr{grid-template-columns:1fr !important;gap:12px !important;}}`}</style>
+    </div>
+  );
+}
+
+function inputStyle(extra = {}) {
+  return {
+    width: "100%", maxWidth: 540, padding: "14px 16px",
+    border: "1px solid var(--line)", borderRadius: 8,
+    fontFamily: "var(--font-jp)", fontSize: 14, lineHeight: 1.7,
+    background: "#fff",
+    ...extra,
+  };
+}
+
+function TextInput({ v, oc, ph, t = "text" }) {
+  return <input type={t} value={v} onChange={(e) => oc(e.target.value)} placeholder={ph} style={inputStyle()}/>;
+}
+
+function ErrMsg({ children }) {
+  return <div style={{ fontSize: 12, color: "#c94a5e", marginTop: 8, display: "flex", alignItems: "center", gap: 6 }}>⚠ {children}</div>;
+}
+
+function RelatedLinks({ current }) {
+  const items = [
+    { id: "contact",          ja: "サービス・製品のお問い合わせ", en: "SERVICES INQUIRY" },
+    { id: "contact-recruit",  ja: "採用・その他のお問い合わせ",  en: "RECRUIT & OTHER" },
+  ].filter((i) => (current === "service" ? i.id !== "contact" : i.id !== "contact-recruit"));
+  return (
+    <section style={{ padding: "0 0 100px" }}>
+      <div className="wrap" style={{ maxWidth: 960 }}>
+        <div className="en" style={{ fontSize: 11, letterSpacing: "0.28em", color: "var(--ink-3)", marginBottom: 20 }}>OTHER INQUIRIES</div>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr", gap: 14 }}>
+          {items.map((it) => (
+            <a key={it.id} href={`#${it.id}`} onClick={(e) => { e.preventDefault(); window.__setRoute?.(it.id); }}
+               style={{
+                 display: "flex", justifyContent: "space-between", alignItems: "center",
+                 padding: "28px 32px", borderRadius: 999, border: "1px solid var(--line)", background: "#fff",
+                 transition: "transform .3s, background .3s",
+               }}
+               onMouseEnter={(e) => { e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.background = "var(--bg-2)"; }}
+               onMouseLeave={(e) => { e.currentTarget.style.transform = "none"; e.currentTarget.style.background = "#fff"; }}>
+              <div>
+                <div className="en" style={{ fontSize: 10, letterSpacing: "0.28em", color: "var(--pur-3)", marginBottom: 4 }}>{it.en}</div>
+                <div style={{ fontSize: 15, fontWeight: 700 }}>{it.ja}</div>
+              </div>
+              <span style={{ color: "var(--pur-3)", display: "inline-flex", width: 36, height: 36, borderRadius: 999, border: "1px solid var(--pur-2)", alignItems: "center", justifyContent: "center" }}>→</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function StaffPage() {
+  const [active, setActive] = React.useState(null);
+  return (
+    <>
+      <PageHeader en="STAFF" ja="スタッフ紹介" lead="お客様のベストパートナーであり続けるために——多様な専門性を持つメンバーが、一人ひとりの課題に真摯に向き合います。" />
+
+      <section style={{ padding: "40px 0 40px" }}>
+        <div className="wrap" style={{ maxWidth: 980 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 28, marginBottom: 20 }} className="staff-stats">
+            {[
+              { n: STAFF.length, u: "名", l: "在籍スタッフ" },
+              { n: 6, u: "分野", l: "専門領域" },
+              { n: 12, u: "種類", l: "保有資格（延べ）" },
+              { n: 100, u: "%", l: "初回相談担当" },
+            ].map((s, i) => (
+              <div key={i} style={{ textAlign: "center", padding: "28px 10px", border: "1px solid var(--line)", borderRadius: 14, background: "#fff" }}>
+                <div style={{ fontSize: 38, fontWeight: 800, letterSpacing: "-0.02em", color: "var(--ink)" }}>
+                  {s.n}<span style={{ fontSize: 14, fontWeight: 600, marginLeft: 3, color: "var(--ink-3)" }}>{s.u}</span>
+                </div>
+                <div style={{ fontSize: 12, color: "var(--ink-3)", marginTop: 4, letterSpacing: "0.08em" }}>{s.l}</div>
+              </div>
+            ))}
+          </div>
+          <style>{`@media(max-width:820px){.staff-stats{grid-template-columns:repeat(2,1fr) !important;}}`}</style>
+        </div>
+      </section>
+
+      <section style={{ padding: "40px 0 120px" }}>
+        <div className="wrap" style={{ maxWidth: 1200 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 36 }} className="staff-grid">
+            {STAFF.map((s, i) => (
+              <Reveal key={s.id} delay={i % 3}>
+                <div
+                  onClick={() => setActive(s)}
+                  style={{
+                    cursor: "pointer", background: "#fff", border: "1px solid var(--line)",
+                    borderRadius: 18, overflow: "hidden", transition: "transform .35s, box-shadow .35s",
+                  }}
+                  onMouseEnter={(e) => { e.currentTarget.style.transform = "translateY(-4px)"; e.currentTarget.style.boxShadow = "0 18px 40px -20px rgba(50,40,90,0.25)"; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.transform = "none"; e.currentTarget.style.boxShadow = "none"; }}>
+                  <div style={{ aspectRatio: "4/5", background: `linear-gradient(135deg, ${s.tone[0]} 0%, ${s.tone[1]} 100%)`, position: "relative", overflow: "hidden" }}>
+                    <svg width="100%" height="100%" viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice" style={{ position: "absolute", inset: 0, opacity: 0.5 }}>
+                      <circle cx="200" cy="200" r="85" fill="#fff" opacity="0.82"/>
+                      <path d="M70 500 Q70 340 200 340 Q330 340 330 500 Z" fill="#fff" opacity="0.82"/>
+                    </svg>
+                    <div style={{ position: "absolute", top: 16, left: 16, fontSize: 10, letterSpacing: "0.3em", color: "#fff", background: "rgba(0,0,0,0.22)", padding: "6px 12px", borderRadius: 999, backdropFilter: "blur(4px)" }}>
+                      STAFF / {String(i + 1).padStart(2, "0")}
+                    </div>
+                  </div>
+                  <div style={{ padding: "26px 26px 28px" }}>
+                    <div className="en" style={{ fontSize: 10, letterSpacing: "0.25em", color: "var(--pur-3)", marginBottom: 6 }}>{s.roleEn}</div>
+                    <div style={{ fontSize: 13, color: "var(--ink-3)", marginBottom: 4 }}>{s.role}</div>
+                    <div style={{ fontSize: 22, fontWeight: 700, marginBottom: 4 }}>{s.name}</div>
+                    <div className="en" style={{ fontSize: 11, color: "var(--ink-3)", letterSpacing: "0.1em", marginBottom: 16 }}>{s.nameEn}</div>
+                    <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
+                      {s.spec.map((sp) => (
+                        <span key={sp} style={{ fontSize: 10.5, padding: "5px 10px", borderRadius: 999, background: "var(--bg-2)", color: "var(--ink-2)" }}>{sp}</span>
+                      ))}
+                    </div>
+                    <div style={{ marginTop: 18, paddingTop: 16, borderTop: "1px dashed var(--line)", display: "flex", justifyContent: "space-between", alignItems: "center", fontSize: 11, color: "var(--ink-3)" }}>
+                      <span>詳細プロフィール</span>
+                      <span style={{ color: "var(--pur-3)" }}>→</span>
+                    </div>
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+          <style>{`
+            @media(max-width:980px){.staff-grid{grid-template-columns:repeat(2,1fr) !important;}}
+            @media(max-width:600px){.staff-grid{grid-template-columns:1fr !important;}}
+          `}</style>
+        </div>
+      </section>
+
+      {active && <StaffModal staff={active} onClose={() => setActive(null)} />}
+
+      <section style={{ padding: "80px 0 100px", background: "var(--bg-2)" }}>
+        <div className="wrap" style={{ maxWidth: 880, textAlign: "center" }}>
+          <div className="en" style={{ fontSize: 11, letterSpacing: "0.3em", color: "var(--pur-3)", marginBottom: 10 }}>OUR CULTURE</div>
+          <h2 style={{ fontSize: 32, fontWeight: 700, marginBottom: 30 }}>私たちの働き方</h2>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 28, textAlign: "left" }} className="culture-grid">
+            {[
+              { h: "分業ではなく、連携", body: "一人のお客様を、複数メンバーでチームとしてご担当。専門分野の垣根を越えて意見を持ち寄り、最適解を探します。" },
+              { h: "学び続ける文化", body: "毎週の勉強会、外部研修の受講奨励、資格取得支援。変わり続ける税制・金融環境に、常にアップデートで応えます。" },
+              { h: "家庭を大切に", body: "平均残業10時間/月、リモート併用。長く働き続けられる環境があるからこそ、お客様とも長期でご一緒できると考えています。" },
+            ].map((c, i) => (
+              <div key={i} style={{ background: "#fff", padding: 28, borderRadius: 14, border: "1px solid var(--line)" }}>
+                <div style={{ fontSize: 18, fontWeight: 700, marginBottom: 12 }}>{c.h}</div>
+                <p style={{ fontSize: 13, color: "var(--ink-2)", lineHeight: 1.95 }}>{c.body}</p>
+              </div>
+            ))}
+          </div>
+          <style>{`@media(max-width:820px){.culture-grid{grid-template-columns:1fr !important;}}`}</style>
+        </div>
+      </section>
+
+      <ContactBand />
+    </>
+  );
+}
+
+function StaffModal({ staff, onClose }) {
+  React.useEffect(() => {
+    const onKey = (e) => { if (e.key === "Escape") onClose(); };
+    window.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => { window.removeEventListener("keydown", onKey); document.body.style.overflow = ""; };
+  }, [onClose]);
+
+  return (
+    <div onClick={onClose}
+         style={{ position: "fixed", inset: 0, background: "rgba(20,16,40,0.55)", backdropFilter: "blur(6px)",
+                  zIndex: 100, display: "flex", alignItems: "center", justifyContent: "center", padding: 24,
+                  animation: "fadeIn .25s ease" }}>
+      <div onClick={(e) => e.stopPropagation()}
+           style={{ background: "#fff", borderRadius: 20, maxWidth: 820, width: "100%",
+                    maxHeight: "88vh", overflow: "auto", position: "relative",
+                    boxShadow: "0 40px 80px -30px rgba(0,0,0,0.4)", animation: "slideUp .35s ease" }}>
+        <button onClick={onClose} style={{ position: "absolute", top: 18, right: 18, width: 36, height: 36,
+                                            borderRadius: 999, border: "1px solid var(--line)", background: "#fff",
+                                            fontSize: 16, cursor: "pointer", zIndex: 2 }}>×</button>
+        <div style={{ display: "grid", gridTemplateColumns: "280px 1fr", gap: 0 }} className="modal-grid">
+          <div style={{ background: `linear-gradient(135deg, ${staff.tone[0]} 0%, ${staff.tone[1]} 100%)`, minHeight: 360, position: "relative" }}>
+            <svg width="100%" height="100%" viewBox="0 0 280 400" preserveAspectRatio="xMidYMid slice" style={{ position: "absolute", inset: 0, opacity: 0.55 }}>
+              <circle cx="140" cy="150" r="68" fill="#fff" opacity="0.85"/>
+              <path d="M40 400 Q40 260 140 260 Q240 260 240 400 Z" fill="#fff" opacity="0.85"/>
+            </svg>
+            <div style={{ position: "absolute", bottom: 20, left: 24, color: "#fff" }}>
+              <div className="en" style={{ fontSize: 10, letterSpacing: "0.3em", opacity: 0.8 }}>{staff.roleEn}</div>
+              <div style={{ fontSize: 22, fontWeight: 800, marginTop: 4 }}>{staff.name}</div>
+            </div>
+          </div>
+          <div style={{ padding: "36px 36px 40px" }}>
+            <div style={{ fontSize: 11, color: "var(--ink-3)", letterSpacing: "0.15em", marginBottom: 4 }}>{staff.role}</div>
+            <div style={{ fontSize: 26, fontWeight: 700, marginBottom: 2 }}>{staff.name}</div>
+            <div className="en" style={{ fontSize: 12, color: "var(--ink-3)", letterSpacing: "0.1em", marginBottom: 22 }}>{staff.nameEn}</div>
+
+            <div style={{ padding: "18px 20px", background: "var(--bg-2)", borderRadius: 12, marginBottom: 22, borderLeft: "3px solid var(--pur-3)" }}>
+              <div style={{ fontSize: 11, color: "var(--pur-3)", letterSpacing: "0.2em", marginBottom: 6 }}>MESSAGE</div>
+              <p style={{ fontSize: 14, lineHeight: 1.9, color: "var(--ink)" }}>「{staff.msg}」</p>
+            </div>
+
+            {[
+              { label: "専門領域", items: staff.spec },
+              { label: "保有資格", items: staff.qual },
+            ].map((sec) => (
+              <div key={sec.label} style={{ marginBottom: 18 }}>
+                <div style={{ fontSize: 11, color: "var(--ink-3)", letterSpacing: "0.2em", marginBottom: 8 }}>{sec.label.toUpperCase()} / {sec.label}</div>
+                <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
+                  {sec.items.map((it) => (
+                    <span key={it} style={{ fontSize: 12, padding: "6px 12px", borderRadius: 999, border: "1px solid var(--line)", background: "#fff", color: "var(--ink-2)" }}>{it}</span>
+                  ))}
+                </div>
+              </div>
+            ))}
+
+            <div style={{ marginBottom: 16 }}>
+              <div style={{ fontSize: 11, color: "var(--ink-3)", letterSpacing: "0.2em", marginBottom: 6 }}>CAREER / 経歴</div>
+              <p style={{ fontSize: 13, color: "var(--ink-2)", lineHeight: 1.9 }}>{staff.career}</p>
+            </div>
+
+            <div>
+              <div style={{ fontSize: 11, color: "var(--ink-3)", letterSpacing: "0.2em", marginBottom: 6 }}>HOBBY / オフの顔</div>
+              <p style={{ fontSize: 13, color: "var(--ink-2)", lineHeight: 1.9 }}>{staff.hobby}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <style>{`
+        @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+        @keyframes slideUp{from{transform:translateY(20px);opacity:0}to{transform:none;opacity:1}}
+        @media(max-width:720px){.modal-grid{grid-template-columns:1fr !important;}}
+      `}</style>
+    </div>
+  );
+}
+
+function PolicyPage({ kind }) {
+  const meta = {
+    privacy: {
+      en: "PRIVACY POLICY", ja: "プライバシーポリシー",
+      lead: "株式会社PAS企画（以下、当社）は、お客様の個人情報を適切に保護し、取扱いに細心の注意を払うことを責務と考え、以下のとおりプライバシーポリシーを定め、全役職員に周知徹底いたします。",
+      sections: [
+        { h: "1. 個人情報の取得について", p: "当社は、お客様からご提供いただく個人情報を、適法かつ公正な手段により取得いたします。ご相談・お問い合わせの際には、その利用目的を明示した上で、必要な範囲で情報の提供をお願いいたします。" },
+        { h: "2. 個人情報の利用目的", p: "お預かりした個人情報は、以下の目的で利用いたします。", list: [
+          "お客様からのお問い合わせ・ご相談への対応",
+          "資産運用・税務・不動産・保険等のアドバイザリーサービス提供",
+          "セミナー・個別相談会の開催およびご案内",
+          "当社サービスに関する各種ご案内・情報提供",
+          "法令・規則に基づく手続きの遂行",
+        ]},
+        { h: "3. 個人情報の第三者提供", p: "当社は、法令に基づく場合を除き、あらかじめお客様の同意を得ることなく、個人情報を第三者に提供いたしません。業務委託先に提供する場合には、委託先との間で機密保持契約を締結し、適切な監督を行います。" },
+        { h: "4. 安全管理措置", p: "当社は、個人情報への不正アクセス、紛失、破壊、改ざん、漏洩等を防止するため、組織的・人的・物理的・技術的な安全管理措置を講じます。" },
+        { h: "5. 個人情報の開示・訂正・削除", p: "お客様ご本人からの個人情報の開示、訂正、追加、削除、利用停止のご請求があった場合には、所定の手続きに従い合理的な範囲で速やかに対応いたします。" },
+        { h: "6. お問い合わせ窓口", p: "個人情報の取扱いに関するお問い合わせは、下記までご連絡ください。", contact: true },
+        { h: "7. 本ポリシーの改定", p: "当社は、法令の改正、社会情勢の変化等に応じて、本プライバシーポリシーを予告なく変更することがあります。最新の内容は常に本ページに掲載いたします。" },
+      ],
+      rev: "2026年4月1日 改定",
+    },
+    compliance: {
+      en: "COMPLIANCE", ja: "コンプライアンス宣言",
+      lead: "株式会社PAS企画は、金融サービス事業者として法令遵守はもとより、高い倫理観をもって業務を遂行し、お客様と社会からの信頼に応えることを最優先と考えます。",
+      sections: [
+        { h: "1. 法令等の遵守", p: "当社は、金融商品取引法、金融サービス提供法、個人情報保護法、関連諸法令および各業界団体の自主規制ルールを遵守し、健全な業務運営を行います。" },
+        { h: "2. お客様本位の業務運営", p: "当社は、特定の金融商品の販売を目的とした業務ではなく、お客様のライフプランとご意向を最優先に考えたアドバイザリーサービスの提供に徹します。" },
+        { h: "3. 利益相反の適切な管理", p: "当社は、お客様と当社または第三者との間で利益相反となる可能性のある取引について、適切に識別・管理し、お客様の利益を不当に害することのないよう努めます。" },
+        { h: "4. 反社会的勢力の排除", p: "当社は、反社会的勢力に対しては毅然とした態度で臨み、一切の関係を遮断します。取引開始時および継続的な確認を実施し、社会の秩序や安全を脅かす勢力との関わりを断固として拒絶します。" },
+        { h: "5. 役職員教育の徹底", p: "当社は、全役職員に対しコンプライアンス教育を継続的に実施し、法令遵守と高い倫理観の定着を図ります。" },
+        { h: "6. 内部通報制度", p: "当社は、法令違反等の早期発見・是正のため、内部通報制度を整備し、通報者の保護に努めます。" },
+      ],
+      rev: "2026年4月1日 制定",
+    },
+    disclaimer: {
+      en: "LINKS & DISCLAIMER", ja: "リンク・免責事項",
+      lead: "当ウェブサイト（以下「本サイト」といいます）のご利用にあたり、以下の事項にご同意いただいた上でご覧くださいますようお願い申し上げます。",
+      sections: [
+        { h: "1. 本サイトの内容について", p: "本サイトに掲載されている情報は、掲載時点において信頼できると考えられる情報源から入手したものですが、その正確性・完全性を保証するものではありません。法令・税制・金融商品等は改定されることがあり、閲覧時点で内容が異なる場合がございます。" },
+        { h: "2. 投資判断について", p: "本サイトに掲載されている資産運用・税務・不動産等に関する情報は、一般的な情報提供を目的としたものであり、特定の金融商品の取得・処分その他の投資判断を勧めるものではありません。投資判断はお客様ご自身の責任でお願いいたします。" },
+        { h: "3. 免責事項", p: "本サイトのご利用によって生じた一切の損害について、当社は責任を負いかねます。本サイトは予告なく内容を変更または削除することがあります。" },
+        { h: "4. リンクについて", p: "本サイトへのリンクは原則として自由ですが、以下に該当する場合はお断りいたします。", list: [
+          "公序良俗に反する内容を含むサイトからのリンク",
+          "当社および当社関係者、お客様を誹謗中傷するサイトからのリンク",
+          "当社のイメージを損なう恐れのあるサイトからのリンク",
+          "フレーム内に本サイトを表示するリンク",
+        ]},
+        { h: "5. 外部サイトへのリンク", p: "本サイトには外部サイトへのリンクが含まれる場合があります。リンク先サイトの内容について当社は関知せず、その利用によって生じた損害等について責任を負いかねます。" },
+        { h: "6. 著作権・知的財産権", p: "本サイトに掲載されている文章・写真・図版・ロゴ等のすべての情報についての著作権および知的財産権は、当社または権利者に帰属します。無断での転載・複製・改変等はご遠慮ください。" },
+      ],
+      rev: "2026年4月1日 改定",
+    },
+    fiduciary: {
+      en: "FIDUCIARY DUTY", ja: "お客様本位の業務運営に関する方針",
+      lead: "株式会社PAS企画は、金融庁が示す「顧客本位の業務運営に関する原則」を踏まえ、お客様の最善の利益を追求する業務運営を実現するため、以下のとおり方針を定めます。",
+      sections: [
+        { h: "方針1. お客様本位の業務運営に係る方針の策定・公表", p: "当社は、本方針を策定し、ウェブサイト等を通じて公表いたします。本方針は継続的に見直し、その取組状況についても定期的に公表いたします。" },
+        { h: "方針2. お客様の最善の利益の追求", p: "当社は、高度な専門性と職業倫理を保持し、お客様に対して誠実・公正に業務を行い、お客様の最善の利益を図ることを常に最優先に考えます。特定の金融機関・保険会社の商品販売ではなく、独立した立場でのアドバイスに徹します。" },
+        { h: "方針3. 利益相反の適切な管理", p: "当社は、お客様との取引において利益相反の可能性を正確に把握し、これを適切に管理します。利益相反のおそれがある場合には、その内容をお客様にお知らせし、ご理解いただいた上で業務を行います。" },
+        { h: "方針4. 手数料等の明確化", p: "当社は、お客様にご負担いただく手数料・費用について、その対価として提供するサービスの内容とあわせて、事前に明確にご説明いたします。" },
+        { h: "方針5. 重要な情報のわかりやすい提供", p: "当社は、金融商品等の選定理由、商品の内容、リスク、手数料等、お客様が判断するために必要な情報を、お客様の知識・経験・資産状況・目的に応じてわかりやすくご提供いたします。" },
+        { h: "方針6. お客様にふさわしいサービスの提供", p: "当社は、お客様のライフプラン・資産状況・ご意向・知識経験・リスク許容度等を十分に把握し、それらに最もふさわしいサービスのご提案に努めます。" },
+        { h: "方針7. 役職員への適切な動機づけの枠組み", p: "当社は、お客様の最善の利益を追求することが実現されるよう、役職員の業績評価・報酬体系が、販売手数料に過度に依存しない仕組みを整備します。継続的な教育・研修を通じて、職業倫理と専門知識の向上を図ります。" },
+      ],
+      rev: "2026年4月1日 制定",
+    },
+  }[kind];
+
+  return (
+    <>
+      <PageHeader en={meta.en} ja={meta.ja} lead={meta.lead} />
+      <section style={{ padding: "40px 0 100px" }}>
+        <div className="wrap" style={{ maxWidth: 820 }}>
+          {meta.sections.map((s, i) => (
+            <div key={i} style={{ marginBottom: 40, padding: "32px 0", borderBottom: i === meta.sections.length - 1 ? "none" : "1px solid var(--line)" }}>
+              <h2 style={{ fontSize: 18, fontWeight: 700, marginBottom: 14, color: "var(--ink)", display: "flex", alignItems: "center", gap: 10 }}>
+                <span style={{ width: 5, height: 5, borderRadius: 999, background: "var(--pur-3)" }}/>
+                {s.h}
+              </h2>
+              <p style={{ fontSize: 14, lineHeight: 2.05, color: "var(--ink-2)" }}>{s.p}</p>
+              {s.list && (
+                <ul style={{ marginTop: 14, paddingLeft: 4, listStyle: "none" }}>
+                  {s.list.map((it, j) => (
+                    <li key={j} style={{ fontSize: 13.5, lineHeight: 1.95, color: "var(--ink-2)", paddingLeft: 22, position: "relative", marginBottom: 6 }}>
+                      <span style={{ position: "absolute", left: 0, top: 11, width: 10, height: 2, background: "var(--pur-3)" }}/>
+                      {it}
+                    </li>
+                  ))}
+                </ul>
+              )}
+              {s.contact && (
+                <div style={{ marginTop: 18, padding: 22, background: "var(--bg-2)", borderRadius: 10, fontSize: 13, lineHeight: 2 }}>
+                  株式会社PAS企画　個人情報お問い合わせ窓口<br/>
+                  〒300-3261 茨城県つくば市花畑3丁目13番地10 ヤマグチビル3階<br/>
+                  TEL：029-877-6322（9:30〜18:30／日祝祭日を除く）
+                </div>
+              )}
+            </div>
+          ))}
+          <div style={{ textAlign: "right", fontSize: 12, color: "var(--ink-3)", marginTop: 20 }}>{meta.rev}</div>
+        </div>
+      </section>
+      <ContactBand />
+    </>
+  );
+}
+
+Object.assign(window, { AboutPage, ServicesPage, ConsultantPage, NewsPage, NewsDetailPage, ContactPage: ContactPageV2, ContactRecruitPage: RecruitInquiryPage, BestPartnerPage, StaffPage, PolicyPage });
