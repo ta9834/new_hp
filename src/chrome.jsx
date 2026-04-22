@@ -99,7 +99,8 @@ function ContactBand() {
         <Reveal><div className="en" style={{ fontSize: 14, letterSpacing: "0.3em", color: "#3a2d68" }}>CONTACT</div></Reveal>
         <Reveal delay={1}><h2 style={{ fontSize: 52, fontWeight: 700, marginTop: 8, marginBottom: 16, color: "#2a2340" }}>お問い合わせ</h2></Reveal>
         <Reveal delay={2}><p style={{ fontSize: 15, color: "#3a2d68", marginBottom: 64, lineHeight: 2 }}>
-          ご相談・ご質問等ございましたら、どうぞお気軽にお問い合わせください。
+          ご相談・ご質問等ございましたら、<span className="contact-br"><br/></span>どうぞお気軽にお問い合わせください。
+          <style>{`@media(min-width:601px){.contact-br{display:none;}}`}</style>
         </p></Reveal>
         <Reveal delay={3}><div style={{ display: "flex", gap: 28, justifyContent: "center", flexWrap: "wrap" }}>
           {[
@@ -186,8 +187,12 @@ function Footer() {
               </ul>
             </div>
           ))}
-          {/* 3列目：お問い合わせ＋ポリシー大項目 */}
+          {/* 3列目：お知らせ＋お問い合わせ＋ポリシー大項目 */}
           <div>
+            <a href="#news" onClick={nav("news")}
+              style={{ fontSize: 14, fontWeight: 700, marginBottom: 24, display: "block", color: "var(--ink)" }}>
+              お知らせ
+            </a>
             <a href="#contact" onClick={nav("contact")}
               style={{ fontSize: 14, fontWeight: 700, marginBottom: 24, display: "block", color: "var(--ink)" }}>
               お問い合わせ
@@ -216,11 +221,12 @@ function Footer() {
 
 function PageHeader({ en, ja, lead }) {
   return (
-    <section style={{ position: "relative", paddingTop: 180, paddingBottom: 100, overflow: "hidden" }}>
+    <section style={{ position: "relative", paddingTop: 180, paddingBottom: 100, overflow: "hidden" }} className="page-header-section">
+      <style>{`@media(max-width:820px){.page-header-section{padding-bottom:48px !important;}}`}</style>
       <div className="wrap" style={{ position: "relative", textAlign: "center" }}>
         <Reveal><div className="en" style={{ fontSize: 13, letterSpacing: "0.3em", color: "var(--ink-3)", marginBottom: 10 }}>{en}</div></Reveal>
         <Reveal delay={1}><h1 style={{ fontSize: "clamp(36px, 5vw, 56px)", fontWeight: 700, letterSpacing: "0.02em", marginBottom: 24 }}>{ja}</h1></Reveal>
-        {lead && <Reveal delay={2}><p style={{ fontSize: 15, color: "var(--ink-2)", maxWidth: 720, margin: "0 auto", lineHeight: 2 }}>{lead}</p></Reveal>}
+        {lead && <Reveal delay={2}><p style={{ fontSize: 15, color: "var(--ink-2)", maxWidth: 800, margin: "0 auto", lineHeight: 2 }}>{lead}</p></Reveal>}
       </div>
     </section>
   );

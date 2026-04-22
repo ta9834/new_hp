@@ -13,23 +13,24 @@ function AboutPage() {
   }, []);
   return (
     <>
-      <PageHeader en="ABOUT US" ja="PAS企画について" lead="茨城・つくばを拠点に、お金にまつわる課題を総合的に解決するプロフェッショナル・アドバイザー集団。" />
+      <PageHeader en="ABOUT US" ja="PAS企画について" lead={<>業種・年代・規模を問わず、<span className="about-br"><br/></span>お金にまつわるあらゆる課題を多角的に解決する<span className="about-br"><br/></span>プロフェッショナル・アドバイザー集団。<style>{`.about-br{display:none;}@media(max-width:640px){.about-br{display:inline;}}`}</style></>} />
       <section id="section-message" style={{ padding: "80px 0 100px" }}>
         <div className="wrap ab-grid" style={{ display: "grid", gridTemplateColumns: "1fr 2fr", gap: 64 }}>
           <img src="assets/message.jpg" alt="代表メッセージ" className="msg-img" style={{ width: "100%", aspectRatio: "3/4", objectFit: "cover", objectPosition: "center center", display: "block" }} />
           <div>
             <div className="en" style={{ fontSize: 11, letterSpacing: "0.28em", color: "var(--pur-3)", marginBottom: 12 }}>MESSAGE</div>
             <h2 style={{ fontSize: 32, fontWeight: 700, marginBottom: 24 }}>代表メッセージ</h2>
-            <p style={{ fontSize: 18, fontWeight: 600, lineHeight: 1.9, marginBottom: 24 }}>「お金のことは、信頼できる相談相手と一緒に考える」——その当たり前を、地域から。</p>
+            <p style={{ fontSize: 18, fontWeight: 600, lineHeight: 1.9, marginBottom: 24 }}>「お金と事業の悩みを、すべて最適解へ」——業種・規模・世代を問わず、あらゆるお客様のベストパートナーへ。</p>
             <p style={{ fontSize: 14, color: "var(--ink-2)", lineHeight: 2.05, marginBottom: 20 }}>
-              お金に関する情報は、かつてないほど氾濫しています。NISA・iDeCo・新しい保険商品・相続税制の改正——正しい情報を選び、ご自身の人生に当てはめる作業は、どなたにとっても容易ではありません。
+              資産運用、税務対策、不動産活用、経営サポート、そしてAI導入支援——。私たちPAS企画は、お金と事業にまつわる多様な課題を、一つの組織で横断的に解決できる総合アドバイザリー集団を目指しています。個人の資産形成から中小企業の経営改善まで、領域の垣根を越えて最適解を追求することが、私たちの存在意義です。
             </p>
             <p style={{ fontSize: 14, color: "var(--ink-2)", lineHeight: 2.05, marginBottom: 20 }}>
-              株式会社PAS企画は2021年、茨城・つくばの地で生まれました。金融機関でも、保険会社でもない——独立した立場で、お客様の側に立ってアドバイスを行う専門家集団として。「特定商品を売ること」を目的にするのではなく、お客様一人ひとりの人生設計に寄り添うことを業務の中心に据えてまいりました。
+              創業当初から大切にしてきたのは、「特定の金融商品や手法を売る」のではなく、「お客様の状況に最も合った選択肢を、中立的な立場で提示する」というスタンスです。会社員の方の資産形成から、経営者様の事業承継・法人保険、不動産オーナー様の資産組み替え、さらには業務効率化のためのAI活用まで——お客様の属性やフェーズに応じた多角的な支援が、PAS企画の強みです。
             </p>
             <p style={{ fontSize: 14, color: "var(--ink-2)", lineHeight: 2.05, marginBottom: 32 }}>
-              資産形成から相続、経営者様の事業承継まで——お金を取り巻くあらゆるご相談を、一つの窓口で。これからも、「ベストパートナー」と呼んでいただける存在であり続けられるよう、誠実にご対応してまいります。
+              複雑化する経済環境の中で、一つの専門家に相談するだけでは見落としが生まれやすい時代になりました。だからこそ、複数の専門領域を内包したコングロマリット型の支援体制が必要とされています。これからも「すべての悩みを、一つの窓口で最適解へ」を合言葉に、お客様お一人おひとりに誠実に向き合ってまいります。
             </p>
+            <div style={{ fontSize: 16, fontWeight: 700, marginBottom: 4 }}>株式会社PAS企画</div>
             <div style={{ fontSize: 16, fontWeight: 700 }}>代表取締役　小島 拓也</div>
           </div>
         </div>
@@ -51,7 +52,6 @@ function AboutPage() {
               ["創業",     "2018年10月"],
               ["設立",     "2021年8月"],
               ["役員",     "代表取締役　小島 拓也\n取締役　　　阿部 龍一"],
-              ["事業内容", "資産形成・資産運用、税務対策支援、不動産総合活用、経営サポート、AI導入支援"],
               ["関連会社", "合同会社PASパートナーズ（旧：合同会社グラン・ジュテ）"],
               ["営業時間", "9:30〜18:30（日祝祭日を除く）"],
               ["適格請求書発行事業者登録番号", "T8050001049710"],
@@ -258,33 +258,14 @@ function ServicesPage() {
   }, []);
   return (
     <>
-      <PageHeader en="OUR SERVICES" ja="事業内容" lead="資産形成・税務・不動産・経営サポートまで、お金に関わる領域を中立的な立場から総合的にご提案します。" />
+      <PageHeader en="OUR SERVICES" ja="事業内容" lead={<>資産形成・税務・不動産・経営・AI——<br/>5つの専門領域を一つの組織で横断的に支援する、<span className="sv-lead-br"><br/></span>コングロマリット型アドバイザリーサービス。<style>{`@media(min-width:601px){.sv-lead-br{display:none;}}`}</style></>} />
 
-      <section style={{ padding: "80px 0 40px" }}>
-        <div className="wrap">
-          <div className="section-eyebrow" style={{ marginBottom: 40 }}>
-            <span className="ja">こんなお悩みはありませんか</span>
-            <span className="en">YOUR CONCERNS</span>
-          </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 20 }} className="cn-grid">
-            {CONCERNS.map((c) => (
-              <div key={c.no} style={{ padding: 28, border: "1px solid var(--line)", borderRadius: 12 }}>
-                <div className="en" style={{ fontSize: 11, letterSpacing: "0.2em", color: "var(--pur-3)", marginBottom: 10 }}>CASE {c.no}</div>
-                <div style={{ fontSize: 17, fontWeight: 700, marginBottom: 12 }}>{c.t}</div>
-                <p style={{ fontSize: 12.5, color: "var(--ink-2)", lineHeight: 1.9 }}>{c.body}</p>
-              </div>
-            ))}
-          </div>
-          <style>{`@media(max-width:820px){ .cn-grid{ grid-template-columns:1fr 1fr !important;}}`}</style>
-        </div>
-      </section>
-
-      <section style={{ padding: "80px 0 120px" }}>
+      <section style={{ padding: "80px 0 60px" }}>
         <div className="wrap">
           {SERVICES.map((s, i) => (
             <div key={s.no} id={`section-service-${s.no}`} style={{
               display: "grid", gridTemplateColumns: i % 2 ? "1fr 1.3fr" : "1.3fr 1fr",
-              gap: 48, padding: "60px 0", borderTop: "1px solid var(--line)",
+              gap: 48, padding: "48px 0", borderTop: "1px solid var(--line)",
               alignItems: "center",
             }} className="sv-row">
               {i % 2 === 0 ? (
@@ -301,7 +282,39 @@ function ServicesPage() {
             </div>
           ))}
         </div>
-        <style>{`@media(max-width:820px){ .sv-row{ grid-template-columns:1fr !important;}}`}</style>
+        <style>{`
+          .sv-no-sp{ display:none; }
+          @media(max-width:820px){
+            .sv-row{ grid-template-columns:1fr !important; padding:32px 0 !important;}
+            .sv-circle{ display:none !important;}
+            .sv-no-sp{ display:block !important;}
+          }
+        `}</style>
+      </section>
+
+      <section style={{ padding: "80px 0 40px", background: "var(--bg-2)" }}>
+        <div className="wrap">
+          <div className="section-eyebrow" style={{ marginBottom: 40 }}>
+            <span className="ja">こんなお悩みはありませんか</span>
+            <span className="en">YOUR CONCERNS</span>
+          </div>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 20 }} className="cn-grid">
+            {CONCERNS.map((c) => (
+              <div key={c.no} style={{ padding: 28, border: "1px solid var(--line)", borderRadius: 12, background: "#fff" }}>
+                <div className="en" style={{ fontSize: 11, letterSpacing: "0.2em", color: "var(--pur-3)", marginBottom: 10 }}>CASE {c.no}</div>
+                <div style={{ fontSize: 17, fontWeight: 700, marginBottom: 12 }}>{c.t}</div>
+                <p style={{ fontSize: 12.5, color: "var(--ink-2)", lineHeight: 1.9 }}>{c.body}</p>
+              </div>
+            ))}
+          </div>
+          <style>{`@media(max-width:600px){ .cn-grid{ grid-template-columns:1fr !important;}}`}</style>
+          <div style={{ textAlign: "center", marginTop: 48 }}>
+            <p style={{ fontSize: 15, color: "var(--ink-2)", lineHeight: 2 }}>
+              どんなお悩みも、まずはお気軽にご相談ください。<br/>
+              PAS企画の専門チームが、複数の領域を横断して最適な解決策をご提案します。
+            </p>
+          </div>
+        </div>
       </section>
 
       <ContactBand />
@@ -312,8 +325,8 @@ function ServicesPage() {
 function TextBlock({ s }) {
   return (
     <div>
-      <div className="en prismatic" style={{ fontSize: 60, fontWeight: 800, marginBottom: 12 }}>{s.no}</div>
-      <div className="en" style={{ fontSize: 11, letterSpacing: "0.28em", color: "var(--pur-3)", marginBottom: 10 }}>{s.en.toUpperCase()}</div>
+      <div className="en prismatic sv-no-sp" style={{ fontSize: 60, fontWeight: 800, marginBottom: 12 }}>{s.no}</div>
+      <div className="en" style={{ fontSize: 11, letterSpacing: "0.28em", color: "var(--pur-3)", marginBottom: 4 }}>{s.en.toUpperCase()}</div>
       <h3 style={{ fontSize: 32, fontWeight: 700, marginBottom: 16, letterSpacing: "0.04em" }}>{s.ja}</h3>
       <p style={{ fontSize: 18, fontWeight: 600, lineHeight: 1.8, marginBottom: 16 }}>{s.lead}</p>
       <p style={{ fontSize: 14, color: "var(--ink-2)", lineHeight: 2.05, marginBottom: 24 }}>{s.body}</p>
@@ -328,7 +341,7 @@ function TextBlock({ s }) {
 
 function CirclePanel({ s }) {
   return (
-    <div style={{ display: "flex", justifyContent: "center" }}>
+    <div className="sv-circle" style={{ display: "flex", justifyContent: "center" }}>
       <div style={{
         width: 360, height: 360, borderRadius: 999,
         border: "1px solid var(--pur-2)",
@@ -758,7 +771,22 @@ function BestPartnerPage() {
             </div>
           ))}
         </div>
-        <style>{`@media(max-width:820px){ .bp-row{ grid-template-columns:1fr !important;}}`}</style>
+        <style>{`
+          .reason-title-sp{ display:none; }
+          .reason-title-pc{ display:block; }
+          .reason-no-sp{ display:none; }
+          @media(max-width:820px){
+            .bp-row{
+              display:block !important;
+              padding:40px 0 !important;
+            }
+            .bp-row .reason-visual{ display:none !important; }
+            .reason-no-sp{ display:block !important; }
+            .reason-title-pc{ display:none !important; }
+            .reason-title-sp{ display:block !important; }
+            .bp-row .reason-text-body{ margin-top:20px; }
+          }
+        `}</style>
       </section>
       <ContactBand />
     </>
@@ -767,7 +795,7 @@ function BestPartnerPage() {
 
 function ReasonVisual({ r }) {
   return (
-    <div style={{ display: "flex", justifyContent: "center" }}>
+    <div className="reason-visual" style={{ display: "flex", justifyContent: "center" }}>
       <div style={{
         width: 400, height: 400, borderRadius: 999, border: "1px solid var(--pur-2)",
         display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
@@ -782,17 +810,23 @@ function ReasonVisual({ r }) {
 
 function ReasonText({ r }) {
   return (
-    <div>
-      <div className="en" style={{ fontSize: 11, letterSpacing: "0.28em", color: "var(--pur-3)", marginBottom: 12 }}>{r.en}</div>
-      <h3 style={{ fontSize: 28, fontWeight: 700, lineHeight: 1.5, marginBottom: 20 }}>{r.ja}</h3>
-      <p style={{ fontSize: 14, color: "var(--ink-2)", lineHeight: 2.05, marginBottom: 24 }}>{r.body}</p>
-      <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 10 }}>
-        {r.points.map((p) => (
-          <li key={p} style={{ fontSize: 13.5, display: "flex", gap: 12, alignItems: "flex-start" }}>
-            <span style={{ color: "var(--pur-3)", marginTop: 2 }}>▸</span>{p}
-          </li>
-        ))}
-      </ul>
+    <div className="reason-text">
+      <div className="reason-text-head">
+        <div className="en prismatic reason-no-sp" style={{ fontSize: 60, fontWeight: 800, marginBottom: 8, lineHeight: 1 }}>{r.no}</div>
+        <div className="en" style={{ fontSize: 11, letterSpacing: "0.28em", color: "var(--pur-3)", marginBottom: 4 }}>{r.en}</div>
+        <h3 className="reason-title-pc" style={{ fontSize: 28, fontWeight: 700, lineHeight: 1.4, marginBottom: 20 }}>{r.ja}</h3>
+        <h3 className="reason-title-sp" style={{ fontSize: 20, fontWeight: 700, lineHeight: 1.4, marginBottom: 0, whiteSpace: "pre-line" }}>{r.jaSp || r.ja}</h3>
+      </div>
+      <div className="reason-text-body">
+        <p style={{ fontSize: 14, color: "var(--ink-2)", lineHeight: 2.05, marginBottom: 24 }}>{r.body}</p>
+        <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 10 }}>
+          {r.points.map((p) => (
+            <li key={p} style={{ fontSize: 13.5, display: "flex", gap: 12, alignItems: "flex-start" }}>
+              <span style={{ color: "var(--pur-3)", marginTop: 2 }}>▸</span>{p}
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }
@@ -1120,11 +1154,15 @@ function StaffPage() {
                   }}
                   onMouseEnter={(e) => { e.currentTarget.style.transform = "translateY(-4px)"; e.currentTarget.style.boxShadow = "0 18px 40px -20px rgba(50,40,90,0.25)"; }}
                   onMouseLeave={(e) => { e.currentTarget.style.transform = "none"; e.currentTarget.style.boxShadow = "none"; }}>
-                  <div style={{ aspectRatio: "4/5", background: `linear-gradient(135deg, ${s.tone[0]} 0%, ${s.tone[1]} 100%)`, position: "relative", overflow: "hidden" }}>
-                    <svg width="100%" height="100%" viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice" style={{ position: "absolute", inset: 0, opacity: 0.5 }}>
-                      <circle cx="200" cy="200" r="85" fill="#fff" opacity="0.82"/>
-                      <path d="M70 500 Q70 340 200 340 Q330 340 330 500 Z" fill="#fff" opacity="0.82"/>
-                    </svg>
+                  <div className="staff-card-img" style={{ aspectRatio: "4/5", background: `linear-gradient(135deg, ${s.tone[0]} 0%, ${s.tone[1]} 100%)`, position: "relative", overflow: "hidden" }}>
+                    {s.photo ? (
+                      <img src={s.photo} alt={s.name} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: s.photoFit || "cover", objectPosition: s.photoPos || "center center" }} />
+                    ) : (
+                      <svg width="100%" height="100%" viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice" style={{ position: "absolute", inset: 0, opacity: 0.5 }}>
+                        <circle cx="200" cy="200" r="85" fill="#fff" opacity="0.82"/>
+                        <path d="M70 500 Q70 340 200 340 Q330 340 330 500 Z" fill="#fff" opacity="0.82"/>
+                      </svg>
+                    )}
                     <div style={{ position: "absolute", top: 16, left: 16, fontSize: 10, letterSpacing: "0.3em", color: "#fff", background: "rgba(0,0,0,0.22)", padding: "6px 12px", borderRadius: 999, backdropFilter: "blur(4px)" }}>
                       STAFF / {String(i + 1).padStart(2, "0")}
                     </div>
@@ -1150,7 +1188,10 @@ function StaffPage() {
           </div>
           <style>{`
             @media(max-width:980px){.staff-grid{grid-template-columns:repeat(2,1fr) !important;}}
-            @media(max-width:600px){.staff-grid{grid-template-columns:1fr !important;}}
+            @media(max-width:600px){
+              .staff-grid{grid-template-columns:1fr !important;}
+              .staff-card-img{aspect-ratio:4/3 !important;}
+            }
           `}</style>
         </div>
       </section>
@@ -1198,18 +1239,23 @@ function StaffModal({ staff, onClose }) {
       <div onClick={(e) => e.stopPropagation()}
            style={{ background: "#fff", borderRadius: 20, maxWidth: 820, width: "100%",
                     maxHeight: "88vh", overflow: "auto", position: "relative",
-                    boxShadow: "0 40px 80px -30px rgba(0,0,0,0.4)", animation: "slideUp .35s ease" }}>
-        <button onClick={onClose} style={{ position: "absolute", top: 18, right: 18, width: 36, height: 36,
+                    boxShadow: "0 40px 80px -30px rgba(0,0,0,0.4)", animation: "slideUp .35s ease" }}
+           className="staff-modal-inner">
+        <button onClick={onClose} style={{ position: "fixed", top: 18, right: 18, width: 36, height: 36,
                                             borderRadius: 999, border: "1px solid var(--line)", background: "#fff",
-                                            fontSize: 16, cursor: "pointer", zIndex: 2 }}>×</button>
+                                            fontSize: 16, cursor: "pointer", zIndex: 110 }}>×</button>
         <div style={{ display: "grid", gridTemplateColumns: "280px 1fr", gap: 0 }} className="modal-grid">
-          <div style={{ background: `linear-gradient(135deg, ${staff.tone[0]} 0%, ${staff.tone[1]} 100%)`, minHeight: 360, position: "relative" }}>
-            <svg width="100%" height="100%" viewBox="0 0 280 400" preserveAspectRatio="xMidYMid slice" style={{ position: "absolute", inset: 0, opacity: 0.55 }}>
-              <circle cx="140" cy="150" r="68" fill="#fff" opacity="0.85"/>
-              <path d="M40 400 Q40 260 140 260 Q240 260 240 400 Z" fill="#fff" opacity="0.85"/>
-            </svg>
-            <div style={{ position: "absolute", bottom: 20, left: 24, color: "#fff" }}>
-              <div className="en" style={{ fontSize: 10, letterSpacing: "0.3em", opacity: 0.8 }}>{staff.roleEn}</div>
+          <div style={{ background: `linear-gradient(135deg, ${staff.tone[0]} 0%, ${staff.tone[1]} 100%)`, minHeight: 360, position: "relative" }} className="modal-photo-panel">
+            {staff.photo ? (
+              <img src={staff.photo} alt={staff.name} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: staff.photoFit || "cover", objectPosition: staff.photoPos || "center center" }} />
+            ) : (
+              <svg width="100%" height="100%" viewBox="0 0 280 400" preserveAspectRatio="xMidYMid slice" style={{ position: "absolute", inset: 0, opacity: 0.55 }}>
+                <circle cx="140" cy="150" r="68" fill="#fff" opacity="0.85"/>
+                <path d="M40 400 Q40 260 140 260 Q240 260 240 400 Z" fill="#fff" opacity="0.85"/>
+              </svg>
+            )}
+            <div style={{ position: "absolute", bottom: 20, left: 24, color: "#fff", textShadow: staff.photo ? "0 1px 4px rgba(0,0,0,0.6)" : "none" }}>
+              <div className="en" style={{ fontSize: 10, letterSpacing: "0.3em", opacity: 0.9 }}>{staff.roleEn}</div>
               <div style={{ fontSize: 22, fontWeight: 800, marginTop: 4 }}>{staff.name}</div>
             </div>
           </div>
@@ -1252,7 +1298,16 @@ function StaffModal({ staff, onClose }) {
       <style>{`
         @keyframes fadeIn{from{opacity:0}to{opacity:1}}
         @keyframes slideUp{from{transform:translateY(20px);opacity:0}to{transform:none;opacity:1}}
-        @media(max-width:720px){.modal-grid{grid-template-columns:1fr !important;}}
+        @media(max-width:720px){
+          .modal-grid{ grid-template-columns:1fr !important; }
+          .modal-photo-panel{ min-height:200px !important; max-height:220px !important; }
+          .staff-modal-inner{
+            max-height:calc(100vh - 100px) !important;
+            border-radius:16px !important;
+            margin-top:80px !important;
+            align-self:flex-start !important;
+          }
+        }
       `}</style>
     </div>
   );

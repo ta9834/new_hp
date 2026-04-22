@@ -32,9 +32,9 @@ function Hero() {
             お客様の「いま」と「これから」を共に創ります。
           </h2></Reveal>
           <Reveal delay={2}><p style={{ fontSize: 14, color: "var(--ink-2)", marginTop: 32, lineHeight: 2.1, maxWidth: 820, margin: "32px auto 0" }}>
-            株式会社PAS企画は、茨城・つくばを拠点とする独立系ファイナンシャル・アドバイザー。<br/>
-            資産形成・税務・不動産・経営サポートを、一つの窓口で、中立的な立場からご提案します。<br/>
-            お客様本位の業務運営を宣言し、数世代にわたる信頼関係を大切にしています。
+            株式会社PAS企画は、独立系の総合アドバイザーです。<br/>
+            資産形成・税務・不動産・経営サポート・AI導入支援を、一つの窓口で中立的にご提案します。<br/>
+            個人・法人・業種を問わず、お客様本位の多角的支援を宣言しています。
           </p></Reveal>
         </div>
       </div>
@@ -143,14 +143,31 @@ function StrengthsCircles() {
               }}
               onMouseEnter={(e) => e.currentTarget.style.transform = "scale(1.05)"}
               onMouseLeave={(e) => e.currentTarget.style.transform = ""}>
-                <div style={{ fontSize: 11, color: "var(--ink-3)", marginBottom: 10, lineHeight: 1.7 }}>{s.body.split("。")[0]}</div>
-                <div style={{ fontSize: 22, fontWeight: 700 }}>{s.n}</div>
-                <div style={{ fontSize: 22, fontWeight: 700 }}>{s.ja}</div>
+                <div className="circle-body-pc" style={{ fontSize: 13, color: "var(--ink-3)", marginBottom: 8, lineHeight: 1.4, whiteSpace: "pre-line" }}>{s.body}</div>
+                <div className="circle-body-sp" style={{ fontSize: 13, color: "var(--ink-3)", marginBottom: 8, lineHeight: 1.4, whiteSpace: "pre-line" }}>{s.bodySp || s.body}</div>
+                <div className="circle-title-pc circle-title" style={{ fontWeight: 700, lineHeight: 1.3 }}>{s.n}{s.ja}</div>
+                <div className="circle-title-sp circle-title" style={{ fontWeight: 700, lineHeight: 1.2 }}>
+                  <div>{s.n}</div><div>{s.ja}</div>
+                </div>
               </div>
             );
           })}
         </div>
-        <style>{`@media(max-width:900px){.circles-row > div{margin-left:0 !important;}}`}</style>
+        <style>{`
+          .circle-title { font-size: 20px; }
+          .circle-title-sp { display: none; }
+          .circle-body-sp { display: none; }
+          @media(max-width:900px){.circles-row > div{margin-left:0 !important;}}
+          @media(max-width:600px){
+            .circles-row{display:grid !important; grid-template-columns:1fr 1fr; gap:16px; justify-items:center;}
+            .circles-row > div{width:100% !important; height:auto !important; aspect-ratio:1; margin:0 !important; max-width:180px;}
+            .circle-title { font-size: 18px; }
+            .circle-title-pc { display: none; }
+            .circle-title-sp { display: block; }
+            .circle-body-pc { display: none; }
+            .circle-body-sp { display: block; }
+          }
+        `}</style>
 
         <Reveal delay={4}><div style={{ marginTop: 72 }}>
           <a href="#best-partner" onClick={(e) => { e.preventDefault(); window.__setRoute?.("best-partner"); }} className="circle-btn" />
@@ -167,7 +184,7 @@ function ServicesOverlap() {
       case "税務対策支援": return <svg width="36" height="36" viewBox="0 0 28 28"><rect x="5" y="5" width="18" height="18" rx="1.5" fill="none" stroke="currentColor" strokeWidth="1.2"/><path d="M9 12h10M9 16h10M9 20h6" stroke="currentColor" strokeWidth="1.2"/></svg>;
       case "不動産総合活用": return <svg width="36" height="36" viewBox="0 0 28 28"><path d="M4 13 L14 5 L24 13 V23 H4 Z" fill="none" stroke="currentColor" strokeWidth="1.2"/><rect x="12" y="17" width="4" height="6" fill="none" stroke="currentColor" strokeWidth="1.2"/></svg>;
       case "経営サポート": return <svg width="36" height="36" viewBox="0 0 28 28"><rect x="5" y="8" width="8" height="16" fill="none" stroke="currentColor" strokeWidth="1.2"/><rect x="15" y="4" width="8" height="20" fill="none" stroke="currentColor" strokeWidth="1.2"/></svg>;
-      case "AI導入支援": return <svg width="36" height="36" viewBox="0 0 28 28"><circle cx="14" cy="14" r="7" fill="none" stroke="currentColor" strokeWidth="1.2"/><circle cx="14" cy="14" r="2.5" fill="currentColor"/><path d="M14 3v3M14 22v3M3 14h3M22 14h3M6 6l2 2M20 20l2 2M22 6l-2 2M6 22l2-2" stroke="currentColor" strokeWidth="1.2"/></svg>;
+      case "AI導入支援": return <svg width="36" height="36" viewBox="0 0 28 28" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2v4"/><circle cx="14" cy="1.5" r="1.5"/><rect x="3" y="6" width="22" height="16" rx="2.5"/><rect x="8" y="11" width="3.5" height="3.5" rx="0.8" fill="currentColor" stroke="none"/><rect x="16.5" y="11" width="3.5" height="3.5" rx="0.8" fill="currentColor" stroke="none"/><path d="M10 18.5 Q14 21 18 18.5"/><path d="M3 14H1M25 14h2"/></svg>;
       default: return null;
     }
   };
@@ -265,7 +282,7 @@ function StaffPreview() {
               <div className="en" style={{ fontSize: 11, letterSpacing: "0.28em", color: "var(--ink-3)", marginBottom: 8 }}>STAFF</div>
               <h3 style={{ fontSize: 40, fontWeight: 700, letterSpacing: "0.04em", marginBottom: 28 }}>スタッフ紹介</h3>
               <p style={{ fontSize: 14, color: "var(--ink-2)", lineHeight: 2.05, marginBottom: 20 }}>
-                資産運用、税務、不動産、経営、そしてテクノロジー——それぞれの専門領域で経験を積んだメンバーが、お客様のベストパートナーとしてご一緒します。
+                資産運用、税務、不動産、経営、そしてテクノロジー——<br/>それぞれの専門領域で経験を積んだメンバーが、お客様のベストパートナーとしてご一緒します。
               </p>
               <p style={{ fontSize: 14, color: "var(--ink-2)", lineHeight: 2.05, marginBottom: 32 }}>
                 「顔の見える関係」を大切に、一人ひとりが責任を持ってご担当。どんなメンバーがお客様の窓口に立つのか、ぜひご覧ください。
