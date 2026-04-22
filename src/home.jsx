@@ -40,12 +40,11 @@ function Hero() {
       </div>
       <style>{`
         @media(max-width:640px){
-          .hero-phrase { font-size: 18px !important; }
-          .hero-phrase[data-idx="0"] { left: 4%  !important; top: 9%  !important; }
-          .hero-phrase[data-idx="1"] { left: 10% !important; top: 13% !important; font-size: 24px !important; }
-          .hero-phrase[data-idx="2"] { left: 4%  !important; top: 32% !important; color: #d8d8d8 !important; }
-          .hero-phrase[data-idx="3"] { left: 42% !important; top: 34% !important; font-size: 22px !important; }
-          .hero-phrase[data-idx="4"] { left: 4%  !important; top: 37% !important; }
+          .hero-phrase[data-idx="0"] { left: 4%  !important; top: 9%  !important; font-size: 16px !important; color: #cecece !important; }
+          .hero-phrase[data-idx="1"] { left: 20% !important; top: 12% !important; font-size: 21px !important; color: #bababa !important; }
+          .hero-phrase[data-idx="2"] { left: 4%  !important; top: 30% !important; font-size: 16px !important; color: #d4d4d4 !important; }
+          .hero-phrase[data-idx="3"] { left: 20% !important; top: 33% !important; font-size: 21px !important; color: #bababa !important; }
+          .hero-phrase[data-idx="4"] { left: 4%  !important; top: 37% !important; font-size: 19px !important; color: #c4c4c4 !important; }
         }
       `}</style>
     </section>

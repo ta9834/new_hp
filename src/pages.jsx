@@ -1235,17 +1235,23 @@ function StaffModal({ staff, onClose }) {
     <div onClick={onClose}
          style={{ position: "fixed", inset: 0, background: "rgba(20,16,40,0.55)", backdropFilter: "blur(6px)",
                   zIndex: 100, display: "flex", alignItems: "center", justifyContent: "center", padding: 24,
-                  animation: "fadeIn .25s ease" }}>
+                  animation: "fadeIn .25s ease" }}
+         className="modal-overlay">
       <div onClick={(e) => e.stopPropagation()}
            style={{ background: "#fff", borderRadius: 20, maxWidth: 820, width: "100%",
-                    maxHeight: "88vh", overflow: "auto", position: "relative",
+                    position: "relative", overflow: "hidden",
                     boxShadow: "0 40px 80px -30px rgba(0,0,0,0.4)", animation: "slideUp .35s ease" }}
            className="staff-modal-inner">
-        <button onClick={onClose} style={{ position: "fixed", top: 18, right: 18, width: 36, height: 36,
-                                            borderRadius: 999, border: "1px solid var(--line)", background: "#fff",
-                                            fontSize: 16, cursor: "pointer", zIndex: 110 }}>×</button>
+        {/* PC用閉じるボタン（写真右上） */}
+        <button onClick={onClose} className="modal-close-pc" style={{ position: "absolute", top: 18, right: 18, width: 36, height: 36,
+                                          borderRadius: 999, border: "1px solid var(--line)", background: "#fff",
+                                          fontSize: 16, cursor: "pointer", zIndex: 10 }}>×</button>
         <div style={{ display: "grid", gridTemplateColumns: "280px 1fr", gap: 0 }} className="modal-grid">
           <div style={{ background: `linear-gradient(135deg, ${staff.tone[0]} 0%, ${staff.tone[1]} 100%)`, minHeight: 360, position: "relative" }} className="modal-photo-panel">
+            {/* スマホ用閉じるボタン（写真右上） */}
+            <button onClick={onClose} className="modal-close-sp" style={{ position: "absolute", top: 12, right: 12, width: 32, height: 32,
+                                                borderRadius: 999, border: "1px solid rgba(255,255,255,0.6)", background: "rgba(0,0,0,0.25)",
+                                                fontSize: 14, cursor: "pointer", zIndex: 2, color: "#fff", display: "none" }}>×</button>
             {staff.photo ? (
               <img src={staff.photo} alt={staff.name} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: staff.photoFit || "cover", objectPosition: staff.photoPos || "center center" }} />
             ) : (
@@ -1299,14 +1305,11 @@ function StaffModal({ staff, onClose }) {
         @keyframes fadeIn{from{opacity:0}to{opacity:1}}
         @keyframes slideUp{from{transform:translateY(20px);opacity:0}to{transform:none;opacity:1}}
         @media(max-width:720px){
+          .modal-overlay{ align-items:flex-start !important; overflow-y:auto !important; padding:80px 16px 24px !important; }
           .modal-grid{ grid-template-columns:1fr !important; }
           .modal-photo-panel{ min-height:200px !important; max-height:220px !important; }
-          .staff-modal-inner{
-            max-height:calc(100vh - 100px) !important;
-            border-radius:16px !important;
-            margin-top:80px !important;
-            align-self:flex-start !important;
-          }
+          .modal-close-pc{ display:none !important; }
+          .modal-close-sp{ display:block !important; }
         }
       `}</style>
     </div>
