@@ -832,62 +832,96 @@ function ReasonText({ r }) {
 }
 
 // ── Contact Page (Services/Products inquiry) ───────────
-function ContactPageRecruit() { return <RecruitInquiryPage/>; }
+function ContactPageRecruit() { return <ContactPageV2 defaultTab="recruit" />; }
+function RecruitInquiryPage() { return <ContactPageV2 defaultTab="recruit" />; }
 
-// ── Recruit / Careers Inquiry Page ─────────────────────
-function RecruitInquiryPage() {
-  const [form, setForm] = React.useState({
-    dept: "", name: "", kana: "", email: "", tel: "", address: "",
-    inquiry: "", agree: false,
-  });
-  const [sent, setSent] = React.useState(false);
-  const up = (k, v) => setForm((f) => ({ ...f, [k]: v }));
+// ── Unified Contact page with tab switching ────
+function ContactPageV2({ defaultTab = "service" }) {
+  const [tab, setTab] = React.useState(defaultTab);
+  const [form1, setForm1] = React.useState({ dept: "", name: "", kana: "", email: "", tel: "", address: "", inquiry: "", meeting: "", agree: false });
+  const [sent1, setSent1] = React.useState(false);
+  const [form2, setForm2] = React.useState({ dept: "", name: "", kana: "", email: "", tel: "", address: "", inquiry: "", agree: false });
+  const [sent2, setSent2] = React.useState(false);
+  const up1 = (k, v) => setForm1((f) => ({ ...f, [k]: v }));
+  const up2 = (k, v) => setForm2((f) => ({ ...f, [k]: v }));
+  const tabs = [
+    { id: "service", label: "サービス・製品についてのお問い合わせはこちら" },
+    { id: "recruit", label: "採用・その他のお問い合わせはこちら" },
+  ];
   return (
     <>
-      <PageHeader en="CONTACT - RECRUIT" ja="採用・その他のお問い合わせ"
-        lead="採用に関するご相談、取材・セミナーのご依頼、その他のご質問はこちらからお送りください。" />
-      <FormLayout phoneNote="※採用・その他のご質問もお気軽にご連絡ください。"
-        form={form} setForm={setForm} up={up} sent={sent} setSent={setSent}
-        deptOptions={[
-          ["recruit-new", "新卒採用について"],
-          ["recruit-mid", "中途採用について"],
-          ["recruit-part", "パート・アルバイトについて"],
-          ["media", "取材・メディアのご依頼"],
-          ["seminar", "セミナー・講演のご依頼"],
-          ["other", "その他のお問い合わせ"],
-        ]}
-        inquiryPH="ご希望職種、ご経験内容、取材のご依頼内容などをご記入ください。"
-        heading="採用・その他のお問い合わせフォーム" kind="recruit"/>
-      <RelatedLinks current="recruit"/>
-    </>
-  );
-}
-
-// ── General Contact page (rebuilt to match HIROKEI pattern) ────
-function ContactPageV2() {
-  const [form, setForm] = React.useState({
-    dept: "", name: "", kana: "", email: "", tel: "", address: "",
-    inquiry: "", meeting: "", agree: false,
-  });
-  const [sent, setSent] = React.useState(false);
-  const up = (k, v) => setForm((f) => ({ ...f, [k]: v }));
-  return (
-    <>
-      <PageHeader en="CONTACT" ja="サービス・製品のお問い合わせ"
-        lead="資産運用・税務・不動産・経営サポートに関するご相談、パッケージサービスのお見積り等はこちらから。" />
-      <FormLayout phoneNote="※初回のご相談は無料です。2営業日以内にご連絡いたします。"
-        form={form} setForm={setForm} up={up} sent={sent} setSent={setSent}
-        deptOptions={[
-          ["asset", "資産形成・資産運用について"],
-          ["tax",   "税務対策支援について"],
-          ["realestate", "不動産総合活用について"],
-          ["business", "経営サポートについて"],
-          ["seminar", "セミナー参加について"],
-          ["other", "その他"],
-        ]}
-        inquiryPH="ご相談内容・ご質問を具体的にご記入ください。"
-        heading="サービス・製品のお問い合わせフォーム" kind="service"/>
-      <RelatedLinks current="service"/>
+      <PageHeader en="CONTACT" ja="お問い合わせ"
+        lead="初回のご相談は無料です。ご入力いただいた内容をもとに、担当者より2営業日以内にご連絡いたします。" />
+      <section style={{ padding: "0 0 0" }}>
+        <div className="wrap" style={{ maxWidth: 1100 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", border: "1px solid var(--line)", borderRadius: 12, overflow: "hidden", marginBottom: 48 }} className="ct-tabs">
+            {tabs.map((t, i) => (
+              <button key={t.id} onClick={() => setTab(t.id)} className={`ct-tab-btn${tab === t.id ? " ct-tab-active" : ""}`} style={{
+                padding: "20px 24px", fontSize: 14, fontWeight: 600, cursor: "pointer",
+                background: tab === t.id ? "var(--ink)" : "#fff",
+                color: tab === t.id ? "#fff" : "var(--ink-2)",
+                borderRight: i === 0 ? "1px solid var(--line)" : "none",
+                transition: "background .2s, color .2s",
+              }}>{t.label}</button>
+            ))}
+          </div>
+          <style>{`
+            @media(max-width:640px){
+              .ct-tabs{
+                display:flex !important;
+                flex-direction:column !important;
+                border:none !important;
+                gap:12px !important;
+                background:transparent !important;
+                overflow:visible !important;
+              }
+              .ct-tab-btn{
+                border:none !important;
+                border-radius:999px !important;
+                padding:16px 24px !important;
+                font-size:14px !important;
+              }
+              .ct-tab-active{
+                background:var(--ink) !important;
+                color:#fff !important;
+              }
+              .ct-tab-btn:not(.ct-tab-active){
+                background:transparent !important;
+                color:var(--ink-2) !important;
+                font-weight:500 !important;
+                font-size:13px !important;
+              }
+            }
+          `}</style>
+        </div>
+      </section>
+      {tab === "service" ? (
+        <FormLayout phoneNote="※初回のご相談は無料です。2営業日以内にご連絡いたします。"
+          form={form1} setForm={setForm1} up={up1} sent={sent1} setSent={setSent1}
+          deptOptions={[
+            ["asset", "資産形成・資産運用について"],
+            ["tax",   "税務対策支援について"],
+            ["realestate", "不動産総合活用について"],
+            ["business", "経営サポートについて"],
+            ["seminar", "セミナー参加について"],
+            ["other", "その他"],
+          ]}
+          inquiryPH="ご相談内容・ご質問を具体的にご記入ください。"
+          heading="サービス・製品のお問い合わせフォーム" kind="service"/>
+      ) : (
+        <FormLayout phoneNote="※採用・その他のご質問もお気軽にご連絡ください。"
+          form={form2} setForm={setForm2} up={up2} sent={sent2} setSent={setSent2}
+          deptOptions={[
+            ["recruit-new", "新卒採用について"],
+            ["recruit-mid", "中途採用について"],
+            ["recruit-part", "パート・アルバイトについて"],
+            ["media", "取材・メディアのご依頼"],
+            ["seminar", "セミナー・講演のご依頼"],
+            ["other", "その他のお問い合わせ"],
+          ]}
+          inquiryPH="ご希望職種、ご経験内容、取材のご依頼内容などをご記入ください。"
+          heading="採用・その他のお問い合わせフォーム" kind="recruit"/>
+      )}
     </>
   );
 }
@@ -907,32 +941,6 @@ function FormLayout({ form, up, sent, setSent, deptOptions, inquiryPH, heading, 
   return (
     <section style={{ padding: "40px 0 100px" }}>
       <div className="wrap" style={{ maxWidth: 1100 }}>
-        {/* phone CTA pre-form */}
-        <Reveal>
-          <div style={{
-            display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 0,
-            border: "1px solid var(--line)", borderRadius: 16, overflow: "hidden",
-            background: "#fff", marginBottom: 56,
-          }} className="ct-phone-grid">
-            <div style={{ padding: "28px 32px", borderRight: "1px solid var(--line)" }}>
-              <div className="en" style={{ fontSize: 10, letterSpacing: "0.24em", color: "var(--pur-3)", marginBottom: 8 }}>BY PHONE</div>
-              <div style={{ fontSize: 26, fontWeight: 800, letterSpacing: "0.01em", fontFamily: "var(--font-en)" }}>029-877-6322</div>
-              <div style={{ fontSize: 11, color: "var(--ink-3)", marginTop: 8 }}>9:30〜18:30（日祝祭日を除く）</div>
-            </div>
-            <div style={{ padding: "28px 32px", borderRight: "1px solid var(--line)" }}>
-              <div className="en" style={{ fontSize: 10, letterSpacing: "0.24em", color: "var(--pur-3)", marginBottom: 8 }}>BY FAX</div>
-              <div style={{ fontSize: 22, fontWeight: 700, fontFamily: "var(--font-en)" }}>029-877-6323</div>
-              <div style={{ fontSize: 11, color: "var(--ink-3)", marginTop: 8 }}>24時間受付</div>
-            </div>
-            <div style={{ padding: "28px 32px" }}>
-              <div className="en" style={{ fontSize: 10, letterSpacing: "0.24em", color: "var(--pur-3)", marginBottom: 8 }}>BY LINE / ONLINE</div>
-              <div style={{ fontSize: 14, fontWeight: 700, marginTop: 2 }}>Zoom / LINE 相談</div>
-              <div style={{ fontSize: 11, color: "var(--ink-3)", marginTop: 8 }}>全国対応・要予約</div>
-            </div>
-          </div>
-          <style>{`@media(max-width:820px){.ct-phone-grid{grid-template-columns:1fr !important;}.ct-phone-grid > div{border-right:0 !important;border-bottom:1px solid var(--line);}}`}</style>
-        </Reveal>
-
         {sent ? (
           <Reveal>
             <div style={{ padding: "80px 48px", background: "var(--bg-2)", borderRadius: 16, textAlign: "center" }}>
