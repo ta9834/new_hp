@@ -838,20 +838,20 @@ function RecruitInquiryPage() { return <ContactPageV2 defaultTab="recruit" />; }
 // ── Unified Contact page with tab switching ────
 function ContactPageV2({ defaultTab = "service" }) {
   const [tab, setTab] = React.useState(defaultTab);
-  const [form1, setForm1] = React.useState({ dept: "", name: "", kana: "", email: "", tel: "", address: "", inquiry: "", meeting: "", agree: false });
+  const [form1, setForm1] = React.useState({ dept: "", company: "", name: "", kana: "", email: "", tel: "", address: "", inquiry: "", meeting: "", agree: false });
   const [sent1, setSent1] = React.useState(false);
-  const [form2, setForm2] = React.useState({ dept: "", name: "", kana: "", email: "", tel: "", address: "", inquiry: "", agree: false });
+  const [form2, setForm2] = React.useState({ dept: "", company: "", name: "", kana: "", email: "", tel: "", address: "", inquiry: "", agree: false });
   const [sent2, setSent2] = React.useState(false);
   const up1 = (k, v) => setForm1((f) => ({ ...f, [k]: v }));
   const up2 = (k, v) => setForm2((f) => ({ ...f, [k]: v }));
   const tabs = [
-    { id: "service", label: "サービス・製品についてのお問い合わせはこちら" },
-    { id: "recruit", label: "採用・その他のお問い合わせはこちら" },
+    { id: "service", label: "お客様からのお問い合わせはこちら" },
+    { id: "recruit", label: "パートナー・協業のお問い合わせはこちら" },
   ];
   return (
     <>
       <PageHeader en="CONTACT" ja="お問い合わせ"
-        lead="初回のご相談は無料です。ご入力いただいた内容をもとに、担当者より2営業日以内にご連絡いたします。" />
+        lead="お気軽にご連絡ください。ご入力いただいた内容をもとに、担当者より2営業日以内にご連絡いたします。" />
       <section style={{ padding: "0 0 0" }}>
         <div className="wrap" style={{ maxWidth: 1100 }}>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", border: "1px solid var(--line)", borderRadius: 12, overflow: "hidden", marginBottom: 48 }} className="ct-tabs">
@@ -899,28 +899,29 @@ function ContactPageV2({ defaultTab = "service" }) {
         <FormLayout phoneNote="※初回のご相談は無料です。2営業日以内にご連絡いたします。"
           form={form1} setForm={setForm1} up={up1} sent={sent1} setSent={setSent1}
           deptOptions={[
-            ["asset", "資産形成・資産運用について"],
-            ["tax",   "税務対策支援について"],
+            ["asset",      "資産形成・資産運用について"],
+            ["tax",        "税務対策支援について"],
             ["realestate", "不動産総合活用について"],
-            ["business", "経営サポートについて"],
-            ["seminar", "セミナー参加について"],
-            ["other", "その他"],
+            ["business",   "経営サポートについて"],
+            ["ai",         "AI導入支援について"],
+            ["seminar",    "セミナー参加について"],
+            ["other",      "その他"],
           ]}
           inquiryPH="ご相談内容・ご質問を具体的にご記入ください。"
-          heading="サービス・製品のお問い合わせフォーム" kind="service"/>
+          heading="お客様からのお問い合わせフォーム" kind="service"/>
       ) : (
-        <FormLayout phoneNote="※採用・その他のご質問もお気軽にご連絡ください。"
+        <FormLayout phoneNote="※担当者より2営業日以内にご連絡いたします。"
           form={form2} setForm={setForm2} up={up2} sent={sent2} setSent={setSent2}
           deptOptions={[
-            ["recruit-new", "新卒採用について"],
-            ["recruit-mid", "中途採用について"],
-            ["recruit-part", "パート・アルバイトについて"],
+            ["partner", "業務提携・パートナーシップについて"],
+            ["project", "共同プロジェクト・協業について"],
+            ["referral", "情報提供・紹介について"],
             ["media", "取材・メディアのご依頼"],
             ["seminar", "セミナー・講演のご依頼"],
             ["other", "その他のお問い合わせ"],
           ]}
-          inquiryPH="ご希望職種、ご経験内容、取材のご依頼内容などをご記入ください。"
-          heading="採用・その他のお問い合わせフォーム" kind="recruit"/>
+          inquiryPH="ご提案内容・ご依頼内容を具体的にご記入ください。"
+          heading="パートナー・協業のお問い合わせフォーム" kind="recruit"/>
       )}
     </>
   );
@@ -980,6 +981,9 @@ function FormLayout({ form, up, sent, setSent, deptOptions, inquiryPH, heading, 
                 {errors.dept && <ErrMsg>{errors.dept}</ErrMsg>}
               </FormRow>
 
+              <FormRow label="会社名">
+                <TextInput v={form.company} oc={(v) => up("company", v)} ph="株式会社〇〇（個人の場合は空欄可）"/>
+              </FormRow>
               <FormRow label="お名前" req>
                 <TextInput v={form.name} oc={(v) => up("name", v)} ph="山田 太郎"/>
                 {errors.name && <ErrMsg>{errors.name}</ErrMsg>}
@@ -1004,20 +1008,19 @@ function FormLayout({ form, up, sent, setSent, deptOptions, inquiryPH, heading, 
               </FormRow>
 
               {kind === "service" && (
-                <FormRow label="Web会議もしくは対面（ご来社）での相談を希望する">
+                <FormRow label="Web会議もしくは対面での相談を希望する">
                   <select
                     value={form.meeting || ""}
                     onChange={(e) => up("meeting", e.target.value)}
                     style={inputStyle({ appearance: "auto", cursor: "pointer" })}
                   >
                     <option value="">—以下から選択してください—</option>
-                    <option value="none">希望しない</option>
                     <option value="web">Web会議</option>
-                    <option value="inperson">対面（ご来社）</option>
+                    <option value="inperson">対面</option>
                     <option value="either">対面・Web会議どちらでも可</option>
                   </select>
                   <p style={{ fontSize: 12, color: "var(--ink-3)", marginTop: 10, lineHeight: 1.8 }}>
-                    ※ご希望いただいた場合、改めて担当者より日程候補をご連絡いたします。Web会議はZoomを使用いたします。
+                    ※ご希望いただいた場合、改めて担当者より日程候補をご連絡いたします。
                   </p>
                 </FormRow>
               )}
@@ -1028,7 +1031,7 @@ function FormLayout({ form, up, sent, setSent, deptOptions, inquiryPH, heading, 
               }}>
                 <div style={{ fontSize: 13, fontWeight: 700, marginBottom: 10, color: "var(--ink)" }}>個人情報の取り扱いについて</div>
                 <p>
-                  ご提供いただく個人情報は、お問い合わせへの回答および必要なご連絡のために利用し、法令に基づく場合を除き、ご本人の同意なく第三者へ提供することはいたしません。詳細は<a href="#" onClick={(e) => e.preventDefault()} style={{ textDecoration: "underline", color: "var(--pur-3)" }}>プライバシーポリシー</a>をご確認ください。
+                  ご提供いただく個人情報は、お問い合わせへの回答および必要なご連絡のために利用し、法令に基づく場合を除き、ご本人の同意なく第三者へ提供することはいたしません。詳細は<a href="#privacy" onClick={(e) => { e.preventDefault(); window.__setRoute?.("privacy"); }} style={{ textDecoration: "underline", color: "var(--pur-3)" }}>プライバシーポリシー</a>をご確認ください。
                 </p>
               </div>
 
@@ -1280,15 +1283,15 @@ function StaffModal({ staff, onClose }) {
 
             <div style={{ padding: "18px 20px", background: "var(--bg-2)", borderRadius: 12, marginBottom: 22, borderLeft: "3px solid var(--pur-3)" }}>
               <div style={{ fontSize: 11, color: "var(--pur-3)", letterSpacing: "0.2em", marginBottom: 6 }}>MESSAGE</div>
-              <p style={{ fontSize: 14, lineHeight: 1.9, color: "var(--ink)" }}>「{staff.msg}」</p>
+              <p style={{ fontSize: 14, lineHeight: 1.9, color: "var(--ink)" }}>{staff.msg}</p>
             </div>
 
             {[
-              { label: "専門領域", items: staff.spec },
-              { label: "保有資格", items: staff.qual },
+              { label: "専門領域", en: "SPECIALTY", items: staff.spec },
+              { label: "保有資格", en: "QUALIFICATIONS", items: staff.qual },
             ].map((sec) => (
               <div key={sec.label} style={{ marginBottom: 18 }}>
-                <div style={{ fontSize: 11, color: "var(--ink-3)", letterSpacing: "0.2em", marginBottom: 8 }}>{sec.label.toUpperCase()} / {sec.label}</div>
+                <div style={{ fontSize: 11, color: "var(--ink-3)", letterSpacing: "0.2em", marginBottom: 8 }}>{sec.en} / {sec.label}</div>
                 <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
                   {sec.items.map((it) => (
                     <span key={it} style={{ fontSize: 12, padding: "6px 12px", borderRadius: 999, border: "1px solid var(--line)", background: "#fff", color: "var(--ink-2)" }}>{it}</span>
@@ -1328,21 +1331,36 @@ function PolicyPage({ kind }) {
   const meta = {
     privacy: {
       en: "PRIVACY POLICY", ja: "プライバシーポリシー",
-      lead: "株式会社PAS企画（以下、当社）は、お客様の個人情報を適切に保護し、取扱いに細心の注意を払うことを責務と考え、以下のとおりプライバシーポリシーを定め、全役職員に周知徹底いたします。",
+      lead: "株式会社PAS企画（以下、当社）は、事業に係る業務遂行および連絡のために取り扱うお客様の個人情報を、個人情報の保護に関する法律その他関係法令を遵守し、以下のとおり適切に取り扱います。",
       sections: [
-        { h: "1. 個人情報の取得について", p: "当社は、お客様からご提供いただく個人情報を、適法かつ公正な手段により取得いたします。ご相談・お問い合わせの際には、その利用目的を明示した上で、必要な範囲で情報の提供をお願いいたします。" },
-        { h: "2. 個人情報の利用目的", p: "お預かりした個人情報は、以下の目的で利用いたします。", list: [
-          "お客様からのお問い合わせ・ご相談への対応",
-          "資産運用・税務・不動産・保険等のアドバイザリーサービス提供",
-          "セミナー・個別相談会の開催およびご案内",
-          "当社サービスに関する各種ご案内・情報提供",
-          "法令・規則に基づく手続きの遂行",
+        { h: "第1条 個人情報の取得", p: "当社は、お客様からご提供いただく個人情報を、適法かつ公正な手段により取得し、利用目的の範囲内でのみ利用いたします。" },
+        { h: "第2条 個人情報の利用目的", p: "お預かりした個人情報は、以下の目的で利用いたします。", list: [
+          "資産形成・資産運用に関する情報提供",
+          "相続・不動産コンサルティング業務",
+          "提携保険会社の保険商品販売",
+          "イベント・セミナーのご案内",
+          "商品・サービスのご案内",
+          "本人確認",
+          "統計データの作成",
+          "お客様のご感想・事例のご紹介",
+          "契約・法律に基づく権利の行使および義務の履行",
+          "その他業務遂行に必要な手続き",
         ]},
-        { h: "3. 個人情報の第三者提供", p: "当社は、法令に基づく場合を除き、あらかじめお客様の同意を得ることなく、個人情報を第三者に提供いたしません。業務委託先に提供する場合には、委託先との間で機密保持契約を締結し、適切な監督を行います。" },
-        { h: "4. 安全管理措置", p: "当社は、個人情報への不正アクセス、紛失、破壊、改ざん、漏洩等を防止するため、組織的・人的・物理的・技術的な安全管理措置を講じます。" },
-        { h: "5. 個人情報の開示・訂正・削除", p: "お客様ご本人からの個人情報の開示、訂正、追加、削除、利用停止のご請求があった場合には、所定の手続きに従い合理的な範囲で速やかに対応いたします。" },
-        { h: "6. お問い合わせ窓口", p: "個人情報の取扱いに関するお問い合わせは、下記までご連絡ください。", contact: true },
-        { h: "7. 本ポリシーの改定", p: "当社は、法令の改正、社会情勢の変化等に応じて、本プライバシーポリシーを予告なく変更することがあります。最新の内容は常に本ページに掲載いたします。" },
+        { h: "第3条 個人情報の第三者提供", p: "当社は、以下の場合を除き、あらかじめお客様の同意を得ることなく、個人情報を第三者に提供いたしません。", list: [
+          "法令に基づく場合",
+          "人の生命・身体・財産の保護のために必要な場合",
+          "公衆衛生の向上または児童の健全育成のために特に必要な場合",
+          "国の機関もしくは地方公共団体またはその委託を受けた者が法令の定める事務を遂行するために必要な場合",
+          "当社が提携する保険会社への提供",
+          "当社が提携する金融商品取引業者への提供",
+          "海外の金融商品情報提供者への紹介",
+          "業務委託先への提供（委託先との間で機密保持契約を締結し、適切な監督を行います）",
+        ]},
+        { h: "第4条 個人情報の安全管理", p: "当社は、個人情報への不正アクセス、紛失、破壊、改ざん、漏洩等を防止するため、組織的・人的・物理的・技術的な安全管理措置を講じ、従業員への適切な監督を実施いたします。" },
+        { h: "第5条 機微情報の取り扱い", p: "政治的見解、信教（宗教・思想・信条）、労働組合への加盟、民族的出自、健康・性生活等に関する機微な個人情報については、法令等に基づく場合またはご本人の同意がある場合に限り取り扱います。" },
+        { h: "第6条 個人情報の開示・訂正・削除", p: "お客様ご本人からの個人情報の開示、訂正、追加、削除、利用停止のご請求があった場合には、所定の手続きに従い合理的な範囲で速やかに対応いたします。" },
+        { h: "第7条 本ポリシーの改定", p: "当社は、法令の改正、社会情勢の変化等に応じて、本プライバシーポリシーを随時改訂いたします。最新の内容は常に本ページに掲載いたします。" },
+        { h: "第8条 個人情報に関するお問い合わせ窓口", p: "個人情報の取扱いに関するお問い合わせは、下記までご連絡ください。", contact: true },
       ],
       rev: "2026年4月1日 改定",
     },
@@ -1419,7 +1437,8 @@ function PolicyPage({ kind }) {
                 <div style={{ marginTop: 18, padding: 22, background: "var(--bg-2)", borderRadius: 10, fontSize: 13, lineHeight: 2 }}>
                   株式会社PAS企画　個人情報お問い合わせ窓口<br/>
                   〒300-3261 茨城県つくば市花畑3丁目13番地10 ヤマグチビル3階<br/>
-                  TEL：029-877-6322（9:30〜18:30／日祝祭日を除く）
+                  TEL：029-877-6322　FAX：029-877-6323<br/>
+                  営業時間：9:30〜18:30（日曜・祝日を除く）
                 </div>
               )}
             </div>

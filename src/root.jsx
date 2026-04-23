@@ -48,6 +48,7 @@ function App() {
       <main data-screen-label={route} style={{ position: "relative", zIndex: 1 }}>{page}</main>
       <Footer />
       <TweaksPanel />
+      <ChatBot />
     </>
   );
 }

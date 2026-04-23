@@ -102,26 +102,21 @@ function ContactBand() {
           ご相談・ご質問等ございましたら、<span className="contact-br"><br/></span>どうぞお気軽にお問い合わせください。
           <style>{`@media(min-width:601px){.contact-br{display:none;}}`}</style>
         </p></Reveal>
-        <Reveal delay={3}><div style={{ display: "flex", gap: 28, justifyContent: "center", flexWrap: "wrap" }}>
-          {[
-            { t: "サービス・製品のお問い合わせ", id: "contact" },
-            { t: "採用・その他のお問い合わせ",    id: "contact-recruit" },
-          ].map((c, i) => (
-            <a key={i} href={`#${c.id}`} onClick={(e) => { e.preventDefault(); window.__setRoute?.(c.id); }}
-               style={{
-                 display: "flex", alignItems: "center", justifyContent: "space-between",
-                 background: "#fff", borderRadius: 999,
-                 padding: "22px 30px 22px 38px", minWidth: 380,
-                 boxShadow: "0 8px 24px -8px rgba(60,40,120,0.2)",
-                 color: "#2a2340", fontWeight: 600, fontSize: 16, gap: 20,
-                 transition: "transform .3s",
-               }}
-               onMouseEnter={(e) => e.currentTarget.style.transform = "translateY(-3px)"}
-               onMouseLeave={(e) => e.currentTarget.style.transform = "none"}>
-              <div>{c.t}</div>
-              <span style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", width: 36, height: 36, borderRadius: 999, border: "1px solid var(--pur-3)", color: "var(--pur-3)" }}>→</span>
-            </a>
-          ))}
+        <Reveal delay={3}><div style={{ display: "flex", justifyContent: "center" }}>
+          <a href="#contact" onClick={(e) => { e.preventDefault(); window.__setRoute?.("contact"); }}
+             style={{
+               display: "flex", alignItems: "center", justifyContent: "space-between",
+               background: "#fff", borderRadius: 999,
+               padding: "22px 30px 22px 38px", minWidth: 340,
+               boxShadow: "0 8px 24px -8px rgba(60,40,120,0.2)",
+               color: "#2a2340", fontWeight: 600, fontSize: 16, gap: 20,
+               transition: "transform .3s",
+             }}
+             onMouseEnter={(e) => e.currentTarget.style.transform = "translateY(-3px)"}
+             onMouseLeave={(e) => e.currentTarget.style.transform = "none"}>
+            <div>お問い合わせはこちら</div>
+            <span style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", width: 36, height: 36, borderRadius: 999, border: "1px solid var(--pur-3)", color: "var(--pur-3)" }}>→</span>
+          </a>
         </div></Reveal>
       </div>
     </section>
