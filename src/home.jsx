@@ -28,13 +28,13 @@ function Hero() {
         <div className="wrap" style={{ textAlign: "center" }}>
           <Reveal><div className="gentle-float" style={{ display: "inline-block" }}><Logo size={56} /></div></Reveal>
           <Reveal delay={1}><h2 style={{ fontSize: 26, fontWeight: 700, marginTop: 36, lineHeight: 1.6 }}>
-            お金に関するさまざまな課題や不安を解決し、<br/>
-            お客様の「いま」と「これから」を共に創ります。
+            お客様を取り巻く、あらゆる課題に。<br/>
+            領域の垣根を越えて、お客様の「いま」と「これから」を共に創ります。
           </h2></Reveal>
           <Reveal delay={2}><p style={{ fontSize: 14, color: "var(--ink-2)", marginTop: 32, lineHeight: 2.1, maxWidth: 820, margin: "32px auto 0" }}>
-            株式会社PAS企画は、独立系の総合アドバイザーです。<br/>
-            資産形成・税務・不動産・経営サポート・AI導入支援を、一つの窓口で中立的にご提案します。<br/>
-            個人・法人・業種を問わず、お客様本位の多角的支援を宣言しています。
+            株式会社PAS企画は、特定の金融機関・業界に属さない独立系のアドバイザリー集団です。<br/>
+            資産形成・税務・不動産・経営サポート・AI活用DX推進——5つの専門領域を一つの窓口で横断的にご提案し、<br/>
+            個人・法人・業種を問わず、お客様本位の視点で最適解を追求します。
           </p></Reveal>
         </div>
       </div>
@@ -123,7 +123,7 @@ function StrengthsCircles() {
 
         <Reveal delay={3}><p style={{ fontSize: 14, color: "var(--ink-2)", marginTop: 56, lineHeight: 2.1, maxWidth: 760, margin: "56px auto 0" }}>
           創業以来、私たちはお客様一人ひとりに寄り添い、<br/>
-          「お金にまつわる迷いを、信頼できる相談相手と共に解いていく」——その想いで歩んでまいりました。
+          「資産・事業・未来のあらゆる迷いを、信頼できる相談相手と共に解きほぐしていく」——その想いで歩んでまいりました。
         </p></Reveal>
 
         <div style={{ display: "flex", justifyContent: "center", flexWrap: "wrap", marginTop: 72, position: "relative" }} className="circles-row">
@@ -183,7 +183,7 @@ function ServicesOverlap() {
       case "税務対策支援": return <svg width="36" height="36" viewBox="0 0 28 28"><rect x="5" y="5" width="18" height="18" rx="1.5" fill="none" stroke="currentColor" strokeWidth="1.2"/><path d="M9 12h10M9 16h10M9 20h6" stroke="currentColor" strokeWidth="1.2"/></svg>;
       case "不動産総合活用": return <svg width="36" height="36" viewBox="0 0 28 28"><path d="M4 13 L14 5 L24 13 V23 H4 Z" fill="none" stroke="currentColor" strokeWidth="1.2"/><rect x="12" y="17" width="4" height="6" fill="none" stroke="currentColor" strokeWidth="1.2"/></svg>;
       case "経営サポート": return <svg width="36" height="36" viewBox="0 0 28 28"><rect x="5" y="8" width="8" height="16" fill="none" stroke="currentColor" strokeWidth="1.2"/><rect x="15" y="4" width="8" height="20" fill="none" stroke="currentColor" strokeWidth="1.2"/></svg>;
-      case "AI導入支援": return <svg width="36" height="36" viewBox="0 0 28 28" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2v4"/><circle cx="14" cy="1.5" r="1.5"/><rect x="3" y="6" width="22" height="16" rx="2.5"/><rect x="8" y="11" width="3.5" height="3.5" rx="0.8" fill="currentColor" stroke="none"/><rect x="16.5" y="11" width="3.5" height="3.5" rx="0.8" fill="currentColor" stroke="none"/><path d="M10 18.5 Q14 21 18 18.5"/><path d="M3 14H1M25 14h2"/></svg>;
+      case "AI活用・DX推進": return <svg width="36" height="36" viewBox="0 0 28 28" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2v4"/><circle cx="14" cy="1.5" r="1.5"/><rect x="3" y="6" width="22" height="16" rx="2.5"/><rect x="8" y="11" width="3.5" height="3.5" rx="0.8" fill="currentColor" stroke="none"/><rect x="16.5" y="11" width="3.5" height="3.5" rx="0.8" fill="currentColor" stroke="none"/><path d="M10 18.5 Q14 21 18 18.5"/><path d="M3 14H1M25 14h2"/></svg>;
       default: return null;
     }
   };
@@ -195,15 +195,16 @@ function ServicesOverlap() {
           <div className="en" style={{ fontSize: 11, letterSpacing: "0.28em", color: "var(--ink-3)", marginTop: 6 }}>OUR SERVICES</div>
         </div></Reveal>
         <Reveal delay={1}><p style={{ textAlign: "center", fontSize: 14, color: "var(--ink-2)", lineHeight: 2.1, maxWidth: 760, margin: "0 auto 64px" }}>
-          資産形成、税務、不動産、経営、そしてAI導入まで。<br/>
-          お金・経営にまつわる領域を一つの窓口で、中立的にご提案します。
+          個人の資産形成から企業の経営課題、AIを駆使したDX推進まで。<br/>
+          5つの領域を横断的に掛け合わせることで、単独の専門家では届かない「最適解」へ導きます。
         </p></Reveal>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: 18 }} className="svc-grid">
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: 18, alignItems: "stretch" }} className="svc-grid">
           {SERVICES.map((s, i) => (
-            <Reveal key={s.no} delay={Math.min(i + 1, 4)}>
+            <Reveal key={s.no} delay={Math.min(i + 1, 4)} style={{ height: "100%" }}>
               <a href="#services" onClick={(e) => { e.preventDefault(); window.__pendingScroll = `section-service-${s.no}`; window.__setRoute?.("services"); }} style={{
-                display: "block", padding: "32px 20px 28px", border: "1px solid var(--line)",
-                background: "rgba(255,255,255,0.85)", borderRadius: 4,
+                display: "flex", flexDirection: "column", justifyContent: "flex-start",
+                height: "100%", padding: "32px 20px 28px", border: "1px solid var(--line)",
+                background: "rgba(255,255,255,0.85)", borderRadius: 4, boxSizing: "border-box",
                 transition: "transform .3s, box-shadow .3s, border-color .3s",
                 textAlign: "center", color: "var(--ink)",
               }}
@@ -281,10 +282,10 @@ function StaffPreview() {
               <div className="en" style={{ fontSize: 11, letterSpacing: "0.28em", color: "var(--ink-3)", marginBottom: 8 }}>STAFF</div>
               <h3 style={{ fontSize: 40, fontWeight: 700, letterSpacing: "0.04em", marginBottom: 28 }}>スタッフ紹介</h3>
               <p style={{ fontSize: 14, color: "var(--ink-2)", lineHeight: 2.05, marginBottom: 20 }}>
-                資産運用、税務、不動産、経営、そしてテクノロジー——<br/>それぞれの専門領域で経験を積んだメンバーが、お客様のベストパートナーとしてご一緒します。
+                資産運用、税務、不動産、経営、そしてテクノロジー——<br/>それぞれの分野で実務経験を重ねたメンバーが、お客様のベストパートナーとして並走します。
               </p>
               <p style={{ fontSize: 14, color: "var(--ink-2)", lineHeight: 2.05, marginBottom: 32 }}>
-                「顔の見える関係」を大切に、一人ひとりが責任を持ってご担当。どんなメンバーがお客様の窓口に立つのか、ぜひご覧ください。
+                「顔の見える関係」を大切に、一人ひとりが責任を持ってご担当します。お客様の窓口に立つのはどんなメンバーか、ぜひご覧ください。
               </p>
               <a href="#staff" onClick={(e) => { e.preventDefault(); window.__setRoute?.("staff"); }} className="circle-btn" />
             </div>

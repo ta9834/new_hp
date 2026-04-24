@@ -18,7 +18,7 @@ const BOT_FLOWS = {
       { t: "税務対策支援", next: "svc_tax" },
       { t: "不動産総合活用", next: "svc_estate" },
       { t: "経営サポート", next: "svc_biz" },
-      { t: "AI導入支援", next: "svc_ai" },
+      { t: "AI活用・DX推進", next: "svc_ai" },
       { t: "最初に戻る", next: "start" },
     ],
   },
@@ -55,7 +55,7 @@ const BOT_FLOWS = {
     ],
   },
   svc_ai: {
-    msg: "【AI導入支援】\n業務効率化・自動化・データ活用など、中小企業でも実践できるAI活用をご提案。導入計画から運用まで一貫してサポートします。",
+    msg: "【AI活用・DX推進】\nAIを駆使したDX推進をトータルでご支援します。AI導入支援・社員向けの使い方指導に加え、Webサイト・LP・コンテンツ制作をAI活用で大幅コストダウンしてご提供。業務自動化・ワークフロー設計までワンストップでサポートします。",
     opts: [
       { t: "詳しく見る", goto: "services" },
       { t: "無料相談を申し込む", goto: "contact" },

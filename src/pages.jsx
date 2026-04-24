@@ -22,7 +22,7 @@ function AboutPage() {
             <h2 style={{ fontSize: 32, fontWeight: 700, marginBottom: 24 }}>代表メッセージ</h2>
             <p style={{ fontSize: 18, fontWeight: 600, lineHeight: 1.9, marginBottom: 24 }}>「お金と事業の悩みを、すべて最適解へ」——業種・規模・世代を問わず、あらゆるお客様のベストパートナーへ。</p>
             <p style={{ fontSize: 14, color: "var(--ink-2)", lineHeight: 2.05, marginBottom: 20 }}>
-              資産運用、税務対策、不動産活用、経営サポート、そしてAI導入支援——。私たちPAS企画は、お金と事業にまつわる多様な課題を、一つの組織で横断的に解決できる総合アドバイザリー集団を目指しています。個人の資産形成から中小企業の経営改善まで、領域の垣根を越えて最適解を追求することが、私たちの存在意義です。
+              資産運用、税務対策、不動産活用、経営サポート、そしてAI活用DX推進——。私たちPAS企画は、お金と事業にまつわる多様な課題を、一つの組織で横断的に解決できる総合アドバイザリー集団を目指しています。個人の資産形成から中小企業の経営改善まで、領域の垣根を越えて最適解を追求することが、私たちの存在意義です。
             </p>
             <p style={{ fontSize: 14, color: "var(--ink-2)", lineHeight: 2.05, marginBottom: 20 }}>
               創業当初から大切にしてきたのは、「特定の金融商品や手法を売る」のではなく、「お客様の状況に最も合った選択肢を、中立的な立場で提示する」というスタンスです。会社員の方の資産形成から、経営者様の事業承継・法人保険、不動産オーナー様の資産組み替え、さらには業務効率化のためのAI活用まで——お客様の属性やフェーズに応じた多角的な支援が、PAS企画の強みです。
@@ -258,7 +258,7 @@ function ServicesPage() {
   }, []);
   return (
     <>
-      <PageHeader en="OUR SERVICES" ja="事業内容" crumb={["事業内容"]} lead={<>資産形成・税務・不動産・経営・AI——<br/>5つの専門領域を一つの組織で横断的に支援する、<span className="sv-lead-br"><br/></span>コングロマリット型アドバイザリーサービス。<style>{`@media(min-width:601px){.sv-lead-br{display:none;}}`}</style></>} />
+      <PageHeader en="OUR SERVICES" ja="事業内容" crumb={["事業内容"]} lead={<>資産形成・税務・不動産・経営・AI——<br/>別々に相談するしかなかった5つの領域を、<span className="sv-lead-br"><br/></span>一つの窓口で横断的に支援する「コングロマリット型」アドバイザリー。<style>{`@media(min-width:601px){.sv-lead-br{display:none;}}`}</style></>} />
 
       <section style={{ padding: "80px 0 60px" }}>
         <div className="wrap">
@@ -564,7 +564,7 @@ function NewsDetailPage({ id }) {
               </div>
             </div>
             <a href="#contact" onClick={(e) => { e.preventDefault(); window.__setRoute?.("contact"); }}
-               style={{ display: "inline-flex", alignItems: "center", gap: 10, padding: "14px 28px", borderRadius: 999, background: "var(--ink)", color: "#fff", fontSize: 13, fontWeight: 600 }}>
+               style={{ display: "inline-flex", alignItems: "center", gap: 10, padding: "14px 28px", borderRadius: 999, background: "linear-gradient(90deg, var(--c1) 0%, var(--c2) 100%)", color: "#fff", fontSize: 13, fontWeight: 600 }}>
               このお知らせについて問い合わせる <span>→</span>
             </a>
           </div>
@@ -672,8 +672,8 @@ function ContactPage() {
                 </Field>
                 <button type="submit" style={{
                   alignSelf: "flex-start", padding: "18px 40px", borderRadius: 999,
-                  background: "var(--ink)", color: "#fff", fontSize: 14, fontWeight: 600, letterSpacing: "0.04em",
-                  display: "inline-flex", alignItems: "center", gap: 12,
+                  background: "linear-gradient(90deg, var(--c1) 0%, var(--c2) 100%)", color: "#fff", fontSize: 14, fontWeight: 600, letterSpacing: "0.04em",
+                  display: "inline-flex", alignItems: "center", gap: 12, border: "none",
                 }}>
                   送信する <span style={{ color: "var(--c6)" }}>→</span>
                 </button>
@@ -709,7 +709,7 @@ function Input({ v, oc, ph, t = "text" }) {
 function BestPartnerPage() {
   return (
     <>
-      <PageHeader en="BEST PARTNER" ja="選ばれる理由" crumb={["選ばれる理由"]} lead="「数ある金融アドバイザーの中で、なぜPAS企画なのか？」——4つの理由で、私たちの価値をお伝えします。" />
+      <PageHeader en="BEST PARTNER" ja="選ばれる理由" crumb={["選ばれる理由"]} lead="「数ある選択肢の中で、なぜPAS企画なのか？」——4つの理由で、私たちの価値をお伝えします。" />
       <section style={{ padding: "60px 0 40px" }}>
         <div className="wrap" style={{ textAlign: "center", maxWidth: 820 }}>
           <Reveal>
@@ -834,9 +834,9 @@ function RecruitInquiryPage() { return <ContactPageV2 defaultTab="recruit" />; }
 // ── Unified Contact page with tab switching ────
 function ContactPageV2({ defaultTab = "service" }) {
   const [tab, setTab] = React.useState(defaultTab);
-  const [form1, setForm1] = React.useState({ dept: "", company: "", name: "", kana: "", email: "", tel: "", address: "", inquiry: "", meeting: "", agree: false });
+  const [form1, setForm1] = React.useState({ dept: "", customerType: "", company: "", name: "", kana: "", email: "", tel: "", address: "", inquiry: "", meeting: "", agree: false });
   const [sent1, setSent1] = React.useState(false);
-  const [form2, setForm2] = React.useState({ dept: "", company: "", name: "", kana: "", email: "", tel: "", address: "", inquiry: "", agree: false });
+  const [form2, setForm2] = React.useState({ dept: "", customerType: "", company: "", name: "", kana: "", email: "", tel: "", address: "", inquiry: "", agree: false });
   const [sent2, setSent2] = React.useState(false);
   const up1 = (k, v) => setForm1((f) => ({ ...f, [k]: v }));
   const up2 = (k, v) => setForm2((f) => ({ ...f, [k]: v }));
@@ -854,7 +854,7 @@ function ContactPageV2({ defaultTab = "service" }) {
             {tabs.map((t, i) => (
               <button key={t.id} onClick={() => setTab(t.id)} className={`ct-tab-btn${tab === t.id ? " ct-tab-active" : ""}`} style={{
                 padding: "20px 24px", fontSize: 14, fontWeight: 600, cursor: "pointer",
-                background: tab === t.id ? "var(--ink)" : "#fff",
+                background: tab === t.id ? "linear-gradient(90deg, var(--c1) 0%, var(--c2) 100%)" : "#fff",
                 color: tab === t.id ? "#fff" : "var(--ink-2)",
                 borderRight: i === 0 ? "1px solid var(--line)" : "none",
                 transition: "background .2s, color .2s",
@@ -878,7 +878,7 @@ function ContactPageV2({ defaultTab = "service" }) {
                 font-size:14px !important;
               }
               .ct-tab-active{
-                background:var(--ink) !important;
+                background:linear-gradient(90deg, var(--c1) 0%, var(--c2) 100%) !important;
                 color:#fff !important;
               }
               .ct-tab-btn:not(.ct-tab-active){
@@ -899,7 +899,7 @@ function ContactPageV2({ defaultTab = "service" }) {
             ["tax",        "税務対策支援について"],
             ["realestate", "不動産総合活用について"],
             ["business",   "経営サポートについて"],
-            ["ai",         "AI導入支援について"],
+            ["ai",         "AI活用・DX推進について"],
             ["seminar",    "セミナー参加について"],
             ["other",      "その他"],
           ]}
@@ -925,16 +925,39 @@ function ContactPageV2({ defaultTab = "service" }) {
 
 function FormLayout({ form, up, sent, setSent, deptOptions, inquiryPH, heading, phoneNote, kind }) {
   const [errors, setErrors] = React.useState({});
+  const [confirming, setConfirming] = React.useState(false);
   const validate = () => {
     const e = {};
     if (!form.dept) e.dept = "選択してください";
+    if (!form.customerType) e.customerType = "選択してください";
+    if (form.customerType === "corporate" && !form.company) e.company = "ご入力ください";
     if (!form.name) e.name = "ご入力ください";
+    if (!form.kana) e.kana = "ご入力ください";
     if (!form.email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(form.email)) e.email = "正しいメールアドレスをご入力ください";
+    if (!form.tel) e.tel = "ご入力ください";
+    if (!form.address) e.address = "ご入力ください";
     if (!form.inquiry) e.inquiry = "ご入力ください";
+    if (kind === "service" && !form.meeting) e.meeting = "選択してください";
     if (!form.agree) e.agree = "ご同意ください";
     setErrors(e);
     return Object.keys(e).length === 0;
   };
+  const meetingLabels = { web: "Web会議", inperson: "対面", either: "対面・Web会議どちらでも可" };
+  const customerTypeLabel = { individual: "個人", corporate: "法人" };
+  const deptLabel = () => (deptOptions.find(([v]) => v === form.dept) || [])[1] || "";
+  const confirmRows = [
+    { label: "お問い合わせ種別", value: deptLabel(), required: true },
+    { label: "ご所属区分", value: customerTypeLabel[form.customerType] || "", required: true },
+    ...(form.customerType === "corporate" ? [{ label: "会社名", value: form.company, required: true }] : []),
+    { label: "お名前", value: form.name, required: true },
+    { label: "フリガナ", value: form.kana, required: true },
+    { label: "メールアドレス", value: form.email, required: true },
+    { label: "電話番号", value: form.tel, required: true },
+    { label: "ご住所（都道府県）", value: form.address, required: true },
+    { label: "お問い合わせ内容", value: form.inquiry, required: true },
+    ...(kind === "service" ? [{ label: "Web会議もしくは対面での相談希望", value: meetingLabels[form.meeting] || "", required: true }] : []),
+    { label: "個人情報の取り扱いについて", value: "同意する", required: true },
+  ];
   return (
     <section style={{ padding: "40px 0 100px" }}>
       <div className="wrap" style={{ maxWidth: 1100 }}>
@@ -947,9 +970,71 @@ function FormLayout({ form, up, sent, setSent, deptOptions, inquiryPH, heading, 
                 自動返信メールを送付いたしました。担当者より2営業日以内にご連絡いたします。<br/>
                 万一、自動返信メールが届かない場合はお電話にてご確認ください。
               </p>
-              <button onClick={() => { window.scrollTo({ top: 0, behavior: "smooth" }); setSent(false); }}
+              <button onClick={() => { window.scrollTo({ top: 0, behavior: "smooth" }); setSent(false); setConfirming(false); }}
                       className="pill-btn" style={{ marginTop: 32 }}>トップへ戻る</button>
             </div>
+          </Reveal>
+        ) : confirming ? (
+          <Reveal>
+            <div style={{ marginBottom: 8 }}>
+              <h2 style={{ fontSize: 26, fontWeight: 700, letterSpacing: "0.04em" }}>入力内容のご確認</h2>
+            </div>
+            <p style={{ fontSize: 12.5, color: "var(--ink-3)", marginBottom: 48, lineHeight: 1.9 }}>
+              以下の内容で送信してよろしければ「送信する」ボタンを押してください。
+            </p>
+            <div style={{ display: "flex", flexDirection: "column", gap: 32 }}>
+              {confirmRows.map((r) => (
+                <div key={r.label}>
+                  <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 10, flexWrap: "wrap" }}>
+                    <span style={{ fontSize: 14.5, fontWeight: 700, color: "var(--ink)" }}>{r.label}</span>
+                    {r.required && (
+                      <span style={{
+                        fontSize: 10.5, padding: "2px 10px", borderRadius: 999,
+                        border: "1px solid var(--pur-3)", color: "var(--pur-3)",
+                        letterSpacing: "0.06em", lineHeight: 1.6,
+                      }}>必須</span>
+                    )}
+                  </div>
+                  <div style={{ fontSize: 14, color: "var(--ink)", lineHeight: 1.85, whiteSpace: "pre-wrap", wordBreak: "break-word" }}>
+                    {r.value}
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div style={{ marginTop: 72, display: "flex", flexDirection: "column", alignItems: "center", gap: 22 }}>
+              <button type="button"
+                onClick={() => { setSent(true); window.scrollTo({ top: 0, behavior: "smooth" }); }}
+                className="confirm-submit-btn"
+                style={{
+                  display: "flex", alignItems: "center", justifyContent: "space-between",
+                  width: "100%", maxWidth: 400, padding: "10px 10px 10px 36px",
+                  borderRadius: 999, border: "none", cursor: "pointer",
+                  background: "linear-gradient(90deg, var(--pur-1) 0%, var(--pur-2) 35%, #e6b8cf 75%, #f0c4d4 100%)",
+                  color: "#2a2340", fontSize: 17, fontWeight: 700, letterSpacing: "0.04em",
+                  boxShadow: "0 8px 24px -8px rgba(100,70,180,0.35)",
+                  transition: "transform .2s, box-shadow .2s",
+                }}>
+                <span style={{ flex: 1, textAlign: "center" }}>送信する</span>
+                <span style={{
+                  display: "inline-flex", alignItems: "center", justifyContent: "center",
+                  width: 36, height: 36, borderRadius: 999,
+                  border: "1px solid rgba(42,35,64,0.3)", color: "#2a2340", fontSize: 14,
+                  background: "rgba(255,255,255,0.1)", flexShrink: 0,
+                }}>▸</span>
+              </button>
+              <button type="button"
+                onClick={() => { setConfirming(false); window.scrollTo({ top: 0, behavior: "smooth" }); }}
+                style={{
+                  fontSize: 13, color: "var(--ink-2)",
+                  textDecoration: "underline", cursor: "pointer", background: "none", border: "none",
+                  padding: "4px 8px",
+                }}>
+                前の画面へ戻る
+              </button>
+            </div>
+            <style>{`
+              .confirm-submit-btn:hover { transform: translateY(-3px); box-shadow: 0 12px 32px -8px rgba(100,70,180,0.5) !important; }
+            `}</style>
           </Reveal>
         ) : (
           <>
@@ -962,14 +1047,14 @@ function FormLayout({ form, up, sent, setSent, deptOptions, inquiryPH, heading, 
               </p>
             </Reveal>
 
-            <form onSubmit={(e) => { e.preventDefault(); if (validate()) { setSent(true); window.scrollTo({ top: 0, behavior: "smooth" }); } }}>
+            <form onSubmit={(e) => { e.preventDefault(); if (validate()) { setConfirming(true); window.scrollTo({ top: 0, behavior: "smooth" }); } }}>
               <FormRow label="お問い合わせ種別" req>
                 <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
                   {deptOptions.map(([v, l]) => (
                     <button key={v} type="button" onClick={() => up("dept", v)} style={{
                       padding: "10px 18px", borderRadius: 999, fontSize: 12.5,
-                      border: "1px solid " + (form.dept === v ? "var(--ink)" : "var(--line)"),
-                      background: form.dept === v ? "var(--ink)" : "#fff",
+                      border: form.dept === v ? "1px solid transparent" : "1px solid var(--line)",
+                      background: form.dept === v ? "linear-gradient(90deg, var(--c1) 0%, var(--c2) 100%)" : "#fff",
                       color: form.dept === v ? "#fff" : "var(--ink-2)",
                     }}>{l}</button>
                   ))}
@@ -977,25 +1062,45 @@ function FormLayout({ form, up, sent, setSent, deptOptions, inquiryPH, heading, 
                 {errors.dept && <ErrMsg>{errors.dept}</ErrMsg>}
               </FormRow>
 
-              <FormRow label="会社名">
-                <TextInput v={form.company} oc={(v) => up("company", v)} ph="株式会社〇〇（個人の場合は空欄可）"/>
+              <FormRow label="ご所属区分" req>
+                <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+                  {[["individual", "個人"], ["corporate", "法人"]].map(([v, l]) => (
+                    <button key={v} type="button" onClick={() => up("customerType", v)} style={{
+                      padding: "10px 28px", borderRadius: 999, fontSize: 12.5,
+                      border: form.customerType === v ? "1px solid transparent" : "1px solid var(--line)",
+                      background: form.customerType === v ? "linear-gradient(90deg, var(--c1) 0%, var(--c2) 100%)" : "#fff",
+                      color: form.customerType === v ? "#fff" : "var(--ink-2)",
+                      cursor: "pointer",
+                    }}>{l}</button>
+                  ))}
+                </div>
+                {errors.customerType && <ErrMsg>{errors.customerType}</ErrMsg>}
               </FormRow>
+              {form.customerType === "corporate" && (
+                <FormRow label="会社名" req>
+                  <TextInput v={form.company} oc={(v) => up("company", v)} ph="株式会社〇〇"/>
+                  {errors.company && <ErrMsg>{errors.company}</ErrMsg>}
+                </FormRow>
+              )}
               <FormRow label="お名前" req>
                 <TextInput v={form.name} oc={(v) => up("name", v)} ph="山田 太郎"/>
                 {errors.name && <ErrMsg>{errors.name}</ErrMsg>}
               </FormRow>
-              <FormRow label="フリガナ">
+              <FormRow label="フリガナ" req>
                 <TextInput v={form.kana} oc={(v) => up("kana", v)} ph="ヤマダ タロウ"/>
+                {errors.kana && <ErrMsg>{errors.kana}</ErrMsg>}
               </FormRow>
               <FormRow label="メールアドレス" req>
                 <TextInput v={form.email} oc={(v) => up("email", v)} ph="name@example.com" t="email"/>
                 {errors.email && <ErrMsg>{errors.email}</ErrMsg>}
               </FormRow>
-              <FormRow label="電話番号">
+              <FormRow label="電話番号" req>
                 <TextInput v={form.tel} oc={(v) => up("tel", v)} ph="029-000-0000"/>
+                {errors.tel && <ErrMsg>{errors.tel}</ErrMsg>}
               </FormRow>
-              <FormRow label="ご住所（都道府県）">
+              <FormRow label="ご住所（都道府県）" req>
                 <TextInput v={form.address} oc={(v) => up("address", v)} ph="茨城県つくば市"/>
+                {errors.address && <ErrMsg>{errors.address}</ErrMsg>}
               </FormRow>
               <FormRow label="お問い合わせ内容" req>
                 <textarea value={form.inquiry} onChange={(e) => up("inquiry", e.target.value)} rows={8}
@@ -1004,7 +1109,7 @@ function FormLayout({ form, up, sent, setSent, deptOptions, inquiryPH, heading, 
               </FormRow>
 
               {kind === "service" && (
-                <FormRow label="Web会議もしくは対面での相談を希望する">
+                <FormRow label="Web会議もしくは対面での相談を希望する" req>
                   <select
                     value={form.meeting || ""}
                     onChange={(e) => up("meeting", e.target.value)}
@@ -1015,6 +1120,7 @@ function FormLayout({ form, up, sent, setSent, deptOptions, inquiryPH, heading, 
                     <option value="inperson">対面</option>
                     <option value="either">対面・Web会議どちらでも可</option>
                   </select>
+                  {errors.meeting && <ErrMsg>{errors.meeting}</ErrMsg>}
                   <p style={{ fontSize: 12, color: "var(--ink-3)", marginTop: 10, lineHeight: 1.8 }}>
                     ※ご希望いただいた場合、改めて担当者より日程候補をご連絡いたします。
                   </p>
@@ -1027,7 +1133,7 @@ function FormLayout({ form, up, sent, setSent, deptOptions, inquiryPH, heading, 
               }}>
                 <div style={{ fontSize: 13, fontWeight: 700, marginBottom: 10, color: "var(--ink)" }}>個人情報の取り扱いについて</div>
                 <p>
-                  ご提供いただく個人情報は、お問い合わせへの回答および必要なご連絡のために利用し、法令に基づく場合を除き、ご本人の同意なく第三者へ提供することはいたしません。詳細は<a href="#privacy" onClick={(e) => { e.preventDefault(); window.__setRoute?.("privacy"); }} style={{ textDecoration: "underline", color: "var(--pur-3)" }}>プライバシーポリシー</a>をご確認ください。
+                  ご提供いただく個人情報は、お問い合わせへの回答および必要なご連絡のために利用し、法令に基づく場合を除き、ご本人の同意なく第三者へ提供することはいたしません。詳細は<a href="#privacy" target="_blank" rel="noopener noreferrer" style={{ textDecoration: "underline", color: "var(--pur-3)", display: "inline-flex", alignItems: "center", gap: 3, whiteSpace: "nowrap" }}>プライバシーポリシー<svg width="11" height="11" viewBox="0 0 12 12" aria-hidden="true" style={{ marginLeft: 1 }}><path d="M5 1 H11 V7 M11 1 L6 6 M10 6 V10 H2 V2 H6" stroke="currentColor" strokeWidth="1.3" fill="none" strokeLinecap="round" strokeLinejoin="round"/></svg></a>をご確認ください。
                 </p>
               </div>
 
@@ -1039,17 +1145,30 @@ function FormLayout({ form, up, sent, setSent, deptOptions, inquiryPH, heading, 
               </label>
               {errors.agree && <ErrMsg>{errors.agree}</ErrMsg>}
 
-              <div style={{ marginTop: 40, display: "flex", gap: 16, flexWrap: "wrap" }}>
-                <button type="submit" style={{
-                  padding: "18px 44px", borderRadius: 999, background: "var(--ink)", color: "#fff",
-                  fontSize: 14, fontWeight: 600, letterSpacing: "0.06em",
-                  display: "inline-flex", alignItems: "center", gap: 12,
+              <div style={{ marginTop: 48, display: "flex", flexDirection: "column", alignItems: "center", gap: 22 }}>
+                <button type="submit" className="confirm-submit-btn" style={{
+                  display: "flex", alignItems: "center", justifyContent: "space-between",
+                  width: "100%", maxWidth: 400, padding: "10px 10px 10px 36px",
+                  borderRadius: 999, border: "none", cursor: "pointer",
+                  background: "linear-gradient(90deg, var(--c1) 0%, var(--c2) 100%)",
+                  color: "#fff", fontSize: 17, fontWeight: 700, letterSpacing: "0.04em",
+                  boxShadow: "0 8px 24px -8px rgba(100,120,200,0.35)",
+                  transition: "transform .2s, box-shadow .2s",
                 }}>
-                  <span>上記内容で送信する</span>
-                  <span className="en" style={{ color: "var(--c6)", fontSize: 13 }}>→</span>
+                  <span style={{ flex: 1, textAlign: "center" }}>確認画面へ</span>
+                  <span style={{
+                    display: "inline-flex", alignItems: "center", justifyContent: "center",
+                    width: 36, height: 36, borderRadius: 999,
+                    border: "1px solid rgba(255,255,255,0.5)", color: "#fff", fontSize: 14,
+                    background: "rgba(255,255,255,0.15)", flexShrink: 0,
+                  }}>▸</span>
                 </button>
-                <button type="reset" onClick={() => { up("dept", ""); up("name", ""); up("kana", ""); up("email", ""); up("tel", ""); up("address", ""); up("inquiry", ""); up("meeting", ""); up("agree", false); setErrors({}); }}
-                        className="pill-btn">入力内容をリセット</button>
+                <button type="reset" onClick={() => { up("dept", ""); up("customerType", ""); up("company", ""); up("name", ""); up("kana", ""); up("email", ""); up("tel", ""); up("address", ""); up("inquiry", ""); up("meeting", ""); up("agree", false); setErrors({}); }}
+                        style={{
+                          fontSize: 13, color: "var(--ink-2)",
+                          textDecoration: "underline", cursor: "pointer", background: "none", border: "none",
+                          padding: "4px 8px",
+                        }}>入力内容をリセット</button>
               </div>
             </form>
           </>
@@ -1150,14 +1269,15 @@ function StaffPage() {
 
       <section style={{ padding: "40px 0 120px" }}>
         <div className="wrap" style={{ maxWidth: 1200 }}>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 36 }} className="staff-grid">
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 36, alignItems: "stretch" }} className="staff-grid">
             {STAFF.map((s, i) => (
-              <Reveal key={s.id} delay={i % 3}>
+              <Reveal key={s.id} delay={i % 3} style={{ height: "100%" }}>
                 <div
                   onClick={() => setActive(s)}
                   style={{
                     cursor: "pointer", background: "#fff", border: "1px solid var(--line)",
                     borderRadius: 18, overflow: "hidden", transition: "transform .35s, box-shadow .35s",
+                    display: "flex", flexDirection: "column", height: "100%", boxSizing: "border-box",
                   }}
                   onMouseEnter={(e) => { e.currentTarget.style.transform = "translateY(-4px)"; e.currentTarget.style.boxShadow = "0 18px 40px -20px rgba(50,40,90,0.25)"; }}
                   onMouseLeave={(e) => { e.currentTarget.style.transform = "none"; e.currentTarget.style.boxShadow = "none"; }}>
@@ -1174,7 +1294,7 @@ function StaffPage() {
                       STAFF / {String(i + 1).padStart(2, "0")}
                     </div>
                   </div>
-                  <div style={{ padding: "26px 26px 28px" }}>
+                  <div style={{ padding: "26px 26px 28px", flex: 1, display: "flex", flexDirection: "column" }}>
                     <div className="en" style={{ fontSize: 10, letterSpacing: "0.25em", color: "var(--pur-3)", marginBottom: 6 }}>{s.roleEn}</div>
                     <div style={{ fontSize: 13, color: "var(--ink-3)", marginBottom: 4 }}>{s.role}</div>
                     <div style={{ fontSize: 22, fontWeight: 700, marginBottom: 4 }}>{s.name}</div>
@@ -1184,7 +1304,7 @@ function StaffPage() {
                         <span key={sp} style={{ fontSize: 10.5, padding: "5px 10px", borderRadius: 999, background: "var(--bg-2)", color: "var(--ink-2)" }}>{sp}</span>
                       ))}
                     </div>
-                    <div style={{ marginTop: 18, paddingTop: 16, borderTop: "1px dashed var(--line)", display: "flex", justifyContent: "space-between", alignItems: "center", fontSize: 11, color: "var(--ink-3)" }}>
+                    <div style={{ marginTop: "auto", paddingTop: 18, borderTop: "1px dashed var(--line)", display: "flex", justifyContent: "space-between", alignItems: "center", fontSize: 11, color: "var(--ink-3)" }}>
                       <span>詳細プロフィール</span>
                       <span style={{ color: "var(--pur-3)" }}>→</span>
                     </div>
@@ -1241,19 +1361,22 @@ function StaffModal({ staff, onClose }) {
   return (
     <div onClick={onClose}
          style={{ position: "fixed", inset: 0, background: "rgba(20,16,40,0.55)", backdropFilter: "blur(6px)",
-                  zIndex: 100, display: "flex", alignItems: "center", justifyContent: "center", padding: 24,
+                  zIndex: 100, display: "flex", alignItems: "center", justifyContent: "center",
+                  padding: "100px 24px 24px",
                   animation: "fadeIn .25s ease" }}
          className="modal-overlay">
       <div onClick={(e) => e.stopPropagation()}
            style={{ background: "#fff", borderRadius: 20, maxWidth: 820, width: "100%",
+                    maxHeight: "calc(100vh - 124px)",
                     position: "relative", overflow: "hidden",
+                    display: "flex", flexDirection: "column",
                     boxShadow: "0 40px 80px -30px rgba(0,0,0,0.4)", animation: "slideUp .35s ease" }}
            className="staff-modal-inner">
         {/* PC用閉じるボタン（写真右上） */}
         <button onClick={onClose} className="modal-close-pc" style={{ position: "absolute", top: 18, right: 18, width: 36, height: 36,
                                           borderRadius: 999, border: "1px solid var(--line)", background: "#fff",
                                           fontSize: 16, cursor: "pointer", zIndex: 10 }}>×</button>
-        <div style={{ display: "grid", gridTemplateColumns: "280px 1fr", gap: 0 }} className="modal-grid">
+        <div style={{ display: "grid", gridTemplateColumns: "280px 1fr", gap: 0, flex: 1, minHeight: 0 }} className="modal-grid">
           <div style={{ background: `linear-gradient(135deg, ${staff.tone[0]} 0%, ${staff.tone[1]} 100%)`, minHeight: 360, position: "relative" }} className="modal-photo-panel">
             {/* スマホ用閉じるボタン（写真右上） */}
             <button onClick={onClose} className="modal-close-sp" style={{ position: "absolute", top: 12, right: 12, width: 32, height: 32,
@@ -1272,7 +1395,7 @@ function StaffModal({ staff, onClose }) {
               <div style={{ fontSize: 22, fontWeight: 800, marginTop: 4 }}>{staff.name}</div>
             </div>
           </div>
-          <div style={{ padding: "36px 36px 40px" }}>
+          <div style={{ padding: "36px 36px 40px", overflowY: "auto", minHeight: 0 }} className="modal-content">
             <div style={{ fontSize: 11, color: "var(--ink-3)", letterSpacing: "0.15em", marginBottom: 4 }}>{staff.role}</div>
             <div style={{ fontSize: 26, fontWeight: 700, marginBottom: 2 }}>{staff.name}</div>
             <div className="en" style={{ fontSize: 12, color: "var(--ink-3)", letterSpacing: "0.1em", marginBottom: 22 }}>{staff.nameEn}</div>
@@ -1312,8 +1435,9 @@ function StaffModal({ staff, onClose }) {
         @keyframes fadeIn{from{opacity:0}to{opacity:1}}
         @keyframes slideUp{from{transform:translateY(20px);opacity:0}to{transform:none;opacity:1}}
         @media(max-width:720px){
-          .modal-overlay{ align-items:flex-start !important; overflow-y:auto !important; padding:80px 16px 24px !important; }
-          .modal-grid{ grid-template-columns:1fr !important; }
+          .modal-overlay{ padding:88px 16px 16px !important; }
+          .staff-modal-inner{ max-height:calc(100vh - 104px) !important; }
+          .modal-grid{ grid-template-columns:1fr !important; grid-template-rows:auto 1fr !important; }
           .modal-photo-panel{ min-height:200px !important; max-height:220px !important; }
           .modal-close-pc{ display:none !important; }
           .modal-close-sp{ display:block !important; }

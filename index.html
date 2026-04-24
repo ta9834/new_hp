@@ -7,7 +7,7 @@
 
 <!-- Primary Meta Tags -->
 <title>株式会社PAS企画 | 資産形成・税務・不動産・経営・AIの総合アドバイザリー｜つくば市</title>
-<meta name="description" content="株式会社PAS企画は茨城県つくば市を拠点とする独立系コングロマリット型アドバイザリー。資産形成・税務対策・不動産活用・経営サポート・AI導入支援の5領域を一つの窓口で横断的に支援します。初回相談無料。">
+<meta name="description" content="株式会社PAS企画は茨城県つくば市を拠点とする独立系コングロマリット型アドバイザリー。資産形成・税務対策・不動産活用・経営サポート・AI活用DX推進の5領域を一つの窓口で横断的に支援します。初回相談無料。">
 <meta name="keywords" content="PAS企画,つくば,資産運用,資産形成,税務対策,不動産活用,経営サポート,AI導入,ファイナンシャルプランナー,FP,相続,事業承継,独立系アドバイザー,IFA,保険見直し,積立NISA">
 <meta name="author" content="株式会社PAS企画">
 <meta name="robots" content="index, follow, max-image-preview:large">
@@ -18,7 +18,8 @@
 <link rel="canonical" href="https://www.pas-planning.co.jp/">
 
 <!-- Favicon -->
-<link rel="icon" href="assets/logo-pas.png" type="image/png">
+<link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon">
 <link rel="apple-touch-icon" href="assets/logo-pas.png">
 
 <!-- Open Graph / Facebook -->
@@ -146,9 +147,13 @@
     display: inline-flex; align-items: center; gap: 10px;
     padding: 10px 22px; border-radius: 999px; border: 1px solid var(--ink);
     font-size: 13px; font-weight: 500;
-    transition: background .24s, color .24s;
+    transition: background .24s, color .24s, border-color .24s;
   }
-  .pill-btn:hover { background: var(--ink); color: #fff; }
+  .pill-btn:hover {
+    background: linear-gradient(90deg, var(--c1) 0%, var(--c2) 100%);
+    color: #fff;
+    border-color: transparent;
+  }
 
   /* scroll reveal */
   .reveal { opacity: 0; transform: translateY(32px); transition: opacity .9s cubic-bezier(.22,.61,.36,1), transform .9s cubic-bezier(.22,.61,.36,1); }
@@ -169,9 +174,9 @@
     50% { transform: translateY(-8px); }
   }
 
-  /* hero letter stagger entrance */
+  /* hero letter stagger entrance — diagonal (bottom-left → top-right) */
   @keyframes heroLetter {
-    from { opacity: 0; transform: translateY(40px); filter: blur(8px); }
+    from { opacity: 0; transform: translate(-32px, 40px); filter: blur(8px); }
     to { opacity: 1; transform: none; filter: none; }
   }
   .hero-letter {
@@ -286,7 +291,7 @@
           "height": 512
         },
         "image": "https://www.pas-planning.co.jp/assets/logo-pas.png",
-        "description": "茨城県つくば市を拠点とする独立系コングロマリット型アドバイザリー。資産形成・税務対策・不動産活用・経営サポート・AI導入支援の5領域を一つの窓口で横断的に支援。",
+        "description": "茨城県つくば市を拠点とする独立系コングロマリット型アドバイザリー。資産形成・税務対策・不動産活用・経営サポート・AI活用DX推進の5領域を一つの窓口で横断的に支援。",
         "slogan": "Professional Adviser Service",
         "foundingDate": "2021-08",
         "telephone": "+81-29-877-6322",
@@ -325,7 +330,7 @@
           "税務対策支援",
           "不動産総合活用",
           "経営サポート",
-          "AI導入支援"
+          "AI活用・DX推進"
         ],
         "sameAs": []
       },
@@ -368,9 +373,9 @@
       },
       {
         "@type": "Service",
-        "name": "AI導入支援",
+        "name": "AI活用・DX推進",
         "provider": { "@id": "https://www.pas-planning.co.jp/#organization" },
-        "description": "業務効率化・自動化・データ活用など、中小企業でも実践できるAI活用をご提案。導入計画から運用まで一貫してサポート。",
+        "description": "AIを駆使したDX推進をトータル支援。AI導入計画・使い方指導・社員研修に加え、Webサイト・LP・コンテンツ制作をAI活用で大幅コストダウンしてご提供。業務自動化・ワークフロー設計まで一貫サポート。",
         "areaServed": "日本"
       },
       {

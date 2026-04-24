@@ -197,7 +197,7 @@ function Footer() {
         { t: "税務対策支援",       onClick: nav("services", "section-service-02") },
         { t: "不動産総合活用",     onClick: nav("services", "section-service-03") },
         { t: "経営サポート",       onClick: nav("services", "section-service-04") },
-        { t: "AI導入支援",         onClick: nav("services", "section-service-05") },
+        { t: "AI活用・DX推進",     onClick: nav("services", "section-service-05") },
       ],
     },
   ];

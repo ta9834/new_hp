@@ -1,9 +1,15 @@
 // Root App
 
 function App() {
+  const resolveRoute = (h) => {
+    const valid = ["contact", "contact-recruit", "best-partner", "staff", "consultant", "privacy", "compliance", "disclaimer", "fiduciary", ...NAV.map(n => n.id)];
+    if (valid.includes(h)) return h;
+    if (h.startsWith("news/")) return h;
+    return "top";
+  };
   const [route, setRoute] = React.useState(() => {
     const h = (window.location.hash || "").replace("#", "");
-    return NAV.find((n) => n.id === h)?.id || "top";
+    return resolveRoute(h);
   });
 
   React.useEffect(() => {
@@ -14,10 +20,7 @@ function App() {
     };
     const onHash = () => {
       const h = (window.location.hash || "").replace("#", "");
-      const valid = ["contact", "contact-recruit", "best-partner", "staff", ...NAV.map(n => n.id)];
-      if (valid.includes(h)) setRoute(h);
-      else if (h.startsWith("news/")) setRoute(h);
-      else if (["privacy", "compliance", "disclaimer", "fiduciary"].includes(h)) setRoute(h);
+      setRoute(resolveRoute(h));
     };
     window.addEventListener("hashchange", onHash);
     return () => window.removeEventListener("hashchange", onHash);
