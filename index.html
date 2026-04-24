@@ -4,10 +4,47 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="format-detection" content="telephone=no, address=no, email=no">
-<title>株式会社PAS企画 | Professional Adviser Service</title>
+
+<!-- Primary Meta Tags -->
+<title>株式会社PAS企画 | 資産形成・税務・不動産・経営・AIの総合アドバイザリー｜つくば市</title>
+<meta name="description" content="株式会社PAS企画は茨城県つくば市を拠点とする独立系コングロマリット型アドバイザリー。資産形成・税務対策・不動産活用・経営サポート・AI導入支援の5領域を一つの窓口で横断的に支援します。初回相談無料。">
+<meta name="keywords" content="PAS企画,つくば,資産運用,資産形成,税務対策,不動産活用,経営サポート,AI導入,ファイナンシャルプランナー,FP,相続,事業承継,独立系アドバイザー,IFA,保険見直し,積立NISA">
+<meta name="author" content="株式会社PAS企画">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="googlebot" content="index, follow">
+<meta name="theme-color" content="#8b7dd8">
+
+<!-- Canonical -->
+<link rel="canonical" href="https://www.pas-planning.co.jp/">
+
+<!-- Favicon -->
+<link rel="icon" href="assets/logo-pas.png" type="image/png">
+<link rel="apple-touch-icon" href="assets/logo-pas.png">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="株式会社PAS企画">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:url" content="https://www.pas-planning.co.jp/">
+<meta property="og:title" content="株式会社PAS企画 | 資産形成・税務・不動産・経営・AIの総合アドバイザリー">
+<meta property="og:description" content="つくば市を拠点とする独立系コングロマリット型アドバイザリー。資産・税務・不動産・経営・AI導入の5領域を一つの窓口で横断的に支援します。">
+<meta property="og:image" content="https://www.pas-planning.co.jp/assets/logo-pas.png">
+<meta property="og:image:alt" content="株式会社PAS企画">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="株式会社PAS企画 | 資産形成・税務・不動産・経営・AIの総合アドバイザリー">
+<meta name="twitter:description" content="つくば市を拠点とする独立系コングロマリット型アドバイザリー。資産・税務・不動産・経営・AI導入を一つの窓口で横断的に支援。">
+<meta name="twitter:image" content="https://www.pas-planning.co.jp/assets/logo-pas.png">
+
+<!-- Preconnect -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://unpkg.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700;900&family=Montserrat:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap">
+
+<!-- Sitemap reference -->
+<link rel="sitemap" type="application/xml" href="sitemap.xml">
 <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
@@ -195,6 +232,15 @@
     * { animation: none !important; transition: none !important; }
     .reveal { opacity: 1 !important; transform: none !important; }
   }
+
+  /* Skip link for accessibility */
+  .skip-link {
+    position: absolute; top: -48px; left: 8px; z-index: 9999;
+    background: var(--ink); color: #fff;
+    padding: 10px 16px; border-radius: 6px; font-size: 13px;
+    transition: top .2s;
+  }
+  .skip-link:focus { top: 8px; outline: 2px solid var(--pur-3); }
 </style>
 </head>
 <body>
@@ -217,8 +263,155 @@
   <script type="text/babel" src="src/chrome.jsx"></script>
   <script type="text/babel" src="src/home.jsx"></script>
   <script type="text/babel" src="src/pages.jsx"></script>
+  <script type="text/babel" src="src/seo.jsx"></script>
   <script type="text/babel" src="src/chatbot.jsx"></script>
   <script type="text/babel" src="src/tweaks.jsx"></script>
   <script type="text/babel" src="src/root.jsx"></script>
+
+  <!-- Structured Data: Organization + LocalBusiness -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": ["Organization", "FinancialService", "LocalBusiness"],
+        "@id": "https://www.pas-planning.co.jp/#organization",
+        "name": "株式会社PAS企画",
+        "alternateName": "PAS Planning Co., Ltd.",
+        "url": "https://www.pas-planning.co.jp/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.pas-planning.co.jp/assets/logo-pas.png",
+          "width": 512,
+          "height": 512
+        },
+        "image": "https://www.pas-planning.co.jp/assets/logo-pas.png",
+        "description": "茨城県つくば市を拠点とする独立系コングロマリット型アドバイザリー。資産形成・税務対策・不動産活用・経営サポート・AI導入支援の5領域を一つの窓口で横断的に支援。",
+        "slogan": "Professional Adviser Service",
+        "foundingDate": "2021-08",
+        "telephone": "+81-29-877-6322",
+        "faxNumber": "+81-29-877-6323",
+        "email": "info@pas-planning.co.jp",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "花畑3丁目13番地10 ヤマグチビル3階",
+          "addressLocality": "つくば市",
+          "addressRegion": "茨城県",
+          "postalCode": "300-3261",
+          "addressCountry": "JP"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 36.0328,
+          "longitude": 140.1097
+        },
+        "openingHoursSpecification": [{
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+          "opens": "09:30",
+          "closes": "18:30"
+        }],
+        "founder": {
+          "@type": "Person",
+          "name": "小島 拓也",
+          "jobTitle": "代表取締役"
+        },
+        "areaServed": {
+          "@type": "Country",
+          "name": "日本"
+        },
+        "serviceType": [
+          "資産形成・資産運用アドバイザリー",
+          "税務対策支援",
+          "不動産総合活用",
+          "経営サポート",
+          "AI導入支援"
+        ],
+        "sameAs": []
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://www.pas-planning.co.jp/#website",
+        "url": "https://www.pas-planning.co.jp/",
+        "name": "株式会社PAS企画",
+        "description": "資産形成・税務・不動産・経営・AIの総合アドバイザリー",
+        "publisher": { "@id": "https://www.pas-planning.co.jp/#organization" },
+        "inLanguage": "ja-JP"
+      },
+      {
+        "@type": "Service",
+        "name": "資産形成・資産運用",
+        "provider": { "@id": "https://www.pas-planning.co.jp/#organization" },
+        "description": "ライフプランニングから投資信託・保険・年金まで、幅広い金融商品を活用したポートフォリオをご提案。独立系FPとして特定金融機関に偏らない中立的アドバイス。",
+        "areaServed": "日本"
+      },
+      {
+        "@type": "Service",
+        "name": "税務対策支援",
+        "provider": { "@id": "https://www.pas-planning.co.jp/#organization" },
+        "description": "個人・法人の節税対策、確定申告サポート、事業承継・相続対策まで、税理士連携による総合的な税務戦略をご提案。",
+        "areaServed": "日本"
+      },
+      {
+        "@type": "Service",
+        "name": "不動産総合活用",
+        "provider": { "@id": "https://www.pas-planning.co.jp/#organization" },
+        "description": "不動産の取得・売却・運用・相続対策まで、資産としての不動産を最大限に活用するためのご提案。",
+        "areaServed": "日本"
+      },
+      {
+        "@type": "Service",
+        "name": "経営サポート",
+        "provider": { "@id": "https://www.pas-planning.co.jp/#organization" },
+        "description": "中小企業・個人事業主の経営課題を、財務・資金調達・事業計画・補助金活用など多角的にサポート。",
+        "areaServed": "日本"
+      },
+      {
+        "@type": "Service",
+        "name": "AI導入支援",
+        "provider": { "@id": "https://www.pas-planning.co.jp/#organization" },
+        "description": "業務効率化・自動化・データ活用など、中小企業でも実践できるAI活用をご提案。導入計画から運用まで一貫してサポート。",
+        "areaServed": "日本"
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "相談は有料ですか？",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "初回のご相談は無料で承っております。継続的なサポートが必要な場合には事前にお見積りをご提示いたします。"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "遠方からの相談も可能ですか？",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "もちろん可能です。Zoom・LINEでの全国対応を行っております。"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "どんな方が相談に来られますか？",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "20代から70代まで幅広い世代のお客様にご利用いただいております。"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "特定の金融商品を勧められますか？",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "いいえ。当社は特定商品の販売ではなく、お客様本位のアドバイスを業務の中心としています。"
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
 </body>
 </html>

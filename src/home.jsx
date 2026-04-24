@@ -76,7 +76,7 @@ function PictureLinks() {
                  onMouseEnter={(e) => e.currentTarget.querySelector("[data-img]").style.transform = "scale(1.08)"}
                  onMouseLeave={(e) => e.currentTarget.querySelector("[data-img]").style.transform = "none"}>
                 {c.img ? (
-                  <img data-img src={c.img} alt={c.ja} style={{
+                  <img data-img src={c.img} alt={c.ja} loading="lazy" decoding="async" style={{
                     position: "absolute", inset: 0, width: "100%", height: "100%",
                     objectFit: "cover", objectPosition: "center top", transition: "transform .6s",
                   }}/>
@@ -273,7 +273,7 @@ function StaffPreview() {
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "center" }} className="rec-grid">
           <Reveal>
             <div style={{ aspectRatio: "4/3", overflow: "hidden" }}>
-              <img src="assets/staff.png" alt="スタッフ紹介" style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top", display: "block", transform: "scale(1.12) translateY(-4%)" }} />
+              <img src="assets/staff.png" alt="スタッフ紹介" loading="lazy" decoding="async" style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top", display: "block", transform: "scale(1.12) translateY(-4%)" }} />
             </div>
           </Reveal>
           <Reveal delay={1}>

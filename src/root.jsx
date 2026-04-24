@@ -43,11 +43,14 @@ function App() {
 
   return (
     <>
+      <SEO route={route} />
+      <a href="#main-content" className="skip-link">メインコンテンツへスキップ</a>
       <FixedWaveBackground />
       <Header route={route} />
-      <main data-screen-label={route} style={{ position: "relative", zIndex: 1 }}>{page}</main>
+      <main id="main-content" data-screen-label={route} style={{ position: "relative", zIndex: 1 }}>{page}</main>
       <Footer />
       <TweaksPanel />
+      <PageTop />
       <ChatBot />
     </>
   );

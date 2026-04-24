@@ -13,10 +13,10 @@ function AboutPage() {
   }, []);
   return (
     <>
-      <PageHeader en="ABOUT US" ja="PAS企画について" lead={<>業種・年代・規模を問わず、<span className="about-br"><br/></span>お金にまつわるあらゆる課題を多角的に解決する<span className="about-br"><br/></span>プロフェッショナル・アドバイザー集団。<style>{`.about-br{display:none;}@media(max-width:640px){.about-br{display:inline;}}`}</style></>} />
+      <PageHeader en="ABOUT US" ja="PAS企画について" crumb={["PAS企画について"]} lead={<>業種・年代・規模を問わず、<span className="about-br"><br/></span>お金にまつわるあらゆる課題を多角的に解決する<span className="about-br"><br/></span>プロフェッショナル・アドバイザー集団。<style>{`.about-br{display:none;}@media(max-width:640px){.about-br{display:inline;}}`}</style></>} />
       <section id="section-message" style={{ padding: "80px 0 100px" }}>
         <div className="wrap ab-grid" style={{ display: "grid", gridTemplateColumns: "1fr 2fr", gap: 64 }}>
-          <img src="assets/message.jpg" alt="代表メッセージ" className="msg-img" style={{ width: "100%", aspectRatio: "3/4", objectFit: "cover", objectPosition: "center center", display: "block" }} />
+          <img src="assets/message.jpg" alt="代表取締役 小島拓也の写真" className="msg-img" loading="lazy" decoding="async" style={{ width: "100%", aspectRatio: "3/4", objectFit: "cover", objectPosition: "center center", display: "block" }} />
           <div>
             <div className="en" style={{ fontSize: 11, letterSpacing: "0.28em", color: "var(--pur-3)", marginBottom: 12 }}>MESSAGE</div>
             <h2 style={{ fontSize: 32, fontWeight: 700, marginBottom: 24 }}>代表メッセージ</h2>
@@ -258,7 +258,7 @@ function ServicesPage() {
   }, []);
   return (
     <>
-      <PageHeader en="OUR SERVICES" ja="事業内容" lead={<>資産形成・税務・不動産・経営・AI——<br/>5つの専門領域を一つの組織で横断的に支援する、<span className="sv-lead-br"><br/></span>コングロマリット型アドバイザリーサービス。<style>{`@media(min-width:601px){.sv-lead-br{display:none;}}`}</style></>} />
+      <PageHeader en="OUR SERVICES" ja="事業内容" crumb={["事業内容"]} lead={<>資産形成・税務・不動産・経営・AI——<br/>5つの専門領域を一つの組織で横断的に支援する、<span className="sv-lead-br"><br/></span>コングロマリット型アドバイザリーサービス。<style>{`@media(min-width:601px){.sv-lead-br{display:none;}}`}</style></>} />
 
       <section style={{ padding: "80px 0 60px" }}>
         <div className="wrap">
@@ -360,7 +360,7 @@ function CirclePanel({ s }) {
 function ConsultantPage() {
   return (
     <>
-      <PageHeader en="CONSULTANT" ja="コンサルタント紹介" lead="資産運用・税務・不動産・経営、それぞれの領域で実務経験を重ねた専門家が、一つのチームとしてお客様をご支援します。" />
+      <PageHeader en="CONSULTANT" ja="コンサルタント紹介" crumb={["コンサルタント紹介"]} lead="資産運用・税務・不動産・経営、それぞれの領域で実務経験を重ねた専門家が、一つのチームとしてお客様をご支援します。" />
       <section style={{ padding: "80px 0 120px" }}>
         <div className="wrap">
           <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 40 }} className="cs-grid">
@@ -419,7 +419,7 @@ function FaqBlock() {
 function NewsPage() {
   return (
     <>
-      <PageHeader en="NEWS" ja="お知らせ" lead="PAS企画からのお知らせ、セミナー開催情報、メディア掲載などをお届けします。" />
+      <PageHeader en="NEWS" ja="お知らせ" crumb={["お知らせ"]} lead="PAS企画からのお知らせ、セミナー開催情報、メディア掲載などをお届けします。" />
       <section style={{ padding: "60px 0 100px" }}>
         <div className="wrap" style={{ maxWidth: 960 }}>
           <ul style={{ listStyle: "none", borderTop: "1px solid var(--line)" }}>
@@ -465,7 +465,7 @@ function NewsDetailPage({ id }) {
   if (!n) {
     return (
       <>
-        <PageHeader en="NOT FOUND" ja="お知らせが見つかりません" lead="指定されたお知らせは存在しないか、既に削除された可能性があります。" />
+        <PageHeader en="NOT FOUND" ja="お知らせが見つかりません" crumb={[{ label: "お知らせ", to: "news" }, "記事が見つかりません"]} lead="指定されたお知らせは存在しないか、既に削除された可能性があります。" />
         <section style={{ padding: "40px 0 120px", textAlign: "center" }}>
           <a href="#news" onClick={(e) => { e.preventDefault(); window.__setRoute?.("news"); }}
              style={{ display: "inline-block", padding: "16px 36px", borderRadius: 999, border: "1px solid var(--line)", fontSize: 14 }}>
@@ -482,12 +482,8 @@ function NewsDetailPage({ id }) {
       {/* compact page header */}
       <section style={{ paddingTop: 140, paddingBottom: 40, position: "relative" }}>
         <div className="wrap" style={{ maxWidth: 880 }}>
-          <div className="en" style={{ fontSize: 11, letterSpacing: "0.3em", color: "var(--ink-3)", marginBottom: 18 }}>
-            <a href="#top" onClick={(e) => { e.preventDefault(); window.__setRoute?.("top"); }}>HOME</a>
-            <span style={{ margin: "0 10px", opacity: 0.5 }}>/</span>
-            <a href="#news" onClick={(e) => { e.preventDefault(); window.__setRoute?.("news"); }}>NEWS</a>
-            <span style={{ margin: "0 10px", opacity: 0.5 }}>/</span>
-            <span style={{ color: "var(--pur-3)" }}>{n.date}</span>
+          <div style={{ marginBottom: 28 }}>
+            <Breadcrumb items={[{ label: "お知らせ", to: "news" }, n.title]} />
           </div>
           <div style={{ display: "flex", gap: 14, alignItems: "center", marginBottom: 20 }}>
             <span className="en" style={{ fontSize: 13, fontWeight: 700, letterSpacing: "0.05em" }}>{n.date}</span>
@@ -622,7 +618,7 @@ function ContactPage() {
   const up = (k, v) => setForm((f) => ({ ...f, [k]: v }));
   return (
     <>
-      <PageHeader en="CONTACT" ja="お問い合わせ" lead="初回のご相談は無料です。ご入力いただいた内容をもとに、担当者より2営業日以内にご連絡いたします。" />
+      <PageHeader en="CONTACT" ja="お問い合わせ" crumb={["お問い合わせ"]} lead="初回のご相談は無料です。ご入力いただいた内容をもとに、担当者より2営業日以内にご連絡いたします。" />
       <section style={{ padding: "60px 0 120px" }}>
         <div className="wrap" style={{ display: "grid", gridTemplateColumns: "1fr 2fr", gap: 64 }} className="ct-grid">
           <aside>
@@ -713,7 +709,7 @@ function Input({ v, oc, ph, t = "text" }) {
 function BestPartnerPage() {
   return (
     <>
-      <PageHeader en="BEST PARTNER" ja="選ばれる理由" lead="「数ある金融アドバイザーの中で、なぜPAS企画なのか？」——4つの理由で、私たちの価値をお伝えします。" />
+      <PageHeader en="BEST PARTNER" ja="選ばれる理由" crumb={["選ばれる理由"]} lead="「数ある金融アドバイザーの中で、なぜPAS企画なのか？」——4つの理由で、私たちの価値をお伝えします。" />
       <section style={{ padding: "60px 0 40px" }}>
         <div className="wrap" style={{ textAlign: "center", maxWidth: 820 }}>
           <Reveal>
@@ -850,7 +846,7 @@ function ContactPageV2({ defaultTab = "service" }) {
   ];
   return (
     <>
-      <PageHeader en="CONTACT" ja="お問い合わせ"
+      <PageHeader en="CONTACT" ja="お問い合わせ" crumb={["お問い合わせ"]}
         lead="お気軽にご連絡ください。ご入力いただいた内容をもとに、担当者より2営業日以内にご連絡いたします。" />
       <section style={{ padding: "0 0 0" }}>
         <div className="wrap" style={{ maxWidth: 1100 }}>
@@ -1129,7 +1125,7 @@ function StaffPage() {
   const [active, setActive] = React.useState(null);
   return (
     <>
-      <PageHeader en="STAFF" ja="スタッフ紹介" lead="お客様のベストパートナーであり続けるために——多様な専門性を持つメンバーが、一人ひとりの課題に真摯に向き合います。" />
+      <PageHeader en="STAFF" ja="スタッフ紹介" crumb={["スタッフ紹介"]} lead="お客様のベストパートナーであり続けるために——多様な専門性を持つメンバーが、一人ひとりの課題に真摯に向き合います。" />
 
       <section style={{ padding: "40px 0 40px" }}>
         <div className="wrap" style={{ maxWidth: 980 }}>
@@ -1167,7 +1163,7 @@ function StaffPage() {
                   onMouseLeave={(e) => { e.currentTarget.style.transform = "none"; e.currentTarget.style.boxShadow = "none"; }}>
                   <div className="staff-card-img" style={{ aspectRatio: "4/5", background: `linear-gradient(135deg, ${s.tone[0]} 0%, ${s.tone[1]} 100%)`, position: "relative", overflow: "hidden" }}>
                     {s.photo ? (
-                      <img src={s.photo} alt={s.name} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: s.photoFit || "cover", objectPosition: s.photoPos || "center center" }} />
+                      <img src={s.photo} alt={`${s.name}（${s.role}）の写真`} loading="lazy" decoding="async" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: s.photoFit || "cover", objectPosition: s.photoPos || "center center" }} />
                     ) : (
                       <svg width="100%" height="100%" viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice" style={{ position: "absolute", inset: 0, opacity: 0.5 }}>
                         <circle cx="200" cy="200" r="85" fill="#fff" opacity="0.82"/>
@@ -1264,7 +1260,7 @@ function StaffModal({ staff, onClose }) {
                                                 borderRadius: 999, border: "1px solid rgba(255,255,255,0.6)", background: "rgba(0,0,0,0.25)",
                                                 fontSize: 14, cursor: "pointer", zIndex: 2, color: "#fff", display: "none" }}>×</button>
             {staff.photo ? (
-              <img src={staff.photo} alt={staff.name} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: staff.photoFit || "cover", objectPosition: staff.photoPos || "center center" }} />
+              <img src={staff.photo} alt={`${staff.name}（${staff.role}）の写真`} loading="lazy" decoding="async" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: staff.photoFit || "cover", objectPosition: staff.photoPos || "center center" }} />
             ) : (
               <svg width="100%" height="100%" viewBox="0 0 280 400" preserveAspectRatio="xMidYMid slice" style={{ position: "absolute", inset: 0, opacity: 0.55 }}>
                 <circle cx="140" cy="150" r="68" fill="#fff" opacity="0.85"/>
@@ -1413,7 +1409,7 @@ function PolicyPage({ kind }) {
 
   return (
     <>
-      <PageHeader en={meta.en} ja={meta.ja} lead={meta.lead} />
+      <PageHeader en={meta.en} ja={meta.ja} crumb={[meta.ja]} lead={meta.lead} />
       <section style={{ padding: "40px 0 100px" }}>
         <div className="wrap" style={{ maxWidth: 820 }}>
           {meta.sections.map((s, i) => (

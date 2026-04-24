@@ -4,7 +4,7 @@ function Logo({ size = 36, light = false }) {
   return (
     <a href="#top" onClick={(e) => { e.preventDefault(); window.__setRoute?.("top"); }}
        style={{ display: "inline-flex", alignItems: "center", gap: 0, color: light ? "#fff" : "var(--ink)" }}>
-      <img src="assets/logo-pas.png" alt="株式会社PAS企画" style={{ height: size + 12, width: "auto", display: "block", filter: light ? "invert(1) brightness(2)" : "none" }}/>
+      <img src="assets/logo-pas.png" alt="株式会社PAS企画" decoding="async" style={{ height: size + 12, width: "auto", display: "block", filter: light ? "invert(1) brightness(2)" : "none" }}/>
     </a>
   );
 }
@@ -72,8 +72,45 @@ function Header({ route }) {
   );
 }
 
+function PageTop() {
+  const [visible, setVisible] = React.useState(false);
+  React.useEffect(() => {
+    const onScroll = () => setVisible(window.scrollY > 300);
+    window.addEventListener("scroll", onScroll);
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+  return (
+    <button
+      onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+      aria-label="ページトップへ戻る"
+      className="page-top-fab"
+      style={{
+        position: "fixed", bottom: 90, right: 24, zIndex: 150,
+        width: 56, height: 56, borderRadius: "50%",
+        background: "var(--pur-1)", border: "none", cursor: "pointer",
+        display: "flex", flexDirection: "column",
+        alignItems: "center", justifyContent: "center", gap: 1,
+        boxShadow: "0 4px 16px rgba(100,70,180,0.25)",
+        opacity: visible ? 1 : 0,
+        transform: visible ? "translateY(0)" : "translateY(20px)",
+        pointerEvents: visible ? "auto" : "none",
+        transition: "opacity .3s, transform .3s, box-shadow .2s, background .2s",
+      }}>
+      <svg width="20" height="12" viewBox="0 0 20 12" fill="none" aria-hidden="true">
+        <path d="M3 9 L10 3 L17 9" stroke="#fff" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"/>
+      </svg>
+      <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: "0.08em", color: "#fff", lineHeight: 1 }}>TOP</span>
+      <style>{`
+        .page-top-fab:hover { background: var(--pur-2) !important; box-shadow: 0 6px 22px rgba(100,70,180,0.4) !important; }
+      `}</style>
+    </button>
+  );
+}
+
 function ContactBand() {
   return (
+    <>
     <section id="contact-band" style={{
       position: "relative", minHeight: 520, overflow: "hidden", padding: "100px 0 120px",
       background: "linear-gradient(135deg, var(--pur-1) 0%, var(--pur-2) 40%, #e0d8f0 100%)",
@@ -120,6 +157,7 @@ function ContactBand() {
         </div></Reveal>
       </div>
     </section>
+    </>
   );
 }
 
@@ -214,14 +252,48 @@ function Footer() {
   );
 }
 
-function PageHeader({ en, ja, lead }) {
+function Breadcrumb({ items }) {
+  const trail = [
+    { label: "TOP", to: "top" },
+    ...items.map((it) => typeof it === "string" ? { label: it } : it),
+  ];
   return (
-    <section style={{ position: "relative", paddingTop: 180, paddingBottom: 100, overflow: "hidden" }} className="page-header-section">
-      <style>{`@media(max-width:820px){.page-header-section{padding-bottom:48px !important;}}`}</style>
-      <div className="wrap" style={{ position: "relative", textAlign: "center" }}>
-        <Reveal><div className="en" style={{ fontSize: 13, letterSpacing: "0.3em", color: "var(--ink-3)", marginBottom: 10 }}>{en}</div></Reveal>
-        <Reveal delay={1}><h1 style={{ fontSize: "clamp(36px, 5vw, 56px)", fontWeight: 700, letterSpacing: "0.02em", marginBottom: 24 }}>{ja}</h1></Reveal>
-        {lead && <Reveal delay={2}><p style={{ fontSize: 15, color: "var(--ink-2)", maxWidth: 800, margin: "0 auto", lineHeight: 2 }}>{lead}</p></Reveal>}
+    <nav className="breadcrumb" style={{
+      fontSize: 13, color: "var(--ink-3)",
+      display: "flex", alignItems: "center", flexWrap: "wrap",
+      lineHeight: 1.6,
+    }}>
+      {trail.map((it, i) => (
+        <React.Fragment key={i}>
+          {i > 0 && <span style={{ margin: "0 10px", color: "var(--ink-4)", fontSize: 10 }}>▶</span>}
+          {it.to ? (
+            <a href={`#${it.to}`}
+               onClick={(e) => { e.preventDefault(); window.__setRoute?.(it.to); }}
+               className="bc-link"
+               style={{ color: "var(--ink-3)", transition: "color .15s" }}>
+              {it.label}
+            </a>
+          ) : (
+            <span style={{ color: "var(--ink-2)", fontWeight: 500 }}>{it.label}</span>
+          )}
+        </React.Fragment>
+      ))}
+      <style>{`.bc-link:hover{color:var(--pur-3) !important;}`}</style>
+    </nav>
+  );
+}
+
+function PageHeader({ en, ja, lead, crumb }) {
+  return (
+    <section style={{ position: "relative", paddingTop: 130, paddingBottom: 100, overflow: "hidden" }} className="page-header-section">
+      <style>{`@media(max-width:820px){.page-header-section{padding-bottom:48px !important; padding-top:110px !important;}}`}</style>
+      <div className="wrap" style={{ position: "relative" }}>
+        {crumb && <div style={{ marginBottom: 48 }}><Breadcrumb items={crumb} /></div>}
+        <div style={{ textAlign: "center" }}>
+          <Reveal><div className="en" style={{ fontSize: 13, letterSpacing: "0.3em", color: "var(--ink-3)", marginBottom: 10 }}>{en}</div></Reveal>
+          <Reveal delay={1}><h1 style={{ fontSize: "clamp(36px, 5vw, 56px)", fontWeight: 700, letterSpacing: "0.02em", marginBottom: 24 }}>{ja}</h1></Reveal>
+          {lead && <Reveal delay={2}><p style={{ fontSize: 15, color: "var(--ink-2)", maxWidth: 800, margin: "0 auto", lineHeight: 2 }}>{lead}</p></Reveal>}
+        </div>
       </div>
     </section>
   );
@@ -236,4 +308,4 @@ function SectionHead({ ja, en, style }) {
   );
 }
 
-Object.assign(window, { Logo, Header, Footer, ContactBand, PageHeader, SectionHead });
+Object.assign(window, { Logo, Header, Footer, ContactBand, PageHeader, SectionHead, Breadcrumb, PageTop });
