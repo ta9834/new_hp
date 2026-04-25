@@ -270,7 +270,7 @@ function NewsBlock() {
 function StaffPreview() {
   return (
     <section style={{ position: "relative", padding: "80px 0 120px", overflow: "hidden" }}>
-      <div className="wrap" style={{ position: "relative" }}>
+      <div className="wrap" style={{ position: "relative", maxWidth: 1440 }}>
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "center" }} className="rec-grid">
           <Reveal>
             <div style={{ aspectRatio: "4/3", overflow: "hidden" }}>

@@ -13,22 +13,25 @@ function AboutPage() {
   }, []);
   return (
     <>
-      <PageHeader en="ABOUT US" ja="PAS企画について" crumb={["PAS企画について"]} lead={<>業種・年代・規模を問わず、<span className="about-br"><br/></span>お金にまつわるあらゆる課題を多角的に解決する<span className="about-br"><br/></span>プロフェッショナル・アドバイザー集団。<style>{`.about-br{display:none;}@media(max-width:640px){.about-br{display:inline;}}`}</style></>} />
+      <PageHeader en="ABOUT US" ja="PAS企画について" crumb={["PAS企画について"]} lead={<>人生と事業のあらゆる課題に、<span className="about-br"><br/></span>領域の垣根を越えてお応えする<span className="about-br"><br/></span>プロフェッショナル・アドバイザー集団。<style>{`.about-br{display:none;}@media(max-width:640px){.about-br{display:inline;}}`}</style></>} />
       <section id="section-message" style={{ padding: "80px 0 100px" }}>
         <div className="wrap ab-grid" style={{ display: "grid", gridTemplateColumns: "1fr 2fr", gap: 64 }}>
           <img src="assets/message.jpg" alt="代表取締役 小島拓也の写真" className="msg-img" loading="lazy" decoding="async" style={{ width: "100%", aspectRatio: "3/4", objectFit: "cover", objectPosition: "center center", display: "block" }} />
           <div>
             <div className="en" style={{ fontSize: 11, letterSpacing: "0.28em", color: "var(--pur-3)", marginBottom: 12 }}>MESSAGE</div>
             <h2 style={{ fontSize: 32, fontWeight: 700, marginBottom: 24 }}>代表メッセージ</h2>
-            <p style={{ fontSize: 18, fontWeight: 600, lineHeight: 1.9, marginBottom: 24 }}>「お金と事業の悩みを、すべて最適解へ」——業種・規模・世代を問わず、あらゆるお客様のベストパートナーへ。</p>
+            <p style={{ fontSize: 18, fontWeight: 600, lineHeight: 1.9, marginBottom: 24 }}>「すべての課題を、横断的な視点で最適解へ。」——業種・規模・世代を問わず、あらゆるお客様のベストパートナーへ。</p>
             <p style={{ fontSize: 14, color: "var(--ink-2)", lineHeight: 2.05, marginBottom: 20 }}>
-              資産運用、税務対策、不動産活用、経営サポート、そしてAI活用DX推進——。私たちPAS企画は、お金と事業にまつわる多様な課題を、一つの組織で横断的に解決できる総合アドバイザリー集団を目指しています。個人の資産形成から中小企業の経営改善まで、領域の垣根を越えて最適解を追求することが、私たちの存在意義です。
+              資産運用、税務対策、不動産活用、経営サポート、そしてAI活用DX推進——。私たちPAS企画は、人生と事業にまつわる多様な課題を、一つの組織で横断的に解決できる総合アドバイザリー集団を目指しています。
             </p>
             <p style={{ fontSize: 14, color: "var(--ink-2)", lineHeight: 2.05, marginBottom: 20 }}>
-              創業当初から大切にしてきたのは、「特定の金融商品や手法を売る」のではなく、「お客様の状況に最も合った選択肢を、中立的な立場で提示する」というスタンスです。会社員の方の資産形成から、経営者様の事業承継・法人保険、不動産オーナー様の資産組み替え、さらには業務効率化のためのAI活用まで——お客様の属性やフェーズに応じた多角的な支援が、PAS企画の強みです。
+              「資産運用は証券会社、税務は税理士、不動産は不動産会社、経営は別の専門家——」これまでお客様は、課題ごとに異なる窓口を渡り歩く必要がありました。しかし現実の課題は、単独では存在しません。
+            </p>
+            <p style={{ fontSize: 14, color: "var(--ink-2)", lineHeight: 2.05, marginBottom: 20 }}>
+              複雑化する経済環境の中で、一つの専門家に相談するだけでは見落としが生まれやすい時代になりました。だからこそ、複数の専門領域を内包したコングロマリット型の支援体制が必要とされています。
             </p>
             <p style={{ fontSize: 14, color: "var(--ink-2)", lineHeight: 2.05, marginBottom: 32 }}>
-              複雑化する経済環境の中で、一つの専門家に相談するだけでは見落としが生まれやすい時代になりました。だからこそ、複数の専門領域を内包したコングロマリット型の支援体制が必要とされています。これからも「すべての悩みを、一つの窓口で最適解へ」を合言葉に、お客様お一人おひとりに誠実に向き合ってまいります。
+              創業当初から大切にしてきたのは、「特定の商品や手法を売る」のではなく、「お客様の状況に最も合った選択肢を、中立的な立場で提示する」というスタンスです。PAS企画は、特定の金融機関や商品に縛られない独立した立場から、5つの専門領域を横断して最適解をご提案します。これからも「すべての悩みを、一つの窓口で最適解へ」を合言葉に、お客様お一人おひとりに誠実に向き合ってまいります。
             </p>
             <div style={{ fontSize: 16, fontWeight: 700, marginBottom: 4 }}>株式会社PAS企画</div>
             <div style={{ fontSize: 16, fontWeight: 700 }}>代表取締役　小島 拓也</div>
@@ -48,7 +51,7 @@ function AboutPage() {
           <div style={{ maxWidth: 880, margin: "0 auto", borderTop: "1px solid var(--line)" }}>
             {[
               ["会社名",   "株式会社PAS企画（PAS Planning Co., Ltd.）"],
-              ["所在地",   "〒300-3261 茨城県つくば市花畑3丁目13番地10 ヤマグチビル3階\nTEL：029-877-6322"],
+              ["所在地",   <>〒300-3261<span className="addr-br"><br/></span> 茨城県つくば市花畑3丁目13番地10 ヤマグチビル3階<br/>TEL：029-877-6322</>],
               ["創業",     "2018年10月"],
               ["設立",     "2021年8月"],
               ["役員",     "代表取締役　小島 拓也\n取締役　　　阿部 龍一"],
@@ -62,8 +65,10 @@ function AboutPage() {
               </div>
             ))}
             <style>{`
+              .addr-br{ display:none; }
               @media(max-width:640px){
                 .company-row{ grid-template-columns:1fr !important; gap:6px !important; }
+                .addr-br{ display:inline; }
               }
             `}</style>
           </div>
@@ -93,17 +98,17 @@ function ValuesSection() {
     },
     {
       label: "ビジョン", en: "Vision",
-      body: "世代を超えて選ばれる、\n総合金融・事業パートナーへ",
+      body: "世代を超えて選ばれる、\n総合アドバイザリーパートナーへ",
       bodyStyle: { fontSize: "clamp(16px,1.8vw,20px)", fontWeight: 700, lineHeight: 1.9, whiteSpace: "pre-line" },
     },
     {
       label: "指針", en: "Policy",
       list: [
-        "誠意誠実をもってお客様と共に歩む",
-        "専門家として誇り得る知識と品質を常に保持する",
-        "共存共栄で明るい企業を目指す",
-        "創意工夫で明日を拓く",
-        "いかなる変化や困難にも挑戦し即応する",
+        "誠意誠実をもって、お客様と共に歩む",
+        "専門家として、誇り得る知識と品質を常に磨き続ける",
+        "中立を貫き、お客様本位の最適解を導く",
+        "領域の垣根を越え、新しい価値を共創する",
+        "世代を超えた、長期的な信頼関係を築く",
       ],
     },
   ];
@@ -729,16 +734,16 @@ function BestPartnerPage() {
 
       {/* Our Strengths — 4 cards */}
       <section style={{ padding: "40px 0 80px" }}>
-        <div className="wrap">
+        <div className="wrap" style={{ maxWidth: 1440 }}>
           <div className="section-eyebrow" style={{ marginBottom: 56 }}>
             <span className="ja">私たちの強み</span><span className="en">OUR STRENGTHS</span>
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 20 }} className="st-cards">
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 16 }} className="st-cards">
             {STRENGTHS.map((s, i) => {
               const [ref, shown] = useReveal();
               return (
                 <div key={i} ref={ref} style={{
-                  padding: "40px 26px 32px", borderRadius: 14, background: "#fff",
+                  padding: "40px 22px 32px", borderRadius: 14, background: "#fff",
                   border: "1px solid var(--line)", textAlign: "center", minHeight: 240,
                   display: "flex", flexDirection: "column", alignItems: "center",
                   boxShadow: "0 10px 28px -22px rgba(60,40,120,0.25)",
@@ -747,7 +752,7 @@ function BestPartnerPage() {
                 }}>
                   <div className="en prismatic prismatic-animated" style={{ fontSize: 36, fontWeight: 800, marginBottom: 6, letterSpacing: "0.02em" }}>0{i + 1}</div>
                   <div style={{ fontSize: 18, fontWeight: 700, marginBottom: 16 }}>{s.n}<span style={{ color: "var(--pur-3)" }}>・</span>{s.ja}</div>
-                  <p style={{ fontSize: 12.5, color: "var(--ink-2)", lineHeight: 1.9 }}>{s.body}</p>
+                  <p style={{ fontSize: 12.5, color: "var(--ink-2)", lineHeight: 1.9, whiteSpace: "nowrap" }}>{s.body}</p>
                 </div>
               );
             })}
