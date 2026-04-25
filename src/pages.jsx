@@ -555,19 +555,8 @@ function NewsDetailPage({ id }) {
             </div>
           ))}
 
-          {/* share + cta */}
-          <div style={{ padding: "32px 0", borderTop: "1px solid var(--line)", borderBottom: "1px solid var(--line)", marginTop: 60, display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 20 }}>
-            <div>
-              <div className="en" style={{ fontSize: 11, letterSpacing: "0.25em", color: "var(--ink-3)", marginBottom: 4 }}>SHARE</div>
-              <div style={{ display: "flex", gap: 10 }}>
-                {["X", "Facebook", "LINE", "URL"].map((s) => (
-                  <button key={s} onClick={(e) => e.preventDefault()}
-                    style={{ padding: "8px 14px", fontSize: 11, borderRadius: 999, border: "1px solid var(--line)", background: "#fff", cursor: "pointer", letterSpacing: "0.1em" }}>
-                    {s}
-                  </button>
-                ))}
-              </div>
-            </div>
+          {/* cta */}
+          <div style={{ padding: "32px 0", borderTop: "1px solid var(--line)", borderBottom: "1px solid var(--line)", marginTop: 60, display: "flex", justifyContent: "center", alignItems: "center" }}>
             <a href="#contact" onClick={(e) => { e.preventDefault(); window.__setRoute?.("contact"); }}
                style={{ display: "inline-flex", alignItems: "center", gap: 10, padding: "14px 28px", borderRadius: 999, background: "linear-gradient(90deg, var(--c1) 0%, var(--c2) 100%)", color: "#fff", fontSize: 13, fontWeight: 600 }}>
               このお知らせについて問い合わせる <span>→</span>
