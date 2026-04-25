@@ -1460,8 +1460,22 @@ function StaffModal({ staff, onClose }) {
   React.useEffect(() => {
     const onKey = (e) => { if (e.key === "Escape") onClose(); };
     window.addEventListener("keydown", onKey);
-    document.body.style.overflow = "hidden";
-    return () => { window.removeEventListener("keydown", onKey); document.body.style.overflow = ""; };
+    // iOS Safariでもスクロール位置を保ったまま背景スクロールをロックするため、bodyをposition:fixedで固定
+    const scrollY = window.scrollY || window.pageYOffset || 0;
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.left = "0";
+    document.body.style.right = "0";
+    document.body.style.width = "100%";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.left = "";
+      document.body.style.right = "";
+      document.body.style.width = "";
+      window.scrollTo(0, scrollY);
+    };
   }, [onClose]);
 
   return (
@@ -1541,7 +1555,7 @@ function StaffModal({ staff, onClose }) {
         @keyframes fadeIn{from{opacity:0}to{opacity:1}}
         @keyframes slideUp{from{transform:translateY(20px);opacity:0}to{transform:none;opacity:1}}
         @media(max-width:720px){
-          .modal-overlay{ padding:88px 16px 16px !important; }
+          .modal-overlay{ align-items:flex-start !important; padding:88px 16px 16px !important; }
           .staff-modal-inner{ max-height:calc(100vh - 104px) !important; }
           .modal-grid{ grid-template-columns:1fr !important; grid-template-rows:auto 1fr !important; }
           .modal-photo-panel{ min-height:200px !important; max-height:220px !important; }
