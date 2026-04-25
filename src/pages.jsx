@@ -1047,17 +1047,17 @@ function FormLayout({ form, up, sent, setSent, deptOptions, inquiryPH, heading, 
                   display: "flex", alignItems: "center", justifyContent: "space-between",
                   width: "100%", maxWidth: 400, padding: "10px 10px 10px 36px",
                   borderRadius: 999, border: "none", cursor: "pointer",
-                  background: "linear-gradient(90deg, var(--pur-1) 0%, var(--pur-2) 35%, #e6b8cf 75%, #f0c4d4 100%)",
-                  color: "#2a2340", fontSize: 17, fontWeight: 700, letterSpacing: "0.04em",
-                  boxShadow: "0 8px 24px -8px rgba(100,70,180,0.35)",
+                  background: "linear-gradient(90deg, var(--c1) 0%, var(--c2) 100%)",
+                  color: "#fff", fontSize: 17, fontWeight: 700, letterSpacing: "0.04em",
+                  boxShadow: "0 8px 24px -8px rgba(100,120,200,0.35)",
                   transition: "transform .2s, box-shadow .2s",
                 }}>
                 <span style={{ flex: 1, textAlign: "center" }}>送信する</span>
                 <span style={{
                   display: "inline-flex", alignItems: "center", justifyContent: "center",
                   width: 36, height: 36, borderRadius: 999,
-                  border: "1px solid rgba(42,35,64,0.3)", color: "#2a2340", fontSize: 14,
-                  background: "rgba(255,255,255,0.1)", flexShrink: 0,
+                  border: "1px solid rgba(255,255,255,0.5)", color: "#fff", fontSize: 14,
+                  background: "rgba(255,255,255,0.15)", flexShrink: 0,
                 }}>▸</span>
               </button>
               <button type="button"
