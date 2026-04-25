@@ -1487,7 +1487,6 @@ function StaffModal({ staff, onClose }) {
          className="modal-overlay">
       <div onClick={(e) => e.stopPropagation()}
            style={{ background: "#fff", borderRadius: 20, maxWidth: 820, width: "100%",
-                    maxHeight: "calc(100vh - 124px)",
                     position: "relative", overflow: "hidden",
                     display: "flex", flexDirection: "column",
                     boxShadow: "0 40px 80px -30px rgba(0,0,0,0.4)", animation: "slideUp .35s ease" }}
@@ -1554,9 +1553,16 @@ function StaffModal({ staff, onClose }) {
       <style>{`
         @keyframes fadeIn{from{opacity:0}to{opacity:1}}
         @keyframes slideUp{from{transform:translateY(20px);opacity:0}to{transform:none;opacity:1}}
+        .staff-modal-inner{
+          max-height: calc(100vh - 124px);
+          max-height: calc(100dvh - 124px);
+        }
         @media(max-width:720px){
           .modal-overlay{ align-items:flex-start !important; padding:88px 16px 16px !important; }
-          .staff-modal-inner{ max-height:calc(100vh - 104px) !important; }
+          .staff-modal-inner{
+            max-height: calc(100vh - 104px) !important;
+            max-height: calc(100dvh - 104px) !important;
+          }
           .modal-grid{ grid-template-columns:1fr !important; grid-template-rows:auto 1fr !important; }
           .modal-photo-panel{ min-height:200px !important; max-height:220px !important; }
           .modal-close-pc{ display:none !important; }
