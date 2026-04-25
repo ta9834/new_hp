@@ -923,9 +923,42 @@ function ContactPageV2({ defaultTab = "service" }) {
   );
 }
 
+const PREFECTURES = [
+  "北海道",
+  "青森県", "岩手県", "宮城県", "秋田県", "山形県", "福島県",
+  "茨城県", "栃木県", "群馬県", "埼玉県", "千葉県", "東京都", "神奈川県",
+  "新潟県", "富山県", "石川県", "福井県", "山梨県", "長野県",
+  "岐阜県", "静岡県", "愛知県", "三重県",
+  "滋賀県", "京都府", "大阪府", "兵庫県", "奈良県", "和歌山県",
+  "鳥取県", "島根県", "岡山県", "広島県", "山口県",
+  "徳島県", "香川県", "愛媛県", "高知県",
+  "福岡県", "佐賀県", "長崎県", "熊本県", "大分県", "宮崎県", "鹿児島県", "沖縄県",
+];
+
 function FormLayout({ form, up, sent, setSent, deptOptions, inquiryPH, heading, phoneNote, kind }) {
   const [errors, setErrors] = React.useState({});
   const [confirming, setConfirming] = React.useState(false);
+  const composingNameRef = React.useRef("");
+  const handleNameCompositionUpdate = (e) => {
+    const data = e.data || "";
+    // ひらがな/カタカナのみ保持（漢字変換後の値で上書きしない）
+    if (/^[぀-ヿ]+$/.test(data)) {
+      composingNameRef.current = data;
+    }
+  };
+  const handleNameCompositionEnd = (e) => {
+    if (composingNameRef.current) {
+      const katakana = composingNameRef.current.replace(/[ぁ-ゖ]/g, (ch) =>
+        String.fromCharCode(ch.charCodeAt(0) + 0x60)
+      );
+      const currentName = (e && e.target && e.target.value) || form.name || "";
+      const nameSpaces = (currentName.match(/[ 　]/g) || []).length;
+      const kanaSpaces = ((form.kana || "").match(/[ 　]/g) || []).length;
+      const separator = nameSpaces > kanaSpaces ? " " : "";
+      up("kana", (form.kana || "") + separator + katakana);
+      composingNameRef.current = "";
+    }
+  };
   const validate = () => {
     const e = {};
     if (!form.dept) e.dept = "選択してください";
@@ -1083,7 +1116,13 @@ function FormLayout({ form, up, sent, setSent, deptOptions, inquiryPH, heading, 
                 </FormRow>
               )}
               <FormRow label="お名前" req>
-                <TextInput v={form.name} oc={(v) => up("name", v)} ph="山田 太郎"/>
+                <TextInput
+                  v={form.name}
+                  oc={(v) => up("name", v)}
+                  ph="山田 太郎"
+                  onCompositionUpdate={handleNameCompositionUpdate}
+                  onCompositionEnd={handleNameCompositionEnd}
+                />
                 {errors.name && <ErrMsg>{errors.name}</ErrMsg>}
               </FormRow>
               <FormRow label="フリガナ" req>
@@ -1099,7 +1138,14 @@ function FormLayout({ form, up, sent, setSent, deptOptions, inquiryPH, heading, 
                 {errors.tel && <ErrMsg>{errors.tel}</ErrMsg>}
               </FormRow>
               <FormRow label="ご住所（都道府県）" req>
-                <TextInput v={form.address} oc={(v) => up("address", v)} ph="茨城県つくば市"/>
+                <select
+                  value={form.address || ""}
+                  onChange={(e) => up("address", e.target.value)}
+                  style={inputStyle({ appearance: "auto", cursor: "pointer" })}
+                >
+                  <option value="">—以下から選択してください—</option>
+                  {PREFECTURES.map((p) => <option key={p} value={p}>{p}</option>)}
+                </select>
                 {errors.address && <ErrMsg>{errors.address}</ErrMsg>}
               </FormRow>
               <FormRow label="お問い合わせ内容" req>
@@ -1200,8 +1246,16 @@ function inputStyle(extra = {}) {
   };
 }
 
-function TextInput({ v, oc, ph, t = "text" }) {
-  return <input type={t} value={v} onChange={(e) => oc(e.target.value)} placeholder={ph} style={inputStyle()}/>;
+function TextInput({ v, oc, ph, t = "text", onCompositionUpdate, onCompositionEnd }) {
+  return <input
+    type={t}
+    value={v}
+    onChange={(e) => oc(e.target.value)}
+    onCompositionUpdate={onCompositionUpdate}
+    onCompositionEnd={onCompositionEnd}
+    placeholder={ph}
+    style={inputStyle()}
+  />;
 }
 
 function ErrMsg({ children }) {
@@ -1244,30 +1298,9 @@ function StaffPage() {
   const [active, setActive] = React.useState(null);
   return (
     <>
-      <PageHeader en="STAFF" ja="スタッフ紹介" crumb={["スタッフ紹介"]} lead="お客様のベストパートナーであり続けるために——多様な専門性を持つメンバーが、一人ひとりの課題に真摯に向き合います。" />
+      <PageHeader en="STAFF" ja="スタッフ紹介" crumb={["スタッフ紹介"]} lead="異なる専門性を持つメンバーが一つのチームとなり、お客様の人生と事業のあらゆる課題に多角的にお応えします。" />
 
-      <section style={{ padding: "40px 0 40px" }}>
-        <div className="wrap" style={{ maxWidth: 980 }}>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 28, marginBottom: 20 }} className="staff-stats">
-            {[
-              { n: STAFF.length, u: "名", l: "在籍スタッフ" },
-              { n: 6, u: "分野", l: "専門領域" },
-              { n: 12, u: "種類", l: "保有資格（延べ）" },
-              { n: 100, u: "%", l: "初回相談担当" },
-            ].map((s, i) => (
-              <div key={i} style={{ textAlign: "center", padding: "28px 10px", border: "1px solid var(--line)", borderRadius: 14, background: "#fff" }}>
-                <div style={{ fontSize: 38, fontWeight: 800, letterSpacing: "-0.02em", color: "var(--ink)" }}>
-                  {s.n}<span style={{ fontSize: 14, fontWeight: 600, marginLeft: 3, color: "var(--ink-3)" }}>{s.u}</span>
-                </div>
-                <div style={{ fontSize: 12, color: "var(--ink-3)", marginTop: 4, letterSpacing: "0.08em" }}>{s.l}</div>
-              </div>
-            ))}
-          </div>
-          <style>{`@media(max-width:820px){.staff-stats{grid-template-columns:repeat(2,1fr) !important;}}`}</style>
-        </div>
-      </section>
-
-      <section style={{ padding: "40px 0 120px" }}>
+      <section style={{ padding: "40px 0 80px" }}>
         <div className="wrap" style={{ maxWidth: 1200 }}>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 36, alignItems: "stretch" }} className="staff-grid">
             {STAFF.map((s, i) => (
@@ -1323,27 +1356,100 @@ function StaffPage() {
         </div>
       </section>
 
-      {active && <StaffModal staff={active} onClose={() => setActive(null)} />}
+      <section style={{ padding: "60px 0 100px", position: "relative", overflow: "hidden" }}>
+        {/* 装飾：背景のソフトグラデーション円 */}
+        <div aria-hidden="true" style={{
+          position: "absolute", top: -120, right: -120, width: 420, height: 420,
+          borderRadius: "50%",
+          background: "radial-gradient(circle, rgba(157,143,204,0.10) 0%, transparent 70%)",
+          pointerEvents: "none",
+        }}/>
+        <div aria-hidden="true" style={{
+          position: "absolute", bottom: -100, left: -120, width: 360, height: 360,
+          borderRadius: "50%",
+          background: "radial-gradient(circle, rgba(122,165,210,0.10) 0%, transparent 70%)",
+          pointerEvents: "none",
+        }}/>
 
-      <section style={{ padding: "80px 0 100px", background: "var(--bg-2)" }}>
-        <div className="wrap" style={{ maxWidth: 880, textAlign: "center" }}>
-          <div className="en" style={{ fontSize: 11, letterSpacing: "0.3em", color: "var(--pur-3)", marginBottom: 10 }}>OUR CULTURE</div>
-          <h2 style={{ fontSize: 32, fontWeight: 700, marginBottom: 30 }}>私たちの働き方</h2>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 28, textAlign: "left" }} className="culture-grid">
+        <div className="wrap" style={{ maxWidth: 1080, position: "relative" }}>
+          <div className="section-eyebrow" style={{ marginBottom: 56 }}>
+            <span className="ja">私たちが大切にしていること</span>
+            <span className="en">OUR TEAM VALUES</span>
+          </div>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 28, textAlign: "left", alignItems: "stretch" }} className="values-grid">
             {[
-              { h: "分業ではなく、連携", body: "一人のお客様を、複数メンバーでチームとしてご担当。専門分野の垣根を越えて意見を持ち寄り、最適解を探します。" },
-              { h: "学び続ける文化", body: "毎週の勉強会、外部研修の受講奨励、資格取得支援。変わり続ける税制・金融環境に、常にアップデートで応えます。" },
-              { h: "家庭を大切に", body: "平均残業10時間/月、リモート併用。長く働き続けられる環境があるからこそ、お客様とも長期でご一緒できると考えています。" },
-            ].map((c, i) => (
-              <div key={i} style={{ background: "#fff", padding: 28, borderRadius: 14, border: "1px solid var(--line)" }}>
-                <div style={{ fontSize: 18, fontWeight: 700, marginBottom: 12 }}>{c.h}</div>
-                <p style={{ fontSize: 13, color: "var(--ink-2)", lineHeight: 1.95 }}>{c.body}</p>
+              {
+                en: "TEAM",
+                h: "チームで向き合う",
+                body: "一人のお客様を複数メンバーで担当。専門分野の垣根を越えて意見を持ち寄り、最適解を探します。",
+                icon: (
+                  <svg width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+                    <circle cx="11" cy="13" r="5" stroke="currentColor" strokeWidth="1.4"/>
+                    <circle cx="25" cy="13" r="5" stroke="currentColor" strokeWidth="1.4"/>
+                    <circle cx="18" cy="24" r="5" stroke="currentColor" strokeWidth="1.4"/>
+                  </svg>
+                ),
+              },
+              {
+                en: "LEARN",
+                h: "学び続けるチーム",
+                body: "税制・金融・テクノロジーの変化に常に追従。お客様に最新の選択肢をお届けするため、学びを止めません。",
+                icon: (
+                  <svg width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+                    <path d="M6 9 L18 12 L18 30 L6 27 Z" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round"/>
+                    <path d="M30 9 L18 12 L18 30 L30 27 Z" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round"/>
+                    <path d="M10 16 L14 17 M10 20 L14 21 M22 16 L26 15 M22 20 L26 19" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/>
+                  </svg>
+                ),
+              },
+              {
+                en: "LIFELONG",
+                h: "長期で寄り添う",
+                body: "一度きりの相談で終わる関係ではなく、人生と事業の節目ごとに継続的に並走するパートナーを目指します。",
+                icon: (
+                  <svg width="36" height="36" viewBox="0 0 36 36" fill="none" aria-hidden="true">
+                    <circle cx="13" cy="18" r="7" stroke="currentColor" strokeWidth="1.4"/>
+                    <circle cx="23" cy="18" r="7" stroke="currentColor" strokeWidth="1.4"/>
+                  </svg>
+                ),
+              },
+            ].map((v, i) => (
+              <div key={i} className="value-card" style={{
+                background: "#fff", padding: "44px 32px 36px",
+                borderRadius: 16, border: "1px solid var(--line)",
+                position: "relative", overflow: "hidden",
+                transition: "transform .35s cubic-bezier(.22,.61,.36,1), box-shadow .35s, border-color .35s",
+              }}>
+                {/* トップのプリズマティックグラデーション帯 */}
+                <div aria-hidden="true" style={{
+                  position: "absolute", top: 0, left: 0, right: 0, height: 3,
+                  background: "linear-gradient(90deg, var(--c1) 0%, var(--c2) 25%, var(--c3) 50%, var(--c5) 75%, var(--c6) 100%)",
+                }}/>
+                {/* No.+ アイコン */}
+                <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", marginBottom: 26 }}>
+                  <div className="en prismatic prismatic-animated" style={{ fontSize: 36, fontWeight: 800, lineHeight: 1, letterSpacing: "0.02em" }}>
+                    0{i + 1}
+                  </div>
+                  <div style={{ color: "var(--pur-3)" }}>{v.icon}</div>
+                </div>
+                <div className="en" style={{ fontSize: 11, letterSpacing: "0.3em", color: "var(--pur-3)", marginBottom: 10 }}>{v.en}</div>
+                <div style={{ fontSize: 20, fontWeight: 700, marginBottom: 14, letterSpacing: "0.02em" }}>{v.h}</div>
+                <p style={{ fontSize: 13, color: "var(--ink-2)", lineHeight: 1.95 }}>{v.body}</p>
               </div>
             ))}
           </div>
-          <style>{`@media(max-width:820px){.culture-grid{grid-template-columns:1fr !important;}}`}</style>
+          <style>{`
+            .value-card:hover {
+              transform: translateY(-6px);
+              box-shadow: 0 24px 48px -24px rgba(50,40,90,0.20);
+              border-color: var(--pur-2);
+            }
+            @media(max-width:820px){.values-grid{grid-template-columns:1fr !important;}}
+          `}</style>
         </div>
       </section>
+
+      {active && <StaffModal staff={active} onClose={() => setActive(null)} />}
 
       <ContactBand />
     </>
