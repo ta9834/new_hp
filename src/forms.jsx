@@ -61,8 +61,9 @@ function ErrMsg({ children }) {
 function FormRow({ label, req, children }) {
   return (
     <div style={{ display: "grid", gridTemplateColumns: "200px 1fr", gap: 32, padding: "20px 0", borderBottom: "1px solid var(--line)", alignItems: "flex-start" }} className="fr">
-      <div style={{ fontSize: 13, fontWeight: 700, paddingTop: 14, display: "flex", alignItems: "center", gap: 8 }}>
-        {label}{req && <span style={{ fontSize: 10, padding: "2px 8px", background: "var(--pur-3)", color: "#fff", borderRadius: 3, letterSpacing: "0.08em" }}>必須</span>}
+      <div style={{ fontSize: 13, fontWeight: 700, paddingTop: 14, display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
+        <span>{label}</span>
+        {req && <span style={{ fontSize: 10, padding: "2px 8px", background: "var(--pur-3)", color: "#fff", borderRadius: 3, letterSpacing: "0.08em", whiteSpace: "nowrap", flexShrink: 0 }}>必須</span>}
       </div>
       <div style={{ paddingTop: 6 }}>{children}</div>
       <style>{`@media(max-width:820px){.fr{grid-template-columns:1fr !important;gap:12px !important;}}`}</style>
@@ -120,6 +121,22 @@ function FormLayout({ form, up, sent, setSent, deptOptions, inquiryPH, heading, 
   const [submitting, setSubmitting] = React.useState(false);
   const [submitError, setSubmitError] = React.useState("");
   const composingNameRef = React.useRef("");
+  const confirmHeadingRef = React.useRef(null);
+  const sentHeadingRef = React.useRef(null);
+
+  // 画面切替時のスクロール制御
+  // - 完了画面 ：「THANK YOU」見出しまでスクロール
+  // - 確認画面 ：「入力内容のご確認」見出しまでスクロール
+  // - 編集画面 ：ページトップへ
+  React.useEffect(() => {
+    if (sent && sentHeadingRef.current) {
+      sentHeadingRef.current.scrollIntoView({ block: "start", behavior: "instant" });
+    } else if (confirming && confirmHeadingRef.current) {
+      confirmHeadingRef.current.scrollIntoView({ block: "start", behavior: "instant" });
+    } else {
+      window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+    }
+  }, [confirming, sent]);
   const handleNameCompositionUpdate = (e) => {
     const data = e.data || "";
     // ひらがな/カタカナのみ保持（漢字変換後の値で上書きしない）
@@ -177,20 +194,20 @@ function FormLayout({ form, up, sent, setSent, deptOptions, inquiryPH, heading, 
       <div className="wrap" style={{ maxWidth: 1100 }}>
         {sent ? (
           <Reveal>
-            <div style={{ padding: "80px 48px", background: "var(--bg-2)", borderRadius: 16, textAlign: "center" }}>
+            <div ref={sentHeadingRef} style={{ padding: "80px 48px", background: "var(--bg-2)", borderRadius: 16, textAlign: "center", scrollMarginTop: "100px" }}>
               <div className="en prismatic" style={{ fontSize: 56, fontWeight: 800, letterSpacing: "0.02em" }}>THANK YOU</div>
               <div style={{ fontSize: 22, fontWeight: 700, marginTop: 12 }}>お問い合わせありがとうございます</div>
               <p style={{ fontSize: 14, color: "var(--ink-2)", marginTop: 20, lineHeight: 2 }}>
                 自動返信メールを送付いたしました。担当者より2営業日以内にご連絡いたします。<br/>
                 万一、自動返信メールが届かない場合はお電話にてご確認ください。
               </p>
-              <button onClick={() => { window.scrollTo({ top: 0, behavior: "smooth" }); setSent(false); setConfirming(false); setSubmitError(""); }}
+              <button onClick={() => { setSent(false); setConfirming(false); setSubmitError(""); }}
                       className="pill-btn" style={{ marginTop: 32 }}>トップへ戻る</button>
             </div>
           </Reveal>
         ) : confirming ? (
           <Reveal>
-            <div style={{ marginBottom: 8 }}>
+            <div ref={confirmHeadingRef} style={{ marginBottom: 8, scrollMarginTop: "100px" }}>
               <h2 style={{ fontSize: 26, fontWeight: 700, letterSpacing: "0.04em" }}>入力内容のご確認</h2>
             </div>
             <p style={{ fontSize: 12.5, color: "var(--ink-3)", marginBottom: 48, lineHeight: 1.9 }}>
@@ -252,7 +269,6 @@ function FormLayout({ form, up, sent, setSent, deptOptions, inquiryPH, heading, 
                     const result = await submitToGAS(payload);
                     if (result && result.ok) {
                       setSent(true);
-                      window.scrollTo({ top: 0, behavior: "smooth" });
                     } else {
                       setSubmitError(result?.error || "送信に失敗しました");
                     }
@@ -284,7 +300,7 @@ function FormLayout({ form, up, sent, setSent, deptOptions, inquiryPH, heading, 
               </button>
               <button type="button"
                 disabled={submitting}
-                onClick={() => { setConfirming(false); setSubmitError(""); window.scrollTo({ top: 0, behavior: "smooth" }); }}
+                onClick={() => { setConfirming(false); setSubmitError(""); }}
                 style={{
                   fontSize: 13, color: "var(--ink-2)",
                   textDecoration: "underline",
@@ -311,7 +327,7 @@ function FormLayout({ form, up, sent, setSent, deptOptions, inquiryPH, heading, 
               </p>
             </Reveal>
 
-            <form onSubmit={(e) => { e.preventDefault(); if (validate()) { setConfirming(true); window.scrollTo({ top: 0, behavior: "smooth" }); } }}>
+            <form onSubmit={(e) => { e.preventDefault(); if (validate()) { setConfirming(true); } }}>
               <FormRow label="お問い合わせ種別" req>
                 <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
                   {deptOptions.map(([v, l]) => (
