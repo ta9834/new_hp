@@ -271,16 +271,40 @@
     } catch(e){ window.__TWEAKS__ = { ...TWEAK_DEFAULTS }; }
   </script>
 
+  <script type="text/babel" src="src/config.jsx"></script>
   <script type="text/babel" src="src/data.jsx"></script>
   <script type="text/babel" src="src/anim.jsx"></script>
   <script type="text/babel" src="src/waves.jsx"></script>
   <script type="text/babel" src="src/chrome.jsx"></script>
+  <script type="text/babel" src="src/forms.jsx"></script>
+  <script type="text/babel" src="src/news.jsx"></script>
   <script type="text/babel" src="src/home.jsx"></script>
   <script type="text/babel" src="src/pages.jsx"></script>
   <script type="text/babel" src="src/seo.jsx"></script>
   <script type="text/babel" src="src/chatbot.jsx"></script>
   <script type="text/babel" src="src/tweaks.jsx"></script>
   <script type="text/babel" src="src/root.jsx"></script>
+
+  <!-- Google reCAPTCHA v3（送信時にBOTスコア検証） -->
+  <script>
+    // CONFIG.RECAPTCHA_SITE_KEY を使ってreCAPTCHAを動的に読み込み
+    (function() {
+      var checkAndLoad = function() {
+        if (window.CONFIG && window.CONFIG.RECAPTCHA_SITE_KEY && window.CONFIG.RECAPTCHA_SITE_KEY !== "YOUR_RECAPTCHA_SITE_KEY") {
+          var s = document.createElement("script");
+          s.src = "https://www.google.com/recaptcha/api.js?render=" + window.CONFIG.RECAPTCHA_SITE_KEY;
+          s.async = true; s.defer = true;
+          document.head.appendChild(s);
+        } else {
+          // CONFIG読み込み待ち（最大3秒）
+          if ((checkAndLoad.tries = (checkAndLoad.tries || 0) + 1) < 30) {
+            setTimeout(checkAndLoad, 100);
+          }
+        }
+      };
+      checkAndLoad();
+    })();
+  </script>
 
   <!-- Structured Data: Organization + LocalBusiness -->
   <script type="application/ld+json">
