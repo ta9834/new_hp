@@ -51,7 +51,7 @@ function Counter({ to, suffix = "", duration = 1400 }) {
 // Prismatic animated title — wrapper handles opacity fade, inner span handles gradient clip
 function PrismaticTitle({ text, tag: Tag = "h2", style }) {
   return (
-    <Tag className="en" style={{ ...style, display: "block" }}>
+    <Tag className="en prismatic-title" style={{ ...style, display: "block" }}>
       {text.split("").map((ch, i) => (
         <span
           key={i}

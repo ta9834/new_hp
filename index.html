@@ -96,8 +96,39 @@
     line-break: strict;
     word-break: normal;
   }
+
+  /* スマホでの不自然改行を緩和：文節境界で折り返す（Chrome 119+ / Safari 17.4+） */
+  @supports (word-break: auto-phrase) {
+    p, h1, h2, h3, h4, h5, h6, li, dd, dt {
+      word-break: auto-phrase;
+    }
+  }
+  /* 最終行が1〜2文字だけ残る「孤児行」を回避（Chrome 117+ / Safari 17.5+） */
+  @supports (text-wrap: pretty) {
+    p, li, dd {
+      text-wrap: pretty;
+    }
+  }
+  /* 見出し・短いリード文の行長を揃える（Chrome 114+ / Safari 17.5+） */
+  @supports (text-wrap: balance) {
+    h1, h2, h3, .section-eyebrow .ja {
+      text-wrap: balance;
+    }
+  }
+
+  /* PrismaticTitle（"BE THE BEST" "PARTNER" "BEST PARTNER" 等のヒーロー演出）は
+     文字単位アニメーションのため、絶対に改行させない */
+  .prismatic-title {
+    white-space: nowrap;
+    text-wrap: nowrap;
+    word-break: keep-all;
+  }
+
   /* 「——」（em-dash）が分割されるのを防ぐため、no-break クラスを定義 */
   .nbsp-emdash { white-space: nowrap; }
+
+  /* reCAPTCHA v3 バッジを非表示（代わりに利用規約をフォーム内に明記） */
+  .grecaptcha-badge { visibility: hidden !important; }
   button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
   img { max-width: 100%; display: block; }
   .en { font-family: var(--font-en); letter-spacing: 0.04em; }

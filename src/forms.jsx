@@ -438,6 +438,15 @@ function FormLayout({ form, up, sent, setSent, deptOptions, inquiryPH, heading, 
               </label>
               {errors.agree && <ErrMsg>{errors.agree}</ErrMsg>}
 
+              {/* reCAPTCHA 利用規約（バッジ非表示時に必須の表記） */}
+              <p style={{ fontSize: 11, color: "var(--ink-3)", marginTop: 20, lineHeight: 1.7 }}>
+                このサイトは reCAPTCHA によって保護されており、Google の
+                <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" style={{ color: "var(--pur-3)", textDecoration: "underline", margin: "0 3px" }}>プライバシーポリシー</a>
+                と
+                <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer" style={{ color: "var(--pur-3)", textDecoration: "underline", margin: "0 3px" }}>利用規約</a>
+                が適用されます。
+              </p>
+
               <div style={{ marginTop: 48, display: "flex", flexDirection: "column", alignItems: "center", gap: 22 }}>
                 <button type="submit" className="confirm-submit-btn" style={{
                   display: "flex", alignItems: "center", justifyContent: "space-between",

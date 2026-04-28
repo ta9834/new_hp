@@ -1,29 +1,84 @@
 // Homepage (home)
-function Hero() {
+// ヒーローは「上部ゾーン / セーフエリア（メインコピー）/ 下部ゾーン」の3層 Flex構造。
+// サブコピー（HERO_PHRASES）は各ゾーン内でのみ position:absolute で配置されるため、
+// メインコピー（BE THE BEST PARTNER）と構造的に絶対重ならない。
+
+// 1文字ずつフェードイン+下からスライドする見出し
+function HeroAnimText({ text, fontSize, baseDelay = 0 }) {
+  // 2層構造：
+  //  外側 .hero-letter-wrap … PrismaticTitle と同じスライドアニメ（heroLetter）
+  //  内側 .hero-anim-letter … グラデーションを background-position アニメで
+  //                            時間方向に動かす（PrismaticTitle の prismaShift と同等の挙動）
   return (
-    <section style={{ position: "relative", paddingTop: 120, paddingBottom: 0, minHeight: "96vh", overflow: "hidden" }}>
-      <SubtleDots />
-      {/* scattered phrases — positioned to flow around (not overlap) the main title */}
-      {HERO_PHRASES.map((p, i) => (
-        <div key={i} data-idx={i} className="scatter-phrase hero-phrase" style={{
-          position: "absolute", left: p.x, top: p.y,
-          color: p.color || "var(--ink-4)", fontSize: p.size, fontWeight: 500,
-          letterSpacing: "0.04em", whiteSpace: "nowrap",
-          animationDelay: `${(p.delay || i * 200) + 600}ms`,
-          pointerEvents: "none",
-          zIndex: 0,
-        }}>{p.t}</div>
+    <span className="hero-anim-text" style={{ fontSize }}>
+      {text.split("").map((ch, i) => (
+        <span
+          key={i}
+          className="hero-letter-wrap"
+          style={{ animationDelay: `${80 + baseDelay + i * 50}ms` }}
+        >
+          <span className="prismatic prismatic-animated">
+            {ch === " " ? " " : ch}
+          </span>
+        </span>
       ))}
-      <div className="wrap" style={{ position: "relative", paddingTop: 80, zIndex: 2 }}>
-        <div style={{ fontSize: 18, fontWeight: 600, color: "var(--ink-2)", marginBottom: 20, opacity: 0, animation: "phraseFloat 1s ease-out .2s forwards" }}>
-          すべてのお客様の、ベストパートナーに
-        </div>
-        <div style={{ position: "relative", display: "inline-block" }}>
-          <PrismaticTitle tag="h1" text="BE THE BEST" style={{ fontSize: "clamp(44px, 9.5vw, 136px)", fontWeight: 800, lineHeight: 0.95, letterSpacing: "0.01em" }} />
-          <PrismaticTitle tag="h1" text="PARTNER" style={{ fontSize: "clamp(44px, 9.5vw, 136px)", fontWeight: 800, lineHeight: 0.95, letterSpacing: "0.01em" }} />
+    </span>
+  );
+}
+
+function Hero() {
+  const topPhrases = HERO_PHRASES.filter(p => p.zone === "top");
+  const bottomPhrases = HERO_PHRASES.filter(p => p.zone === "bottom");
+
+  const renderPhrase = (p, i) => (
+    <div
+      key={p.t}
+      className={`hero-phrase ${p.accent ? "hero-phrase-accent" : ""}`}
+      data-idx={i}
+      style={{
+        position: "absolute",
+        left: p.x, top: p.y,
+        fontSize: p.size,
+        color: p.color || "var(--ink-4)",
+        fontWeight: 500,
+        letterSpacing: "0.04em",
+        whiteSpace: "nowrap",
+        opacity: 0,
+        animation: `phraseFloat 1.6s cubic-bezier(.22,.61,.36,1) ${(p.delay || 0) + 600}ms forwards`,
+        pointerEvents: "none",
+        zIndex: 0,
+      }}
+    >{p.t}</div>
+  );
+
+  return (
+    <section className="hero-v3" style={{ position: "relative", overflow: "hidden", paddingTop: 120, paddingBottom: 0 }}>
+      <SubtleDots />
+
+      {/* 上部ゾーン（セーフエリア外） */}
+      <div className="hero-zone hero-zone-top">
+        {topPhrases.map(renderPhrase)}
+      </div>
+
+      {/* メインコピー（セーフエリア） */}
+      <div className="hero-zone-main">
+        <div className="hero-lead">すべてのお客様の、ベストパートナーに</div>
+        <div className="hero-title-stack">
+          <h1 className="hero-anim-line">
+            <HeroAnimText text="BE THE BEST" />
+          </h1>
+          <h1 className="hero-anim-line">
+            <HeroAnimText text="PARTNER" baseDelay={11 * 50} />
+          </h1>
         </div>
       </div>
-      <div style={{ position: "relative", marginTop: 40, height: 120 }} />
+
+      {/* 下部ゾーン（セーフエリア外） */}
+      <div className="hero-zone hero-zone-bottom">
+        {bottomPhrases.map(renderPhrase)}
+      </div>
+
+      {/* ロゴ＋本文（通常フロー） */}
       <div style={{ position: "relative", padding: "30px 0 100px" }}>
         <div className="wrap" style={{ textAlign: "center" }}>
           <Reveal><div className="gentle-float" style={{ display: "inline-block" }}><Logo size={56} /></div></Reveal>
@@ -38,13 +93,89 @@ function Hero() {
           </p></Reveal>
         </div>
       </div>
+
       <style>{`
-        @media(max-width:640px){
-          .hero-phrase[data-idx="0"] { left: 4%  !important; top: 9%  !important; font-size: 16px !important; color: #cecece !important; }
-          .hero-phrase[data-idx="1"] { left: 20% !important; top: 12% !important; font-size: 21px !important; color: #bababa !important; }
-          .hero-phrase[data-idx="2"] { left: 4%  !important; top: 34% !important; font-size: 16px !important; color: #d4d4d4 !important; }
-          .hero-phrase[data-idx="3"] { left: 20% !important; top: 37% !important; font-size: 21px !important; color: #bababa !important; }
-          .hero-phrase[data-idx="4"] { left: 4%  !important; top: 41% !important; font-size: 19px !important; color: #c4c4c4 !important; }
+        .hero-v3 .hero-zone {
+          position: relative;
+          width: 100%;
+          max-width: 1340px;
+          margin: 0 auto;
+        }
+        .hero-v3 .hero-zone-top { height: 110px; }
+        .hero-v3 .hero-zone-bottom { height: 170px; }
+
+        .hero-v3 .hero-zone-main {
+          position: relative;
+          z-index: 2;
+          max-width: 1240px;
+          margin: 0 auto;
+          padding: 40px 40px 12px;     /* PARTNER直下を詰める（top:40 / bottom:12） */
+          text-align: left;
+        }
+        .hero-v3 .hero-lead {
+          font-size: 18px;
+          font-weight: 600;
+          color: var(--ink-2);
+          margin-bottom: 16px;
+          opacity: 0;
+          animation: phraseFloat 1s ease-out .2s forwards;
+        }
+        .hero-v3 .hero-title-stack { display: inline-block; }
+        .hero-v3 .hero-anim-line {
+          margin: 0;
+          line-height: 0.95;
+          letter-spacing: 0.01em;
+          font-weight: 800;
+        }
+        .hero-v3 .hero-anim-text {
+          font-size: clamp(40px, 8vw, 96px);
+          font-weight: 800;
+          line-height: 0.95;
+          white-space: nowrap;
+          display: inline-block;
+        }
+        /* 外側 .hero-letter-wrap と内側 .prismatic / .prismatic-animated は
+           すべて index.html で定義済み。BEST PARTNER と完全に同じ虹色グラデーション +
+           prismaShift（8s ease-in-out infinite alternate）アニメが効く。 */
+
+        /* タブレット（〜1024px）：サブコピー縮小、セーフエリア維持 */
+        @media (max-width: 1024px) {
+          .hero-v3 .hero-zone-top { height: 90px; }
+          .hero-v3 .hero-zone-bottom { height: 120px; }
+          .hero-v3 .hero-zone-main { padding: 32px 32px 10px; }
+          .hero-v3 .hero-phrase { font-size: clamp(16px, 2.4vw, 26px) !important; }
+          .hero-v3 .hero-phrase-accent {
+            font-size: clamp(24px, 4.2vw, 42px) !important;
+            left: 50% !important;
+            animation-name: phraseFloatCenter !important;
+          }
+          /* 上部ゾーン：独立系 / 一つの窓口で の行間を広げる（タブレット） */
+          .hero-v3 .hero-zone-top .hero-phrase[data-idx="0"] { top: 5% !important; }
+          .hero-v3 .hero-zone-top .hero-phrase[data-idx="1"] { top: 55% !important; }
+        }
+        /* スマホ（〜640px）：セーフエリア広め、サブコピー 12〜14px、低優先は非表示 */
+        @media (max-width: 640px) {
+          .hero-v3 .hero-zone-top { height: 70px; }
+          .hero-v3 .hero-zone-bottom { height: 90px; }
+          .hero-v3 .hero-zone-main { padding: 24px 20px 8px; text-align: center; }
+          .hero-v3 .hero-title-stack { display: block; }
+          .hero-v3 .hero-phrase { font-size: clamp(13px, 3.4vw, 16px) !important; }
+          .hero-v3 .hero-phrase-accent {
+            font-size: clamp(18px, 5.4vw, 24px) !important;
+            left: 50% !important;
+            animation-name: phraseFloatCenter !important;
+          }
+          /* 上部ゾーン：独立系 / 一つの窓口で の行間を広げる（スマホ） */
+          .hero-v3 .hero-zone-top .hero-phrase[data-idx="0"] { top: 0% !important; }
+          .hero-v3 .hero-zone-top .hero-phrase[data-idx="1"] { top: 60% !important; }
+        }
+        /* アクセント文字は中央寄せ＋下からスライドのアニメ専用 keyframes */
+        @keyframes phraseFloatCenter {
+          from { opacity: 0; transform: translate(-50%, 20px); }
+          to   { opacity: 1; transform: translate(-50%, 0); }
+        }
+        @media (max-width: 1024px) {
+          .hero-v3 .hero-phrase-accent { transform: translateX(-50%); }
         }
       `}</style>
     </section>
